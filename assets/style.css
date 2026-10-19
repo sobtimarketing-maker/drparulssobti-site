@@ -149,6 +149,16 @@ section + section { border-top: 1px solid var(--line); }
 .portrait { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: top; border-radius: var(--radius); display: block; background: var(--surface); }
 .pull { margin: 0; padding-left: 20px; border-left: 2px solid var(--accent); font-family: var(--font-display); font-style: italic; font-size: var(--step-1); line-height: 1.4; }
 
+/* Clinic photo gallery */
+.gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 760px) { .gallery { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .gallery { grid-template-columns: 1fr; } }
+.gallery figure, figure.solo { margin: 0; display: grid; gap: 8px; min-width: 0; }
+.gallery img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius); display: block; background: var(--surface); }
+.gallery figcaption, figure.solo figcaption { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); letter-spacing: 0.04em; }
+figure.solo { margin-top: 24px; max-width: 280px; }
+figure.solo img { width: 100%; height: auto; border-radius: var(--radius); display: block; }
+
 /* Facts list */
 .facts { display: grid; gap: 0; border-top: 1px solid var(--line); }
 .facts div { display: grid; grid-template-columns: 11rem 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }

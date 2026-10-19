@@ -65,6 +65,14 @@ def portrait(alt="Dr Parul Sharma Sobti"):
     return f'<img class="portrait" src="{PORTRAIT_URL}" alt="{alt}" loading="lazy">'
 
 
+def gallery(items, root=""):
+    """items: (file in assets/images/clinic, caption)."""
+    figs = "".join(
+        f'<figure><img src="{root}assets/images/clinic/{f}" alt="{esc(c)}" loading="lazy" width="1200" height="900">'
+        f'<figcaption>{c}</figcaption></figure>' for f, c in items)
+    return f'<div class="gallery">{figs}</div>'
+
+
 def ph(text):
     return f'<span class="ph">{text}</span>'
 
@@ -241,7 +249,12 @@ def page_home(posts):
     <div><dt>Making</dt><dd>3D printer and three in-house milling machines</dd></div>
     <div><dt>Precision</dt><dd>Operating microscope, piezosurgery, ISQ meter</dd></div>
   </dl>
-</div></section>
+</div>
+<div class="wrap" style="margin-top:40px">{gallery([
+    ("clinic-microscope-room.jpg", "Microscope operatory"),
+    ("clinic-cbct-scanner.jpg", "MyRay CBCT 3D scanner"),
+    ("clinic-dental-lab.jpg", "In-house digital lab"),
+])}</div></section>
 
 <section class="cta-band"><div class="wrap">
   <h2>Thinking about changing your smile? Start with a conversation.</h2>
@@ -320,6 +333,18 @@ def page_clinic():
   </dl>
 </div></section>
 
+<section><div class="wrap">
+  <div class="section-head"><span class="label">Inside the clinic</span><h2>Rajouri Garden, New Delhi</h2></div>
+  {gallery([
+    ("clinic-entrance.jpg", "Entrance"),
+    ("clinic-reception.jpg", "Reception"),
+    ("clinic-lounge.jpg", "Patient lounge"),
+    ("clinic-microscope-room.jpg", "Microscope operatory"),
+    ("clinic-implant-surgery-room.jpg", "Implant surgery suite"),
+    ("clinic-dental-lab.jpg", "In-house digital lab"),
+  ])}
+</div></section>
+
 <section><div class="wrap split">
   <div class="prose"><span class="label">Your visit</span><h2>How treatment works here</h2>
   <p>Every smile project follows the same five steps, whether it is one crown or a full makeover.</p></div>
@@ -334,6 +359,8 @@ def page_clinic():
     <div class="card"><h3>Single-use items</h3><p class="muted">Needles, gloves, masks, suction tips and bibs are used once and discarded.</p></div>
     <div class="card"><h3>Surface disinfection</h3><p class="muted">The chair and surfaces are disinfected between every appointment.</p></div>
   </div>
+  <figure class="solo"><img src="assets/images/clinic/clinic-class-b-autoclave.jpg" alt="Class B autoclave at the clinic" loading="lazy" width="900" height="1200">
+    <figcaption>Our Class B autoclave</figcaption></figure>
 </div></section>"""
 
 
@@ -425,7 +452,12 @@ def page_technology():
   <p>Technology is only useful if it makes treatment more accurate, more comfortable or more predictable. Here is what we use and what it does for you.</p>
 </div></section>
 <section><div class="wrap">
-  <div class="table-wrap"><table>
+  {gallery([
+    ("clinic-cbct-scanner.jpg", "MyRay CBCT 3D scanner"),
+    ("clinic-microscope-room.jpg", "Operating microscope"),
+    ("clinic-dental-lab.jpg", "3D printers and Kelkar mill in our lab"),
+  ])}
+  <div class="table-wrap" style="margin-top:40px"><table>
     <thead><tr><th>Equipment</th><th>What it does for you</th><th>Area</th></tr></thead>
     <tbody>{rows}</tbody>
   </table></div>
