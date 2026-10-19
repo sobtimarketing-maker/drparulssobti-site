@@ -1,0 +1,61 @@
+post,publish_date,chapter,chapter_name,title,summary,type,status
+1,2026-10-21,I,The Language of a Smile,"What is smile designing, really?","A plain introduction to planning a smile around a face, not just fixing teeth.",Topic,Written
+2,2026-10-23,I,The Language of a Smile,Meet Dr Parul Sharma Sobti,"Why smiles became her life's work, and how she approaches every patient.",About Dr Parul,Written
+3,2026-10-25,I,The Language of a Smile,The anatomy of a smile,"Teeth, gums, lips and face: the four layers every smile design considers.",Topic,Written
+4,2026-10-27,I,The Language of a Smile,The golden proportion and your front teeth,"Why the widths of your front six teeth follow a pattern, and when to ignore it.",Topic,Planned
+5,2026-10-29,I,The Language of a Smile,"Smile line, lip line and buccal corridors","The words your dentist uses when they study your smile, explained.",Topic,Planned
+6,2026-10-31,I,The Language of a Smile,Tooth colour explained,"Shade guides, value, chroma and translucency, and why white is not one colour.",Topic,Planned
+7,2026-11-02,I,The Language of a Smile,Why teeth stain,"Tea, coffee, tobacco, age, medicines and genetics: surface stains versus deep ones.",Topic,Planned
+8,2026-11-04,I,The Language of a Smile,Healthy first,Why every cosmetic plan starts with clean teeth and healthy gums.,Topic,Planned
+9,2026-11-06,I,The Language of a Smile,Your first smile consultation,"What happens, step by step, from photographs to the treatment plan.",Topic,Planned
+10,2026-11-08,I,The Language of a Smile,A day in Dr Parul's clinic,Behind the scenes of a working day at the clinic.,About Dr Parul,Planned
+11,2026-11-10,II,"Small Changes, Big Difference",Scaling and polishing,"The simplest way to brighten a smile, and why it comes before anything else.",Topic,Planned
+12,2026-11-12,II,"Small Changes, Big Difference",Teeth whitening: in-clinic or at home?,"How each method works, how long it takes and what results to expect.",Topic,Planned
+13,2026-11-14,II,"Small Changes, Big Difference",Does whitening damage enamel?,"Sensitivity, safety and the myths around bleaching, answered.",Topic,Planned
+14,2026-11-16,II,"Small Changes, Big Difference",Composite bonding,"Repairing chips, worn edges and small gaps in a single visit.",Topic,Planned
+15,2026-11-18,II,"Small Changes, Big Difference",Enamel contouring,Small reshaping that evens out edges without drilling deep.,Topic,Planned
+16,2026-11-20,II,"Small Changes, Big Difference",Closing small gaps without braces,Options for a diastema and when braces are still the better choice.,Topic,Planned
+17,2026-11-22,II,"Small Changes, Big Difference",White spots and fluorosis,"Why they appear and how micro-abrasion, infiltration and bonding help.",Topic,Planned
+18,2026-11-24,II,"Small Changes, Big Difference",Replacing old silver fillings,Tooth-coloured fillings and when replacement is worth it.,Topic,Planned
+19,2026-11-26,II,"Small Changes, Big Difference",How long do cosmetic results last?,"A realistic care guide for whitening, bonding and polish.",Topic,Planned
+20,2026-11-28,II,"Small Changes, Big Difference",Conservative first: Dr Parul's philosophy,Why she always tries the least invasive option before the bigger ones.,About Dr Parul,Planned
+21,2026-11-30,III,Porcelain and Precision,Veneers 101,"What veneers are, what they fix and who they suit.",Topic,Planned
+22,2026-12-02,III,Porcelain and Precision,Porcelain or composite veneers?,"An honest comparison of cost, look, durability and repair.",Topic,Planned
+23,2026-12-04,III,Porcelain and Precision,No-prep and minimal-prep veneers,When veneers can be placed with little or no tooth reduction.,Topic,Planned
+24,2026-12-06,III,Porcelain and Precision,The veneer journey,"From wax-up and trial smile to final bonding, visit by visit.",Topic,Planned
+25,2026-12-08,III,Porcelain and Precision,Choosing your veneer shade,"Natural, bright or Hollywood white, and how to decide.",Topic,Planned
+26,2026-12-10,III,Porcelain and Precision,Crowns for aesthetics,"Zirconia, lithium disilicate and metal-ceramic crowns explained.",Topic,Planned
+27,2026-12-12,III,Porcelain and Precision,Metal-free dentistry,"Why all-ceramic work looks more natural, especially near the gums.",Topic,Planned
+28,2026-12-14,III,Porcelain and Precision,Replacing a missing front tooth,"Implant, bridge or bonded bridge: how to choose.",Topic,Planned
+29,2026-12-16,III,Porcelain and Precision,Caring for veneers and crowns,"Daily habits, night guards and check-ups that protect your investment.",Topic,Planned
+30,2026-12-18,III,Porcelain and Precision,Case story: a veneer transformation,"One patient's journey from first visit to final smile, with their consent.",About Dr Parul,Planned
+31,2026-12-20,IV,"The Frame: Gums, Alignment and Bite",Pink aesthetics,Why the gums matter as much as the teeth in a beautiful smile.,Topic,Planned
+32,2026-12-22,IV,"The Frame: Gums, Alignment and Bite",The gummy smile,What causes it and the range of treatments available.,Topic,Planned
+33,2026-12-24,IV,"The Frame: Gums, Alignment and Bite",Laser gum contouring,"Reshaping the gum line gently, with quick healing.",Topic,Planned
+34,2026-12-26,IV,"The Frame: Gums, Alignment and Bite",Uneven gum lines and crown lengthening,Making short teeth look their true length.,Topic,Planned
+35,2026-12-28,IV,"The Frame: Gums, Alignment and Bite",Clear aligners,"How invisible orthodontics moves teeth, and what wearing them is like.",Topic,Planned
+36,2026-12-30,IV,"The Frame: Gums, Alignment and Bite",Aligners or braces for adults?,"Comfort, speed, cost and which cases suit each.",Topic,Planned
+37,2027-01-01,IV,"The Frame: Gums, Alignment and Bite",Your bite and your smile,How jaw alignment and tooth wear change the way a smile looks.,Topic,Planned
+38,2027-01-03,IV,"The Frame: Gums, Alignment and Bite",Black triangles between teeth,Why they appear after gum recession and how to fill them.,Topic,Planned
+39,2027-01-05,IV,"The Frame: Gums, Alignment and Bite",Combining treatments,"When alignment, gum work and veneers are planned as one sequence.",Topic,Planned
+40,2027-01-07,IV,"The Frame: Gums, Alignment and Bite",How Dr Parul plans a smile makeover,Her step-by-step planning method for multi-stage cases.,About Dr Parul,Planned
+41,2027-01-09,V,The Digital Smile,Digital Smile Design,Seeing your new smile on screen before any treatment begins.,Topic,Planned
+42,2027-01-11,V,The Digital Smile,Smile photography and video,"Why we photograph and film your smile, and what we measure.",Topic,Planned
+43,2027-01-13,V,The Digital Smile,Intraoral scanning,A 3D scan in minutes in place of messy impression trays.,Topic,Planned
+44,2027-01-15,V,The Digital Smile,Mock-ups and 3D printing,Test-driving your new smile in your own mouth.,Topic,Planned
+45,2027-01-17,V,The Digital Smile,3D imaging with CBCT,How 3D X-rays make implant and bone planning precise.,Topic,Planned
+46,2027-01-19,V,The Digital Smile,Dental microscopes,Magnification that makes fine margins and root canals more accurate.,Topic,Planned
+47,2027-01-21,V,The Digital Smile,Lasers in cosmetic dentistry,"Where lasers help, from gums to whitening, and where they do not.",Topic,Planned
+48,2027-01-23,V,The Digital Smile,CAD/CAM restorations,Designing and milling crowns and veneers by computer.,Topic,Planned
+49,2027-01-25,V,The Digital Smile,Guided implant surgery,Planning implants digitally and placing them through a surgical guide.,Topic,Planned
+50,2027-01-27,V,The Digital Smile,Inside our technology suite,A tour of the equipment at the clinic and why Dr Parul chose each piece.,About Dr Parul,Planned
+51,2027-01-29,VI,Beyond Teeth: Facial Harmony,Dento-facial aesthetics,Why the face and the smile are designed together.,Topic,Planned
+52,2027-01-31,VI,Beyond Teeth: Facial Harmony,Lips and the smile,"Lip proportions, lip support and how teeth shape the lips.",Topic,Planned
+53,2027-02-02,VI,Beyond Teeth: Facial Harmony,Anti-wrinkle injections,"What dentists know about the muscles of the face, and how it helps.",Topic,Planned
+54,2027-02-04,VI,Beyond Teeth: Facial Harmony,Dermal fillers for lips and smile lines,Restoring volume and balance around the mouth.,Topic,Planned
+55,2027-02-06,VI,Beyond Teeth: Facial Harmony,Treating a gummy smile with injections,A non-surgical option for an over-active upper lip.,Topic,Planned
+56,2027-02-08,VI,Beyond Teeth: Facial Harmony,Facial profile and full-mouth rehabilitation,How rebuilding worn teeth can restore the lower face.,Topic,Planned
+57,2027-02-10,VI,Beyond Teeth: Facial Harmony,Ageing around the mouth,"Volume loss, thinning lips and what can be done at each stage.",Topic,Planned
+58,2027-02-12,VI,Beyond Teeth: Facial Harmony,Safety in facial aesthetics,"Training, products and setting realistic expectations.",Topic,Planned
+59,2027-02-14,VI,Beyond Teeth: Facial Harmony,The complete makeover,"Planning teeth, gums, lips and face as one design.",Topic,Planned
+60,2027-02-16,VI,Beyond Teeth: Facial Harmony,Dr Parul's vision for aesthetic dentistry,Where the field is heading and what it means for her patients.,About Dr Parul,Planned
