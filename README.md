@@ -1,7 +1,7 @@
 # Dr Parul Sharma Sobti website
 
 Static HTML/CSS site for drparulssobti.com. Netlify builds it from this repository on every push (`netlify.toml`: `python3 build.py`, publish `site/`).
-A blog post goes live once its file exists in `content/posts/` and its date in `content/blog_plan.py` has arrived (India time). Set `BUILD_DATE=YYYY-MM-DD` to preview a future date.
+A blog post goes live once its file exists in `content/posts/`, its number is in `content/approved.txt` (Dr Parul approves each post first), and its date in `content/blog_plan.py` has arrived (India time). Set `BUILD_DATE=YYYY-MM-DD` to preview a future date.
 
 - `content/blog_plan.py`: the 60-post Smile Journal sequence (6 chapters, basic to advanced), start date and order.
 - `content/posts/NN.html`: written post bodies. A post appears on the site once its file exists.

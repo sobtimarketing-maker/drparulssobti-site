@@ -89,10 +89,19 @@ def today_ist():
     return (dt.datetime.now(dt.timezone.utc) + dt.timedelta(hours=5, minutes=30)).date()
 
 
+def approved_posts():
+    """Post numbers Dr Parul has approved, one per line in content/approved.txt."""
+    f = ROOT / "content" / "approved.txt"
+    if not f.exists():
+        return set()
+    return {int(line.split("#")[0]) for line in f.read_text().splitlines() if line.split("#")[0].strip()}
+
+
 def post_list():
-    """A post goes live once its file exists and its publish date has arrived."""
+    """A post goes live once it is written, approved and its publish date has arrived."""
     start = dt.date.fromisoformat(START_DATE)
     today = today_ist()
+    approved = approved_posts()
     out = []
     for i, (ch, title, summary, kind) in enumerate(POSTS):
         n = i + 1
@@ -102,7 +111,9 @@ def post_list():
             "date": start + dt.timedelta(days=2 * i),
             "slug": f"{n:02d}-" + "".join(c if c.isalnum() else "-" for c in title.lower()).strip("-").replace("--", "-"),
             "written": body_file.exists(),
-            "body": body_file.read_text() if body_file.exists() and start + dt.timedelta(days=2 * i) <= today else None,
+            "approved": n in approved,
+            "body": (body_file.read_text()
+                     if body_file.exists() and n in approved and start + dt.timedelta(days=2 * i) <= today else None),
         })
     return out
 
@@ -584,7 +595,7 @@ def export_calendar(posts):
         w.writerow(["post", "publish_date", "chapter", "chapter_name", "title", "summary", "type", "status"])
         for p in posts:
             w.writerow([p["n"], p["date"].isoformat(), p["chapter"], names[p["chapter"]], p["title"], p["summary"],
-                        "About Dr Parul" if p["kind"] == "doctor" else "Topic", "Live" if p["body"] else ("Written" if p["written"] else "Planned")])
+                        "About Dr Parul" if p["kind"] == "doctor" else "Topic", "Live" if p["body"] else ("Approved" if p["approved"] else "Awaiting approval" if p["written"] else "Planned")])
 
 
 if __name__ == "__main__":
