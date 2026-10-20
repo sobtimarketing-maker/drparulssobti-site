@@ -22,6 +22,7 @@ from blog_plan import CHAPTERS, POSTS, START_DATE  # noqa: E402  (content/blog_p
 SITE = ROOT / "site"
 
 # Sister sites. Replace "#" with the live addresses.
+SITE_URL = "https://drparulssobti.com"
 CLINIC_URL = "https://www.sobtidentalcare.com"
 PUSHKAR_URL = "https://dentalimplantsdelhi.com"
 
@@ -123,13 +124,25 @@ def fmt_date(d):
 
 
 # ---------------------------------------------------------------- layout
-def layout(title, desc, body, active, root="", preview_main=False):
+def layout(title, desc, body, active, root="", preview_main=False, path=""):
     nav = "".join(
         f'<a href="{root}{href}"{CURRENT if href == active else ""}>{label}</a>'
         for href, label in NAV)
     head = f"""<title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dr Parul Sharma Sobti">
+<meta property="og:title" content="{esc(title)}">
+<meta property="og:description" content="{esc(desc)}">
+<meta property="og:url" content="{SITE_URL}/{path}">
+<meta property="og:image" content="{SITE_URL}/assets/images/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{SITE_URL}/assets/images/share.jpg">
+<link rel="icon" href="{root}assets/images/favicon.png">
+<link rel="apple-touch-icon" href="{root}assets/images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="{FONTS}">
@@ -580,11 +593,11 @@ def build(out, preview=False):
         ("visit.html", "Book a consultation · Dr Parul Sharma Sobti", "Book a smile consultation with Dr Parul Sharma Sobti.", page_visit()),
     ]
     for name, title, desc, body in pages:
-        write(out / name, layout(title, desc, body, name, preview_main=(preview and name == "index.html")))
+        write(out / name, layout(title, desc, body, name, preview_main=(preview and name == "index.html"), path="" if name == "index.html" else name))
     for p in posts:
         if p["body"]:
             write(out / "blog" / f'{p["slug"]}.html',
-                  layout(f'{p["title"]} · Smile Journal', p["summary"], page_post(p, posts), "blog.html", root="../"))
+                  layout(f'{p["title"]} · Smile Journal', p["summary"], page_post(p, posts), "blog.html", root="../", path=f'blog/{p["slug"]}.html'))
     return posts
 
 
