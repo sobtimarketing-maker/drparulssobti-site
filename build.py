@@ -28,7 +28,6 @@ CLINIC_URL = "https://www.sobtidentalcare.com"
 PUSHKAR_URL = "https://dentalimplantsdelhi.com"
 
 CLINIC = "Dr Sobti's Dental Care"
-CLINIC_2 = "Dr Sobti's Medical and Dental Center"  # Vishnu Garden branch, name as on its Google listing
 PHONE = "+91 87449 85976"
 PHONES = ["+91 87449 85976", "+91 80767 77307", "+91 83682 22098", "+91 80762 50767"]
 WHATSAPP_NO = "+91 83682 22098"
@@ -127,7 +126,7 @@ def fmt_date(d):
 
 # ---------------------------------------------------------------- structured data
 def schema(extra=None):
-    """JSON-LD on every page: Dr Parul, both clinic branches and this website, plus page-specific items."""
+    """JSON-LD on every page: Dr Parul, the Rajouri Garden clinic and this website, plus page-specific items."""
     def branch(id_, name, street, locality, pin, phone, maps):
         return {"@type": "Dentist", "@id": id_, "name": name, "url": CLINIC_URL, "telephone": phone,
                 "image": f"{SITE_URL}/assets/images/clinic/clinic-reception.jpg", "priceRange": "₹₹",
@@ -140,8 +139,6 @@ def schema(extra=None):
     graph = [
         branch(f"{SITE_URL}/#clinic", CLINIC, "First Floor, J-12/26, Block J, Rajouri Garden Extension",
                "Rajouri Garden, New Delhi", "110027", PHONE, MAP_1),
-        branch(f"{SITE_URL}/#clinic-vishnu-garden", CLINIC_2, "WZ-168, Mangal Bazar Road, Chand Nagar",
-               "Vishnu Garden, New Delhi", "110018", PHONE, MAP_2),
         {"@type": "Person", "@id": f"{SITE_URL}/#drparul", "name": "Dr Parul Sharma Sobti",
          "jobTitle": "Cosmetic Dentist and Digital Smile Designer", "honorificSuffix": "BDS",
          "image": PORTRAIT_URL, "url": SITE_URL + "/",
@@ -150,7 +147,7 @@ def schema(extra=None):
          "knowsLanguage": ["English", "Hindi"],
          "knowsAbout": ["Smile design", "Digital Smile Design", "Cosmetic dentistry", "Veneers", "Teeth whitening",
                         "Composite bonding", "Gum contouring", "Facial aesthetics"],
-         "worksFor": [{"@id": f"{SITE_URL}/#clinic"}, {"@id": f"{SITE_URL}/#clinic-vishnu-garden"}],
+         "worksFor": {"@id": f"{SITE_URL}/#clinic"},
          "sameAs": [CLINIC_URL, INSTAGRAM, YOUTUBE]},
         {"@type": "WebSite", "@id": f"{SITE_URL}/#website", "url": SITE_URL + "/", "name": "Dr Parul Sharma Sobti",
          "inLanguage": "en-IN", "publisher": {"@id": f"{SITE_URL}/#drparul"}},
@@ -639,11 +636,11 @@ def build(out, preview=False):
     pages = [
         ("index.html", "Cosmetic Dentist in Rajouri Garden, Delhi | Dr Parul Sharma Sobti", "Dr Parul Sharma Sobti is a cosmetic dentist in Rajouri Garden, New Delhi. Veneers, whitening, bonding and smile makeovers planned around your face. 500+ smile designs.", page_home(posts)),
         ("about.html", "About Dr Parul Sharma Sobti, Cosmetic Dentist in Delhi", "Dr Parul Sharma Sobti (BDS), Digital Smile Designer at Dr Sobti's Dental Care, Rajouri Garden: her training, approach and 500+ smile designs since 2009.", page_about()),
-        ("clinic.html", "Dr Sobti's Dental Care, Rajouri Garden & Vishnu Garden, Delhi", "Inside Dr Sobti's Dental Care in Rajouri Garden and Vishnu Garden, New Delhi: the team, your first visit, hygiene and sterilisation standards.", page_clinic()),
+        ("clinic.html", "Dr Sobti's Dental Care, Rajouri Garden, Delhi", "Inside Dr Sobti's Dental Care in Rajouri Garden, New Delhi: the team, your first visit, hygiene and sterilisation standards.", page_clinic()),
         ("treatments.html", "Veneers, Teeth Whitening & Smile Makeover in Delhi | Dr Parul", "Smile design, veneers, teeth whitening, composite bonding, gum contouring, aligners and facial aesthetics with Dr Parul Sharma Sobti in Rajouri Garden, Delhi.", page_treatments()),
         ("technology.html", "Digital Smile Design & Dental Technology in Delhi | Dr Parul", "Digital Smile Design, dental microscopes, CBCT and digital X-rays at Dr Sobti's Dental Care, Rajouri Garden, Delhi, and how they make cosmetic work precise.", page_technology()),
         ("blog.html", "Smile Journal: Cosmetic Dentistry Blog | Dr Parul Sharma Sobti", "A 60-part blog on smile design by Delhi cosmetic dentist Dr Parul Sharma Sobti, from the basics of a smile to veneers, aligners and facial harmony.", page_blog(posts)),
-        ("visit.html", "Book a Smile Consultation in Rajouri Garden | Dr Parul Sobti", "Book a smile consultation with Dr Parul Sharma Sobti in Rajouri Garden or Vishnu Garden, New Delhi. Open 7 days, 10 am to 7 pm. WhatsApp +91 83682 22098.", page_visit()),
+        ("visit.html", "Book a Smile Consultation in Rajouri Garden | Dr Parul Sobti", "Book a smile consultation with Dr Parul Sharma Sobti at Dr Sobti's Dental Care, Rajouri Garden, New Delhi. Open 7 days, 10 am to 7 pm. WhatsApp +91 83682 22098.", page_visit()),
     ]
     for name, title, desc, body in pages:
         write(out / name, layout(title, desc, body, name, preview_main=(preview and name == "index.html"), path="" if name == "index.html" else name))
