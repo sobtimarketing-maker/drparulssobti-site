@@ -9,7 +9,7 @@ post,publish_date,chapter,chapter_name,title,summary,type,status
 8,2026-11-04,I,The Language of a Smile,Healthy first,Why every cosmetic plan starts with clean teeth and healthy gums.,Topic,Approved
 9,2026-11-06,I,The Language of a Smile,Your first smile consultation,"What happens, step by step, from photographs to the treatment plan.",Topic,Approved
 10,2026-11-08,I,The Language of a Smile,A day in Dr Parul's clinic,Behind the scenes of a working day at the clinic.,About Dr Parul,Approved
-11,2026-11-10,II,"Small Changes, Big Difference",Scaling and polishing,"The simplest way to brighten a smile, and why it comes before anything else.",Topic,Planned
+11,2026-11-10,II,"Small Changes, Big Difference",Scaling and polishing: what a teeth cleaning visit involves,"The simplest way to brighten a smile, and why it comes before anything else.",Topic,Planned
 12,2026-11-12,II,"Small Changes, Big Difference",Teeth whitening: in-clinic or at home?,"How each method works, how long it takes and what results to expect.",Topic,Planned
 13,2026-11-14,II,"Small Changes, Big Difference",Does whitening damage enamel?,"Sensitivity, safety and the myths around bleaching, answered.",Topic,Planned
 14,2026-11-16,II,"Small Changes, Big Difference",Composite bonding,"Repairing chips, worn edges and small gaps in a single visit.",Topic,Planned
@@ -19,12 +19,12 @@ post,publish_date,chapter,chapter_name,title,summary,type,status
 18,2026-11-24,II,"Small Changes, Big Difference",Replacing old silver fillings,Tooth-coloured fillings and when replacement is worth it.,Topic,Planned
 19,2026-11-26,II,"Small Changes, Big Difference",How long do cosmetic results last?,"A realistic care guide for whitening, bonding and polish.",Topic,Planned
 20,2026-11-28,II,"Small Changes, Big Difference",Conservative first: Dr Parul's philosophy,Why she always tries the least invasive option before the bigger ones.,About Dr Parul,Planned
-21,2026-11-30,III,Porcelain and Precision,Veneers 101,"What veneers are, what they fix and who they suit.",Topic,Planned
+21,2026-11-30,III,Porcelain and Precision,"Veneers 101: what they fix, who they suit and what they cost","What veneers are, what they fix and who they suit.",Topic,Planned
 22,2026-12-02,III,Porcelain and Precision,Porcelain or composite veneers?,"An honest comparison of cost, look, durability and repair.",Topic,Planned
 23,2026-12-04,III,Porcelain and Precision,No-prep and minimal-prep veneers,When veneers can be placed with little or no tooth reduction.,Topic,Planned
 24,2026-12-06,III,Porcelain and Precision,The veneer journey,"From wax-up and trial smile to final bonding, visit by visit.",Topic,Planned
 25,2026-12-08,III,Porcelain and Precision,Choosing your veneer shade,"Natural, bright or Hollywood white, and how to decide.",Topic,Planned
-26,2026-12-10,III,Porcelain and Precision,Crowns for aesthetics,"Zirconia, lithium disilicate and metal-ceramic crowns explained.",Topic,Planned
+26,2026-12-10,III,Porcelain and Precision,"Zirconia, E-max or metal-ceramic: choosing a tooth cap","Zirconia, lithium disilicate and metal-ceramic crowns explained.",Topic,Planned
 27,2026-12-12,III,Porcelain and Precision,Metal-free dentistry,"Why all-ceramic work looks more natural, especially near the gums.",Topic,Planned
 28,2026-12-14,III,Porcelain and Precision,Replacing a missing front tooth,"Implant, bridge or bonded bridge: how to choose.",Topic,Planned
 29,2026-12-16,III,Porcelain and Precision,Caring for veneers and crowns,"Daily habits, night guards and check-ups that protect your investment.",Topic,Planned
@@ -33,7 +33,7 @@ post,publish_date,chapter,chapter_name,title,summary,type,status
 32,2026-12-22,IV,"The Frame: Gums, Alignment and Bite",The gummy smile,What causes it and the range of treatments available.,Topic,Planned
 33,2026-12-24,IV,"The Frame: Gums, Alignment and Bite",Laser gum contouring,"Reshaping the gum line gently, with quick healing.",Topic,Planned
 34,2026-12-26,IV,"The Frame: Gums, Alignment and Bite",Uneven gum lines and crown lengthening,Making short teeth look their true length.,Topic,Planned
-35,2026-12-28,IV,"The Frame: Gums, Alignment and Bite",Clear aligners,"How invisible orthodontics moves teeth, and what wearing them is like.",Topic,Planned
+35,2026-12-28,IV,"The Frame: Gums, Alignment and Bite",Clear aligners and Invisalign: how invisible braces work,"How invisible orthodontics moves teeth, and what wearing them is like.",Topic,Planned
 36,2026-12-30,IV,"The Frame: Gums, Alignment and Bite",Aligners or braces for adults?,"Comfort, speed, cost and which cases suit each.",Topic,Planned
 37,2027-01-01,IV,"The Frame: Gums, Alignment and Bite",Your bite and your smile,How jaw alignment and tooth wear change the way a smile looks.,Topic,Planned
 38,2027-01-03,IV,"The Frame: Gums, Alignment and Bite",Black triangles between teeth,Why they appear after gum recession and how to fill them.,Topic,Planned
