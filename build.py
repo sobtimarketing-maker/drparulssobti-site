@@ -842,6 +842,8 @@ def build(out, preview=False):
                   layout(f'{p["title"]} | Dr Parul Sharma Sobti', post_description(p), page_post(p, posts),
                          "blog.html", root="../", path=f'blog/{p["slug"]}.html', og_type="article", ld=post_schema(p)))
     write_sitemap(out, posts)
+    # Google Search Console ownership file. Keep it, or the site loses verification.
+    write(out / "google92cb67c4e945410f.html", "google-site-verification: google92cb67c4e945410f.html")
     return posts
 
 
