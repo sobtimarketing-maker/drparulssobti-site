@@ -19,6 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT / "content"))
 from blog_plan import CHAPTERS, POSTS, START_DATE  # noqa: E402  (content/blog_plan.py)
+from price_pages import PRICE_PAGES, RAJOURI_FAQ  # noqa: E402  (content/price_pages.py)
 
 SITE = ROOT / "site"
 
@@ -492,7 +493,7 @@ def page_treatments():
     return f"""<section class="page-hero"><div class="wrap">
   <span class="label">Treatments</span>
   <h1>What we do</h1>
-  <p>From a single whitening session to a full smile and facial makeover. Visit counts are typical and depend on your case. Prices and details for <a href="veneers.html">veneers in Delhi</a>.</p>
+  <p>From a single whitening session to a full smile and facial makeover. Visit counts are typical and depend on your case. Prices: <a href="veneers.html">veneers</a>, <a href="dental-crown-cost-delhi.html">crowns and caps</a>, <a href="braces-cost-delhi.html">braces</a>, <a href="clear-aligners-cost-delhi.html">clear aligners</a>, <a href="root-canal-cost-delhi.html">root canal</a>, <a href="teeth-whitening-cost-delhi.html">whitening</a> and <a href="teeth-cleaning-cost-delhi.html">cleaning</a>.</p>
 </div></section>
 <section><div class="wrap treatments">{''.join(groups)}</div></section>"""
 
@@ -560,6 +561,120 @@ def veneers_schema():
             {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"},
             {"@type": "ListItem", "position": 2, "name": "Treatments", "item": f"{SITE_URL}/treatments.html"},
             {"@type": "ListItem", "position": 3, "name": "Veneers", "item": url}]},
+    ]
+
+
+def _paras(blocks):
+    out = []
+    for b in blocks:
+        out.append("<ul>" + "".join(f"<li>{x}</li>" for x in b) + "</ul>" if isinstance(b, list) else f"<p>{b}</p>")
+    return "".join(out)
+
+
+def faq_html(faq):
+    return "".join(f'<div class="titem"><h3>{q}</h3><p>{a}</p></div>' for q, a in faq)
+
+
+def page_schema(slug, name, faq):
+    url = f"{SITE_URL}/{slug}.html"
+    return [
+        {"@type": "FAQPage", "@id": url + "#faq", "mainEntity": [
+            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": html.unescape(re_tags(a))}} for q, a in faq]},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Treatments", "item": f"{SITE_URL}/treatments.html"},
+            {"@type": "ListItem", "position": 3, "name": name, "item": url}]},
+    ]
+
+
+def re_tags(s):
+    import re
+    return re.sub(r"<[^>]+>", "", s)
+
+
+def page_price(pg):
+    prices = "".join(f'<div class="titem"><h3>{i}</h3><span class="mono">{v}</span></div>' for i, v in pg["prices"])
+    body = "".join(f"<h2>{h}</h2>{_paras(b)}" for h, b in pg["sections"])
+    facts = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in pg["facts"])
+    return f"""<section class="page-hero"><div class="wrap">
+  <span class="label">{pg["label"]}</span>
+  <h1>{pg["h1"]}</h1>
+  <p>{pg["intro"]}</p>
+</div></section>
+
+<section><div class="wrap treatments"><div class="tgroup"><div><h2>Prices</h2>
+<p class="muted">Starting prices, updated November 2026. You get the full cost in writing before treatment starts.</p></div><div class="tlist">{prices}</div></div></div></section>
+
+<section><div class="wrap split">
+  <div class="prose">{body}</div>
+  <dl class="facts">
+    {facts}
+    <div><dt>Where</dt><dd>{CLINIC}, {ADDRESS} · <a href="{MAP_1}">Map</a></dd></div>
+    <div><dt>Call</dt><dd>{PHONE} · WhatsApp <a href="{WHATSAPP}">{WHATSAPP_NO}</a></dd></div>
+    <div><dt>Hours</dt><dd>{HOURS}</dd></div>
+    <div><dt>Pay by</dt><dd>UPI, card or cash</dd></div>
+  </dl>
+</div></section>
+
+<section><div class="wrap treatments"><div class="tgroup"><div><h2>Questions</h2>
+<p class="muted">Ask anything else on WhatsApp.</p></div><div class="tlist">{faq_html(pg["faq"])}</div></div></div></section>
+<section><div class="wrap"><p><a class="btn" href="visit.html">{pg["cta"]}</a> <a href="treatments.html">See all treatments</a></p></div></section>"""
+
+
+def page_rajouri():
+    links = "".join(f'<li><a href="{p["slug"]}.html">{p["name"]}</a>: {p["prices"][0][1].lower()}</li>' for p in PRICE_PAGES)
+    return f"""<section class="page-hero"><div class="wrap">
+  <span class="label">Rajouri Garden, West Delhi</span>
+  <h1>Dentist in Rajouri Garden</h1>
+  <p>{CLINIC} is a family dental clinic in Rajouri Garden Extension, above Rajmandir. Dr Pushkar Sobti and Dr Parul Sharma Sobti have been in practice since 2009, and the Rajouri Garden clinic opened in 2024.</p>
+</div></section>
+
+<section><div class="wrap split">
+  <div class="prose">
+    <h2>Your dentists</h2>
+    <ul>
+      <li><strong>Dr Pushkar Sobti</strong> (BDS, MDS, PG in Oral Implantology) is an implantologist who has placed more than 5,000 implants, from single teeth to <a href="{PUSHKAR_URL}/">All-on-4 and full mouth implants</a>.</li>
+      <li><strong><a href="about.html">Dr Parul Sharma Sobti</a></strong> (BDS) focuses on smile design and cosmetic dentistry: veneers, whitening, bonding and smile makeovers.</li>
+    </ul>
+    <h2>Treatments and starting prices</h2>
+    <ul>
+      {links}
+      <li><a href="veneers.html">Veneers</a>: from ₹10,000 per tooth</li>
+      <li>Tooth-coloured fillings: from ₹2,500</li>
+      <li>Wisdom tooth removal: from ₹10,000</li>
+      <li><a href="{PUSHKAR_URL}/dental-implant-cost-delhi/">Dental implants</a>: from ₹35,000</li>
+      <li>Children's dentistry, dentures and all general treatments, priced after a check-up</li>
+    </ul>
+    <p>Everything is planned with digital tools: a CBCT scanner, intraoral 3D scanners, a dental microscope and an in-house lab. See <a href="technology.html">our technology</a>.</p>
+    <h2>Getting here</h2>
+    <p>The clinic is on the first floor of J-12/26, Block J, Rajouri Garden Extension, above Rajmandir and near Geetanjali Salon. It is about 1.5 km from Rajouri Garden metro station. Parking is available, and there is a lift.</p>
+    <p>Patients come from across Delhi and NCR, including Tagore Garden, Subhash Nagar, Tilak Nagar, Janakpuri, Punjabi Bagh and Ramesh Nagar, as well as from other states. We also regularly treat international patients from the UK, Europe, the US, Canada, Australia, New Zealand, Hong Kong, Japan, Singapore, the UAE, Saudi Arabia and Africa.</p>
+  </div>
+  <dl class="facts">
+    <div><dt>Address</dt><dd>{CLINIC}, {ADDRESS} · <a href="{MAP_1}">Map</a></dd></div>
+    <div><dt>Landmark</dt><dd>Above Rajmandir, near Geetanjali Salon</dd></div>
+    <div><dt>Metro</dt><dd>About 1.5 km from Rajouri Garden</dd></div>
+    <div><dt>Hours</dt><dd>{HOURS}</dd></div>
+    <div><dt>Call</dt><dd>{PHONE} · WhatsApp <a href="{WHATSAPP}">{WHATSAPP_NO}</a></dd></div>
+    <div><dt>Languages</dt><dd>Hindi and English</dd></div>
+    <div><dt>Pay by</dt><dd>UPI, card or cash</dd></div>
+    <div><dt>Access</dt><dd>Parking and lift</dd></div>
+  </dl>
+</div></section>
+
+<section><div class="wrap treatments"><div class="tgroup"><div><h2>Questions</h2>
+<p class="muted">Ask anything else on WhatsApp.</p></div><div class="tlist">{faq_html(RAJOURI_FAQ)}</div></div></div></section>
+<section><div class="wrap"><p><a class="btn" href="visit.html">Book a visit</a> <a href="treatments.html">See all treatments</a></p></div></section>"""
+
+
+def rajouri_schema():
+    url = f"{SITE_URL}/dentist-rajouri-garden.html"
+    return [
+        {"@type": "FAQPage", "@id": url + "#faq", "mainEntity": [
+            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in RAJOURI_FAQ]},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Dentist in Rajouri Garden", "item": url}]},
     ]
 
 
@@ -670,7 +785,7 @@ def page_visit():
     <div><dt>WhatsApp</dt><dd><a href="{WHATSAPP}">{WHATSAPP_NO}</a></dd></div>
     <div><dt>Call</dt><dd class="mono">{"<br>".join(PHONES)}</dd></div>
     <div><dt>Email</dt><dd>{EMAIL}</dd></div>
-    <div><dt>Head clinic</dt><dd>{CLINIC}, {ADDRESS} · <a href="{MAP_1}">Map</a></dd></div>
+    <div><dt>Head clinic</dt><dd>{CLINIC}, {ADDRESS} · <a href="{MAP_1}">Map</a> · <a href="dentist-rajouri-garden.html">Directions, timings and prices</a></dd></div>
     <div><dt>Also at</dt><dd>{ADDRESS_2} · <a href="{MAP_2}">Map</a></dd></div>
     <div><dt>Hours</dt><dd>{HOURS}</dd></div>
     <div><dt>Book online</dt><dd><a href="https://www.sobtidentalcare.com/booking.html">sobtidentalcare.com/booking</a></dd></div>
@@ -714,6 +829,13 @@ def build(out, preview=False):
         "Veneers in Delhi: Cost from ₹10,000 per Tooth | Dr Parul Sobti",
         "Porcelain and composite veneers in Rajouri Garden, Delhi, from ₹10,000 per tooth. Smile design and a trial smile before anything is permanent, with Dr Parul Sharma Sobti.",
         page_veneers(), "treatments.html", path="veneers.html", ld=veneers_schema()))
+    for pg in PRICE_PAGES:
+        write(out / f'{pg["slug"]}.html', layout(pg["title"], pg["desc"], page_price(pg), "treatments.html",
+                                                 path=f'{pg["slug"]}.html', ld=page_schema(pg["slug"], pg["name"], pg["faq"])))
+    write(out / "dentist-rajouri-garden.html", layout(
+        "Dentist in Rajouri Garden, Delhi: Prices, Timings and Directions | Dr Sobti's Dental Care",
+        "Dentist in Rajouri Garden Extension, above Rajmandir: Dr Pushkar Sobti and Dr Parul Sharma Sobti, in practice since 2009. Open 7 days, 10 am to 7 pm. Prices, parking and directions.",
+        page_rajouri(), "visit.html", path="dentist-rajouri-garden.html", ld=rajouri_schema()))
     for p in posts:
         if p["body"]:
             write(out / "blog" / f'{p["slug"]}.html',
@@ -733,7 +855,8 @@ def write_sitemap(out, posts):
     """sitemap.xml and robots.txt, so Google finds every new post the day it goes live."""
     today = today_ist().isoformat()
     urls = [(SITE_URL + "/", today)] + [(f"{SITE_URL}/{n}", today) for n in
-            ("about.html", "clinic.html", "treatments.html", "veneers.html", "technology.html", "blog.html", "visit.html")]
+            ("about.html", "clinic.html", "treatments.html", "veneers.html", "technology.html", "blog.html", "visit.html",
+             "dentist-rajouri-garden.html") + tuple(f'{p["slug"]}.html' for p in PRICE_PAGES)]
     urls += [(f'{SITE_URL}/blog/{p["slug"]}.html', p["date"].isoformat()) for p in posts if p["body"]]
     write(out / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n'
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
