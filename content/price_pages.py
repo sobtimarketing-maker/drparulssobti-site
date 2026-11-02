@@ -1,0 +1,255 @@
+"""Treatment price pages (prices from the clinic questionnaire, 2 Nov 2026).
+
+Each page targets one search people in Delhi use, such as "root canal cost in Delhi".
+build.py turns every entry into <slug>.html with FAQ and breadcrumb schema.
+Fields: slug, title, desc, label, h1, intro, prices [(item, price)], sections [(heading, [paragraph or list of bullets])],
+facts [(label, value)], faq [(question, answer)], cta.
+"""
+
+PRICE_PAGES = [
+    {
+        "slug": "dental-crown-cost-delhi",
+        "name": "Dental crowns",
+        "title": "Dental Crown (Teeth Cap) Cost in Delhi: Zirconia from ₹8,000 | Dr Sobti's Dental Care",
+        "desc": "Teeth cap price in Delhi: zirconia crowns from ₹8,000 and E-max crowns from ₹10,000 per tooth, made in our in-house lab with a warranty. Same-day crowns in Rajouri Garden.",
+        "label": "Treatments · Crowns and caps",
+        "h1": "Dental crown (teeth cap) cost in Delhi",
+        "intro": "Metal-free zirconia and E-max crowns, made in the clinic's own lab at Dr Sobti's Dental Care, Rajouri Garden. Zirconia crowns start from ₹8,000 per tooth.",
+        "prices": [
+            ("Zirconia crown", "From ₹8,000 per tooth"),
+            ("E-max (glass ceramic) crown", "From ₹10,000 per tooth"),
+            ("Dental bridge", "Crown price × number of teeth in the bridge"),
+        ],
+        "sections": [
+            ("Which crown is right for you", [
+                "We only make metal-free crowns. They look like natural teeth and don't leave a dark line at the gum.",
+                ["Zirconia is very strong, so it suits back teeth and people who grind.",
+                 "E-max is a glass ceramic that lets light through like enamel, so it is a favourite for front teeth."],
+                "Dr Parul will tell you which material suits each tooth before you decide.",
+            ]),
+            ("What a bridge costs", [
+                "A bridge replaces a missing tooth by joining crowns on the teeth either side. To work out the price, take the crown type you choose and multiply by the number of teeth in the bridge. A three-unit zirconia bridge, for example, starts from ₹24,000.",
+                "If you would rather not cut down the neighbouring teeth, a <a href=\"https://dentalimplantsdelhi.com/dental-implant-cost-delhi/\">dental implant</a> may be the better choice.",
+            ]),
+            ("Same-day crowns from our own lab", [
+                "Your tooth is scanned with an intraoral scanner instead of messy impressions. Glass-ceramic crowns can be milled in our in-house lab and fitted the same day. Every crown comes with a warranty.",
+            ]),
+        ],
+        "facts": [("Zirconia", "From ₹8,000 per tooth"), ("E-max", "From ₹10,000 per tooth"),
+                  ("Same day", "Glass-ceramic crowns"), ("Warranty", "On every crown")],
+        "faq": [
+            ("What is the price of a teeth cap in Delhi?",
+             "At Dr Sobti's Dental Care in Rajouri Garden, a zirconia cap starts from ₹8,000 per tooth and an E-max cap from ₹10,000 per tooth. Both are metal-free and come with a warranty."),
+            ("How much does a zirconia crown cost?",
+             "Zirconia crowns start from ₹8,000 per tooth. They are made in our in-house lab."),
+            ("Do you make metal or metal-ceramic crowns?",
+             "No. We only make metal-free crowns: zirconia and E-max glass ceramic."),
+            ("Can I get a crown in one day?",
+             "Yes, glass-ceramic crowns can be made and fitted the same day, because they are milled in our own lab."),
+            ("How much does a dental bridge cost in Delhi?",
+             "Multiply the crown price by the number of teeth in the bridge. A three-unit zirconia bridge starts from ₹24,000."),
+        ],
+        "cta": "Book a crown consultation",
+    },
+    {
+        "slug": "braces-cost-delhi",
+        "name": "Braces",
+        "title": "Braces Cost in Delhi: Metal from ₹40,000, Ceramic from ₹50,000 | Dr Sobti's Dental Care",
+        "desc": "Braces cost in Delhi at Dr Sobti's Dental Care, Rajouri Garden: metal braces from ₹40,000, ceramic from ₹50,000, self-ligating from ₹60,000. For children and adults.",
+        "label": "Treatments · Braces",
+        "h1": "Braces cost in Delhi",
+        "intro": "Metal, ceramic and self-ligating braces for children and adults at Dr Sobti's Dental Care, Rajouri Garden. Braces start from ₹40,000.",
+        "prices": [
+            ("Metal braces", "From ₹40,000"),
+            ("Ceramic (tooth-coloured) braces", "From ₹50,000"),
+            ("Self-ligating braces", "From ₹60,000"),
+        ],
+        "sections": [
+            ("Choosing between the three", [
+                ["Metal braces are the most affordable and the most robust.",
+                 "Ceramic braces use tooth-coloured brackets, so they are much less noticeable.",
+                 "Self-ligating braces hold the wire with a built-in clip instead of elastic ties."],
+                "The final cost depends on how complex your case is. You get the full price in writing before treatment starts.",
+            ]),
+            ("How long braces take", [
+                "Treatment usually takes between 6 months and two and a half years, depending on how much the teeth need to move.",
+            ]),
+            ("Children and adults", [
+                "Anyone can have orthodontic treatment, from children to adults. If you would rather not have visible braces, <a href=\"clear-aligners-cost-delhi.html\">clear aligners</a> are another option.",
+            ]),
+        ],
+        "facts": [("Metal", "From ₹40,000"), ("Ceramic", "From ₹50,000"), ("Self-ligating", "From ₹60,000"),
+                  ("Duration", "6 months to 2½ years")],
+        "faq": [
+            ("How much do braces cost in Delhi?",
+             "At Dr Sobti's Dental Care in Rajouri Garden, metal braces start from ₹40,000, ceramic braces from ₹50,000 and self-ligating braces from ₹60,000. The final cost depends on the case."),
+            ("What is the cost of ceramic braces?",
+             "Ceramic braces start from ₹50,000 for the full treatment."),
+            ("How long do I need to wear braces?",
+             "Usually between 6 months and two and a half years, depending on the case."),
+            ("Can adults get braces?",
+             "Yes. We treat children and adults."),
+        ],
+        "cta": "Book a braces consultation",
+    },
+    {
+        "slug": "clear-aligners-cost-delhi",
+        "name": "Clear aligners",
+        "title": "Invisalign and Clear Aligners Cost in Delhi: from ₹60,000 | Dr Sobti's Dental Care",
+        "desc": "Clear aligner and Invisalign cost in Delhi: from ₹60,000 for mild cases to about ₹2,00,000 for complex ones. See your new smile on screen after a 3D scan. Rajouri Garden.",
+        "label": "Treatments · Clear aligners",
+        "h1": "Invisalign and clear aligners cost in Delhi",
+        "intro": "Nearly invisible, removable aligners from Invisalign and other leading brands at Dr Sobti's Dental Care, Rajouri Garden. Treatment starts from ₹60,000.",
+        "prices": [
+            ("Mild cases", "From ₹60,000"),
+            ("Complex cases", "Up to about ₹2,00,000"),
+            ("3D scan and smile preview", "Included"),
+        ],
+        "sections": [
+            ("Which aligner brand", [
+                "We work with Invisalign and the other main aligner brands, including Illusion, Flash and 32 Watts. Dr Parul will suggest the one that fits your teeth and budget.",
+            ]),
+            ("See the result before you start", [
+                "Your teeth are scanned in 3D, and you can see a preview of how your smile will look after treatment before you decide anything.",
+            ]),
+            ("What changes the price", [
+                "The price mainly depends on how much your teeth need to move and so how many aligners you need. Mild crowding or small gaps cost less; bite problems and severe crowding cost more. Treatment time also depends on the case.",
+                "If you prefer fixed braces, see <a href=\"braces-cost-delhi.html\">braces cost in Delhi</a>.",
+            ]),
+        ],
+        "facts": [("Mild cases", "From ₹60,000"), ("Complex cases", "Up to about ₹2,00,000"),
+                  ("Brands", "Invisalign and others"), ("Smile preview", "After your 3D scan")],
+        "faq": [
+            ("How much does Invisalign cost in Delhi?",
+             "At Dr Sobti's Dental Care in Rajouri Garden, clear aligner treatment starts from ₹60,000 for mild cases and goes up to about ₹2,00,000 for complex cases. The price depends on the brand and how much the teeth need to move."),
+            ("What is the cost of invisible braces in Delhi?",
+             "Invisible braces, or clear aligners, start from ₹60,000 for mild cases."),
+            ("Can I see my new smile before starting?",
+             "Yes. After a 3D scan you can see a preview of your smile at the end of treatment."),
+            ("How long does aligner treatment take?",
+             "It depends on the case. Dr Parul will tell you the expected time after your scan."),
+        ],
+        "cta": "Book an aligner consultation",
+    },
+    {
+        "slug": "root-canal-cost-delhi",
+        "name": "Root canal treatment",
+        "title": "Root Canal Treatment Cost in Delhi: from ₹6,000 | Dr Sobti's Dental Care",
+        "desc": "Root canal (RCT) cost in Delhi: front tooth from ₹6,000, back tooth from ₹8,000. Single-sitting RCT with rotary files, a dental microscope and laser in Rajouri Garden.",
+        "label": "Treatments · Root canal",
+        "h1": "Root canal treatment cost in Delhi",
+        "intro": "Root canal treatment under a dental microscope, with rotary instruments and laser, at Dr Sobti's Dental Care, Rajouri Garden. RCT starts from ₹6,000.",
+        "prices": [
+            ("Root canal, front tooth", "From ₹6,000"),
+            ("Root canal, back tooth (molar)", "From ₹8,000"),
+            ("Re-root canal (redo)", "₹5,000 to ₹7,000 more than a regular RCT"),
+            ("Crown after RCT", "Separate. Zirconia from ₹8,000, E-max from ₹10,000"),
+        ],
+        "sections": [
+            ("Single-sitting root canal", [
+                "Many root canals can be finished in a single sitting. Whether yours can depends on the tooth and the infection, and you will know after the X-ray.",
+            ]),
+            ("Microscope, rotary and laser", [
+                ["A dental microscope shows the tiny canals inside the tooth, so none are missed.",
+                 "Rotary instruments clean and shape the canals faster and more evenly than hand files.",
+                 "Laser helps disinfect the canals."],
+            ]),
+            ("Do you need a cap after root canal?", [
+                "A back tooth usually needs a crown after root canal, because the tooth becomes more brittle. The crown is charged separately. See <a href=\"dental-crown-cost-delhi.html\">crown prices</a>.",
+            ]),
+        ],
+        "facts": [("Front tooth", "From ₹6,000"), ("Back tooth", "From ₹8,000"),
+                  ("Single sitting", "Where suitable"), ("Technology", "Microscope, rotary, laser")],
+        "faq": [
+            ("How much does root canal treatment cost in Delhi?",
+             "At Dr Sobti's Dental Care in Rajouri Garden, root canal treatment starts from ₹6,000 for a front tooth and ₹8,000 for a back tooth. The crown is charged separately."),
+            ("Is single-sitting root canal possible?",
+             "Yes, in many cases. It depends on the tooth and the infection, and the cost depends on the case."),
+            ("How much does a redo root canal cost?",
+             "A re-root canal costs ₹5,000 to ₹7,000 more than a regular root canal on the same tooth."),
+            ("Is the cap included in the RCT price?",
+             "No, the crown is separate. Zirconia crowns start from ₹8,000 and E-max crowns from ₹10,000 per tooth."),
+        ],
+        "cta": "Book a check-up",
+    },
+    {
+        "slug": "teeth-whitening-cost-delhi",
+        "name": "Teeth whitening",
+        "title": "Teeth Whitening Cost in Delhi: In-Clinic from ₹7,000 | Dr Parul Sobti",
+        "desc": "Teeth whitening cost in Delhi: in-clinic whitening from ₹7,000 and take-home kits, planned by cosmetic dentist Dr Parul Sharma Sobti in Rajouri Garden.",
+        "label": "Treatments · Teeth whitening",
+        "h1": "Teeth whitening cost in Delhi",
+        "intro": "In-clinic and take-home whitening with Dr Parul Sharma Sobti at Dr Sobti's Dental Care, Rajouri Garden. In-clinic whitening starts from ₹7,000.",
+        "prices": [
+            ("In-clinic whitening", "From ₹7,000"),
+            ("Take-home whitening kit", "Priced after a check-up"),
+        ],
+        "sections": [
+            ("In-clinic or at home", [
+                ["In-clinic whitening is done in one visit using professional systems such as Pola Office.",
+                 "Take-home whitening uses custom trays and a gentle gel that you wear for about two weeks."],
+                "How many shades lighter your teeth get, and how long it lasts, depends on your teeth and habits. Dr Parul will give you a realistic idea at the check-up.",
+            ]),
+            ("Whitening first", [
+                "Dr Parul works on the principle of least invasive first. Whitening is often all a smile needs. If stains or chips don't respond, <a href=\"veneers.html\">veneers</a> are the next step.",
+            ]),
+        ],
+        "facts": [("In-clinic", "From ₹7,000"), ("Take-home", "Priced after a check-up"), ("Visits", "1 visit / 2 weeks at home")],
+        "faq": [
+            ("How much does teeth whitening cost in Delhi?",
+             "At Dr Sobti's Dental Care in Rajouri Garden, in-clinic whitening starts from ₹7,000. Take-home kits are priced after a check-up."),
+            ("How many shades whiter will my teeth get?",
+             "It depends on your teeth. Dr Parul will tell you what to expect after looking at them."),
+            ("Does whitening work on crowns or fillings?",
+             "No, whitening only lightens natural teeth. Crowns, veneers and fillings keep their colour."),
+        ],
+        "cta": "Book a whitening consultation",
+    },
+    {
+        "slug": "teeth-cleaning-cost-delhi",
+        "name": "Teeth cleaning",
+        "title": "Teeth Cleaning and Scaling Cost in Delhi: from ₹3,500 | Dr Sobti's Dental Care",
+        "desc": "Teeth cleaning cost in Delhi: scaling and polishing from ₹3,500, air polishing from ₹3,500, deep cleaning ₹3,000 per quadrant. Dr Sobti's Dental Care, Rajouri Garden.",
+        "label": "Treatments · Cleaning and scaling",
+        "h1": "Teeth cleaning and scaling cost in Delhi",
+        "intro": "Professional scaling, polishing and air polishing at Dr Sobti's Dental Care, Rajouri Garden. A cleaning visit starts from ₹3,500.",
+        "prices": [
+            ("Scaling and polishing", "From ₹3,500 (up to ₹5,000)"),
+            ("Air polishing", "From ₹3,500 (up to ₹5,000)"),
+            ("Deep cleaning (gum treatment)", "₹3,000 per quadrant"),
+        ],
+        "sections": [
+            ("What happens at a cleaning", [
+                "Scaling removes the hard tartar that brushing can't, especially along the gum line. Polishing then smooths the teeth so plaque sticks less. Air polishing uses a fine powder and water spray to lift stains from tea, coffee and tobacco.",
+                "A visit takes between 20 minutes and an hour, depending on how much cleaning is needed.",
+            ]),
+            ("Deep cleaning for gum problems", [
+                "If your gums bleed or have pulled away from the teeth, a deep cleaning below the gum line may be needed. It is done one quarter of the mouth (quadrant) at a time, at ₹3,000 per quadrant.",
+            ]),
+        ],
+        "facts": [("Scaling", "From ₹3,500"), ("Air polishing", "From ₹3,500"),
+                  ("Deep cleaning", "₹3,000 per quadrant"), ("Time", "20 minutes to 1 hour")],
+        "faq": [
+            ("How much does teeth cleaning cost in Delhi?",
+             "At Dr Sobti's Dental Care in Rajouri Garden, scaling and polishing starts from ₹3,500 and can go up to ₹5,000 depending on the case. Air polishing is priced the same."),
+            ("How much does deep cleaning cost?",
+             "Deep cleaning for gum problems is ₹3,000 per quadrant (one quarter of the mouth)."),
+            ("Does scaling damage the teeth?",
+             "No. Scaling removes tartar from the surface of the teeth. Teeth can feel sensitive for a day or two afterwards, and that settles on its own."),
+            ("How long does a cleaning take?",
+             "Between 20 minutes and an hour, depending on the case."),
+        ],
+        "cta": "Book a cleaning",
+    },
+]
+
+RAJOURI_FAQ = [
+    ("Where is Dr Sobti's Dental Care in Rajouri Garden?",
+     "First Floor, J-12/26, Block J, Rajouri Garden Extension, above Rajmandir and near Geetanjali Salon. It is about 1.5 km from Rajouri Garden metro station."),
+    ("What are the clinic timings?",
+     "Open 7 days a week, 10 am to 7 pm."),
+    ("Is there parking?",
+     "Yes, parking is available, and there is a lift to the first floor."),
+    ("Which payment methods do you accept?",
+     "UPI, cards and cash."),
+]
