@@ -10,6 +10,7 @@ the clinic still has to confirm.
 import csv
 import datetime as dt
 import html
+import json
 import os
 import shutil
 import sys
@@ -27,6 +28,7 @@ CLINIC_URL = "https://www.sobtidentalcare.com"
 PUSHKAR_URL = "https://dentalimplantsdelhi.com"
 
 CLINIC = "Dr Sobti's Dental Care"
+CLINIC_2 = "Dr Sobti's Medical and Dental Center"  # Vishnu Garden branch, name as on its Google listing
 PHONE = "+91 87449 85976"
 PHONES = ["+91 87449 85976", "+91 80767 77307", "+91 83682 22098", "+91 80762 50767"]
 WHATSAPP_NO = "+91 83682 22098"
@@ -123,15 +125,65 @@ def fmt_date(d):
     return d.strftime("%a %-d %b %Y")
 
 
+# ---------------------------------------------------------------- structured data
+def schema(extra=None):
+    """JSON-LD on every page: Dr Parul, both clinic branches and this website, plus page-specific items."""
+    def branch(id_, name, street, locality, pin, phone, maps):
+        return {"@type": "Dentist", "@id": id_, "name": name, "url": CLINIC_URL, "telephone": phone,
+                "image": f"{SITE_URL}/assets/images/clinic/clinic-reception.jpg", "priceRange": "₹₹",
+                "address": {"@type": "PostalAddress", "streetAddress": street, "addressLocality": locality,
+                            "addressRegion": "Delhi", "postalCode": pin, "addressCountry": "IN"},
+                "openingHoursSpecification": [{"@type": "OpeningHoursSpecification",
+                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                    "opens": "10:00", "closes": "19:00"}],
+                "hasMap": maps, "sameAs": [INSTAGRAM, YOUTUBE]}
+    graph = [
+        branch(f"{SITE_URL}/#clinic", CLINIC, "First Floor, J-12/26, Block J, Rajouri Garden Extension",
+               "Rajouri Garden, New Delhi", "110027", PHONE, MAP_1),
+        branch(f"{SITE_URL}/#clinic-vishnu-garden", CLINIC_2, "WZ-168, Mangal Bazar Road, Chand Nagar",
+               "Vishnu Garden, New Delhi", "110018", PHONE, MAP_2),
+        {"@type": "Person", "@id": f"{SITE_URL}/#drparul", "name": "Dr Parul Sharma Sobti",
+         "jobTitle": "Cosmetic Dentist and Digital Smile Designer", "honorificSuffix": "BDS",
+         "image": PORTRAIT_URL, "url": SITE_URL + "/",
+         "alumniOf": "SR Dental College, Maharshi Dayanand University, Rohtak",
+         "memberOf": {"@type": "Organization", "name": "Indian Dental Association"},
+         "knowsLanguage": ["English", "Hindi"],
+         "knowsAbout": ["Smile design", "Digital Smile Design", "Cosmetic dentistry", "Veneers", "Teeth whitening",
+                        "Composite bonding", "Gum contouring", "Facial aesthetics"],
+         "worksFor": [{"@id": f"{SITE_URL}/#clinic"}, {"@id": f"{SITE_URL}/#clinic-vishnu-garden"}],
+         "sameAs": [CLINIC_URL, INSTAGRAM, YOUTUBE]},
+        {"@type": "WebSite", "@id": f"{SITE_URL}/#website", "url": SITE_URL + "/", "name": "Dr Parul Sharma Sobti",
+         "inLanguage": "en-IN", "publisher": {"@id": f"{SITE_URL}/#drparul"}},
+    ]
+    return {"@context": "https://schema.org", "@graph": graph + (extra or [])}
+
+
+def post_schema(p):
+    url = f'{SITE_URL}/blog/{p["slug"]}.html'
+    return [
+        {"@type": "BlogPosting", "@id": url + "#post", "headline": p["title"], "description": p["summary"],
+         "datePublished": p["date"].isoformat(), "dateModified": p["date"].isoformat(),
+         "author": {"@id": f"{SITE_URL}/#drparul"}, "publisher": {"@id": f"{SITE_URL}/#clinic"},
+         "image": f"{SITE_URL}/assets/images/share.jpg", "mainEntityOfPage": url, "inLanguage": "en-IN",
+         "isPartOf": {"@type": "Blog", "name": "Smile Journal", "url": f"{SITE_URL}/blog.html"}},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Smile Journal", "item": f"{SITE_URL}/blog.html"},
+            {"@type": "ListItem", "position": 3, "name": p["title"], "item": url}]},
+    ]
+
+
 # ---------------------------------------------------------------- layout
-def layout(title, desc, body, active, root="", preview_main=False, path=""):
+def layout(title, desc, body, active, root="", preview_main=False, path="", og_type="website", ld=None):
     nav = "".join(
         f'<a href="{root}{href}"{CURRENT if href == active else ""}>{label}</a>'
         for href, label in NAV)
     head = f"""<title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta property="og:type" content="website">
+<link rel="canonical" href="{SITE_URL}/{path}">
+<meta property="og:type" content="{og_type}">
+<meta property="og:locale" content="en_IN">
 <meta property="og:site_name" content="Dr Parul Sharma Sobti">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
@@ -146,7 +198,8 @@ def layout(title, desc, body, active, root="", preview_main=False, path=""):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="{FONTS}">
-<link rel="stylesheet" href="{root}assets/style.css">"""
+<link rel="stylesheet" href="{root}assets/style.css">
+<script type="application/ld+json">{json.dumps(schema(ld), ensure_ascii=False)}</script>"""
     page = f"""<header class="site-header"><div class="wrap">
   <a class="brand" href="{root}index.html"><b>Dr Parul Sharma Sobti</b><span>Smile Design · Aesthetic Dentistry</span></a>
   <nav class="nav" aria-label="Main">{nav}</nav>
@@ -165,7 +218,7 @@ def layout(title, desc, body, active, root="", preview_main=False, path=""):
     if preview_main:
         return head + "\n" + page
     return f"""<!doctype html>
-<html lang="en">
+<html lang="en-IN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -584,21 +637,41 @@ def build(out, preview=False):
     shutil.copy(ROOT / "assets" / "style.css", out / "assets" / "style.css")
     shutil.copytree(ROOT / "assets" / "images", out / "assets" / "images")
     pages = [
-        ("index.html", "Dr Parul Sharma Sobti", "Smile design and dental & facial aesthetics by Dr Parul Sharma Sobti, Digital Smile Designer at Dr Sobti's Dental Care, Rajouri Garden, New Delhi.", page_home(posts)),
-        ("about.html", "About Dr Parul Sharma Sobti", "Dr Parul Sharma Sobti's approach, training and story.", page_about()),
-        ("clinic.html", "Dr Sobti's Dental Care", "The clinic, the team, your visit and our hygiene standards.", page_clinic()),
-        ("treatments.html", "Treatments · Dr Parul Sharma Sobti", "Smile design, cosmetic dentistry, implants, gums and facial aesthetics.", page_treatments()),
-        ("technology.html", "Technology · Dr Parul Sharma Sobti", "Microscopes, digital X-ray and the technology behind our work.", page_technology()),
-        ("blog.html", "Smile Journal · Dr Parul Sharma Sobti", "A 60-part series on smile design, from basics to advanced.", page_blog(posts)),
-        ("visit.html", "Book a consultation · Dr Parul Sharma Sobti", "Book a smile consultation with Dr Parul Sharma Sobti.", page_visit()),
+        ("index.html", "Cosmetic Dentist in Rajouri Garden, Delhi | Dr Parul Sharma Sobti", "Dr Parul Sharma Sobti is a cosmetic dentist in Rajouri Garden, New Delhi. Veneers, whitening, bonding and smile makeovers planned around your face. 500+ smile designs.", page_home(posts)),
+        ("about.html", "About Dr Parul Sharma Sobti, Cosmetic Dentist in Delhi", "Dr Parul Sharma Sobti (BDS), Digital Smile Designer at Dr Sobti's Dental Care, Rajouri Garden: her training, approach and 500+ smile designs since 2009.", page_about()),
+        ("clinic.html", "Dr Sobti's Dental Care, Rajouri Garden & Vishnu Garden, Delhi", "Inside Dr Sobti's Dental Care in Rajouri Garden and Vishnu Garden, New Delhi: the team, your first visit, hygiene and sterilisation standards.", page_clinic()),
+        ("treatments.html", "Veneers, Teeth Whitening & Smile Makeover in Delhi | Dr Parul", "Smile design, veneers, teeth whitening, composite bonding, gum contouring, aligners and facial aesthetics with Dr Parul Sharma Sobti in Rajouri Garden, Delhi.", page_treatments()),
+        ("technology.html", "Digital Smile Design & Dental Technology in Delhi | Dr Parul", "Digital Smile Design, dental microscopes, CBCT and digital X-rays at Dr Sobti's Dental Care, Rajouri Garden, Delhi, and how they make cosmetic work precise.", page_technology()),
+        ("blog.html", "Smile Journal: Cosmetic Dentistry Blog | Dr Parul Sharma Sobti", "A 60-part blog on smile design by Delhi cosmetic dentist Dr Parul Sharma Sobti, from the basics of a smile to veneers, aligners and facial harmony.", page_blog(posts)),
+        ("visit.html", "Book a Smile Consultation in Rajouri Garden | Dr Parul Sobti", "Book a smile consultation with Dr Parul Sharma Sobti in Rajouri Garden or Vishnu Garden, New Delhi. Open 7 days, 10 am to 7 pm. WhatsApp +91 83682 22098.", page_visit()),
     ]
     for name, title, desc, body in pages:
         write(out / name, layout(title, desc, body, name, preview_main=(preview and name == "index.html"), path="" if name == "index.html" else name))
     for p in posts:
         if p["body"]:
             write(out / "blog" / f'{p["slug"]}.html',
-                  layout(f'{p["title"]} · Smile Journal', p["summary"], page_post(p, posts), "blog.html", root="../", path=f'blog/{p["slug"]}.html'))
+                  layout(f'{p["title"]} | Dr Parul Sharma Sobti', post_description(p), page_post(p, posts),
+                         "blog.html", root="../", path=f'blog/{p["slug"]}.html', og_type="article", ld=post_schema(p)))
+    write_sitemap(out, posts)
     return posts
+
+
+def post_description(p):
+    """Search snippet for a post: its summary plus who wrote it and where, about 150 characters."""
+    tail = " By Dr Parul Sharma Sobti, cosmetic dentist in Rajouri Garden, Delhi."
+    return p["summary"] + (tail if len(p["summary"]) + len(tail) <= 165 else "")
+
+
+def write_sitemap(out, posts):
+    """sitemap.xml and robots.txt, so Google finds every new post the day it goes live."""
+    today = today_ist().isoformat()
+    urls = [(SITE_URL + "/", today)] + [(f"{SITE_URL}/{n}", today) for n in
+            ("about.html", "clinic.html", "treatments.html", "technology.html", "blog.html", "visit.html")]
+    urls += [(f'{SITE_URL}/blog/{p["slug"]}.html', p["date"].isoformat()) for p in posts if p["body"]]
+    write(out / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n'
+          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+          + "".join(f"  <url><loc>{u}</loc><lastmod>{d}</lastmod></url>\n" for u, d in urls) + "</urlset>\n")
+    write(out / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")
 
 
 def export_calendar(posts):
