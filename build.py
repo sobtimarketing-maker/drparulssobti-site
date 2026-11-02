@@ -28,8 +28,8 @@ CLINIC_URL = "https://www.sobtidentalcare.com"
 PUSHKAR_URL = "https://dentalimplantsdelhi.com"
 
 CLINIC = "Dr Sobti's Dental Care"
-PHONE = "+91 87449 85976"
-PHONES = ["+91 87449 85976", "+91 80767 77307", "+91 83682 22098", "+91 80762 50767"]
+PHONE = "+91 80767 77307"
+PHONES = ["+91 80767 77307", "+91 87449 85976", "+91 83682 22098", "+91 80762 50767"]
 WHATSAPP_NO = "+91 83682 22098"
 WHATSAPP = "https://wa.me/918368222098"
 INSTAGRAM = "https://www.instagram.com/sobtidentalcare/"
