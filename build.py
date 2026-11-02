@@ -501,6 +501,10 @@ def page_treatments():
 VENEER_FAQ = [
     ("How much do veneers cost in Delhi?",
      "At Dr Sobti's Dental Care in Rajouri Garden, veneers start from ₹10,000 per tooth. The final cost depends on the material and how many teeth are included, and you get a written estimate after your consultation."),
+    ("How does veneers cost in India compare with Delhi?",
+     "Prices across India range widely, mainly because of the material and the lab. Porcelain made in a good lab costs more than composite. We quote per tooth, from ₹10,000, with the material written on your estimate."),
+    ("What does a smile makeover cost?",
+     "Smile makeover cost in India varies more than almost any other treatment, because it depends on what the plan includes. Some makeovers are whitening and a few bonded edges; others need veneers on 8 to 10 teeth. Dr Parul gives you a written estimate after the smile design, before any treatment."),
     ("How many teeth need veneers?",
      "It depends on how much of your smile shows. Many people only need the front teeth that are visible when they smile. The smile design shows exactly which teeth to include before anything is done."),
     ("Porcelain or composite veneers: which is better?",
