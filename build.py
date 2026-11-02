@@ -492,9 +492,75 @@ def page_treatments():
     return f"""<section class="page-hero"><div class="wrap">
   <span class="label">Treatments</span>
   <h1>What we do</h1>
-  <p>From a single whitening session to a full smile and facial makeover. Visit counts are typical and depend on your case.</p>
+  <p>From a single whitening session to a full smile and facial makeover. Visit counts are typical and depend on your case. Prices and details for <a href="veneers.html">veneers in Delhi</a>.</p>
 </div></section>
 <section><div class="wrap treatments">{''.join(groups)}</div></section>"""
+
+
+VENEER_FAQ = [
+    ("How much do veneers cost in Delhi?",
+     "At Dr Sobti's Dental Care in Rajouri Garden, veneers start from ₹10,000 per tooth. The final cost depends on the material and how many teeth are included, and you get a written estimate after your consultation."),
+    ("How many teeth need veneers?",
+     "It depends on how much of your smile shows. Many people only need the front teeth that are visible when they smile. The smile design shows exactly which teeth to include before anything is done."),
+    ("Porcelain or composite veneers: which is better?",
+     "Porcelain veneers keep their colour and shine longer and take 2 to 3 visits. Composite veneers are sculpted directly in resin in 1 to 2 visits and are easier to repair. Dr Parul will explain which suits your teeth and budget."),
+    ("Can I see the result before getting veneers?",
+     "Yes. Your new smile is designed on your own photos and scans, and a trial smile (mock-up) can be placed over your teeth so you can see and feel it before any permanent work."),
+]
+
+
+def page_veneers():
+    faq = "".join(f'<div class="titem"><h3>{q}</h3><p>{a}</p></div>' for q, a in VENEER_FAQ)
+    return f"""<section class="page-hero"><div class="wrap">
+  <span class="label">Treatments · Veneers</span>
+  <h1>Veneers in Delhi</h1>
+  <p>Porcelain and composite veneers with Dr Parul Sharma Sobti at {CLINIC}, Rajouri Garden. Veneers start from ₹10,000 per tooth.</p>
+</div></section>
+
+<section><div class="wrap split">
+  <div class="prose">
+    <h2>What veneers can change</h2>
+    <p>A veneer is a thin layer bonded to the front of a tooth. It can change the colour, shape and length of a tooth, close small gaps, and cover chips or stains that whitening cannot lift.</p>
+    <p>Dr Parul works on the principle of least invasive first. If whitening, bonding or a little reshaping can give you the smile you want, she will tell you so before suggesting veneers.</p>
+    <h2>Porcelain or composite</h2>
+    <ul>
+      <li>Porcelain veneers are thin ceramic shells. They hold their colour and shine for many years and take 2 to 3 visits.</li>
+      <li>Composite veneers are sculpted directly on the tooth in resin. They take 1 to 2 visits, cost less and are easy to repair.</li>
+    </ul>
+    <p>Glass-ceramic veneers are milled in the clinic's own lab, which keeps the fit precise and the waiting time short.</p>
+    <h2>How it works</h2>
+    <ul>
+      <li>Consultation: photographs, a look at your teeth and gums, and what you want to change.</li>
+      <li>Smile design: your new smile is planned on screen around your face.</li>
+      <li>Trial smile: a temporary version over your own teeth, so you can see and feel it first.</li>
+      <li>Veneers: prepared and fitted only once you have agreed the design.</li>
+    </ul>
+  </div>
+  <dl class="facts">
+    <div><dt>Price</dt><dd>From ₹10,000 per tooth</dd></div>
+    <div><dt>Porcelain</dt><dd>2–3 visits</dd></div>
+    <div><dt>Composite</dt><dd>1–2 visits</dd></div>
+    <div><dt>Where</dt><dd>{CLINIC}, {ADDRESS} · <a href="{MAP_1}">Map</a></dd></div>
+    <div><dt>Call</dt><dd>{PHONE} · WhatsApp <a href="{WHATSAPP}">{WHATSAPP_NO}</a></dd></div>
+    <div><dt>Hours</dt><dd>{HOURS}</dd></div>
+  </dl>
+</div></section>
+
+<section><div class="wrap treatments"><div class="tgroup"><div><h2>Questions</h2>
+<p class="muted">Ask anything else on WhatsApp.</p></div><div class="tlist">{faq}</div></div></div></section>
+<section><div class="wrap"><p><a class="btn" href="visit.html">Book a smile consultation</a> <a href="treatments.html">See all treatments</a></p></div></section>"""
+
+
+def veneers_schema():
+    url = f"{SITE_URL}/veneers.html"
+    return [
+        {"@type": "FAQPage", "@id": url + "#faq", "mainEntity": [
+            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in VENEER_FAQ]},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Treatments", "item": f"{SITE_URL}/treatments.html"},
+            {"@type": "ListItem", "position": 3, "name": "Veneers", "item": url}]},
+    ]
 
 
 TECH = [
@@ -644,6 +710,10 @@ def build(out, preview=False):
     ]
     for name, title, desc, body in pages:
         write(out / name, layout(title, desc, body, name, preview_main=(preview and name == "index.html"), path="" if name == "index.html" else name))
+    write(out / "veneers.html", layout(
+        "Veneers in Delhi: Cost from ₹10,000 per Tooth | Dr Parul Sobti",
+        "Porcelain and composite veneers in Rajouri Garden, Delhi, from ₹10,000 per tooth. Smile design and a trial smile before anything is permanent, with Dr Parul Sharma Sobti.",
+        page_veneers(), "treatments.html", path="veneers.html", ld=veneers_schema()))
     for p in posts:
         if p["body"]:
             write(out / "blog" / f'{p["slug"]}.html',
@@ -663,7 +733,7 @@ def write_sitemap(out, posts):
     """sitemap.xml and robots.txt, so Google finds every new post the day it goes live."""
     today = today_ist().isoformat()
     urls = [(SITE_URL + "/", today)] + [(f"{SITE_URL}/{n}", today) for n in
-            ("about.html", "clinic.html", "treatments.html", "technology.html", "blog.html", "visit.html")]
+            ("about.html", "clinic.html", "treatments.html", "veneers.html", "technology.html", "blog.html", "visit.html")]
     urls += [(f'{SITE_URL}/blog/{p["slug"]}.html', p["date"].isoformat()) for p in posts if p["body"]]
     write(out / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n'
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
