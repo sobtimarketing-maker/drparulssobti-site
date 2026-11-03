@@ -181,13 +181,13 @@ PRICE_PAGES = [
     {
         "slug": "teeth-whitening-cost-delhi",
         "name": "Teeth whitening",
-        "title": "Teeth Whitening Cost in Delhi: In-Clinic from ₹7,000 | Dr Parul Sobti",
-        "desc": "Teeth whitening cost in Delhi: in-clinic whitening from ₹7,000 and take-home kits, planned by cosmetic dentist Dr Parul Sharma Sobti in Rajouri Garden.",
+        "title": "Teeth Whitening Cost in Delhi: In-Clinic from ₹8,000 | Dr Parul Sobti",
+        "desc": "Teeth whitening cost in Delhi: in-clinic whitening from ₹8,000 and take-home kits, planned by cosmetic dentist Dr Parul Sharma Sobti in Rajouri Garden.",
         "label": "Treatments · Teeth whitening",
         "h1": "Teeth whitening cost in Delhi",
-        "intro": "In-clinic and take-home whitening with Dr Parul Sharma Sobti at Dr Sobti's Dental Care, Rajouri Garden. In-clinic whitening starts from ₹7,000.",
+        "intro": "In-clinic and take-home whitening with Dr Parul Sharma Sobti at Dr Sobti's Dental Care, Rajouri Garden. In-clinic whitening starts from ₹8,000; the final price depends on your case.",
         "prices": [
-            ("In-clinic whitening", "From ₹7,000"),
+            ("In-clinic whitening", "From ₹8,000 (depends on the case)"),
             ("Take-home whitening kit", "Priced after a check-up"),
         ],
         "sections": [
@@ -200,10 +200,10 @@ PRICE_PAGES = [
                 "Dr Parul works on the principle of least invasive first. Whitening is often all a smile needs. If stains or chips don't respond, <a href=\"veneers.html\">veneers</a> are the next step.",
             ]),
         ],
-        "facts": [("In-clinic", "From ₹7,000"), ("Take-home", "Priced after a check-up"), ("Visits", "1 visit / 2 weeks at home")],
+        "facts": [("In-clinic", "From ₹8,000"), ("Take-home", "Priced after a check-up"), ("Visits", "1 visit / 2 weeks at home")],
         "faq": [
             ("How much does teeth whitening cost in Delhi?",
-             "At Dr Sobti's Dental Care in Rajouri Garden, in-clinic whitening starts from ₹7,000. Take-home kits are priced after a check-up."),
+             "At Dr Sobti's Dental Care in Rajouri Garden, in-clinic whitening starts from ₹8,000, depending on your case. Take-home kits are priced after a check-up."),
             ("Where can I get teeth whitening in Delhi on a weekend?",
              "Our Rajouri Garden clinic is open 7 days, 10 am to 7 pm, so a whitening visit can be booked on a Saturday or Sunday. Call 80767 77307."),
             ("How many shades whiter will my teeth get?",
