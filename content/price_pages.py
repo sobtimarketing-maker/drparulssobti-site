@@ -260,8 +260,8 @@ RAJOURI_FAQ = [
      "Yes, parking is available, and there is a lift to the first floor."),
     ("Which payment methods do you accept?",
      "UPI, cards and cash."),
-    ("How do I choose the best dentist in Rajouri Garden or West Delhi?",
+    ("How do I choose a dentist for cosmetic or long treatments?",
      "Look at reviews, ask who will actually treat you, and ask for the price in writing before you start. At our clinic you see the same two doctors every visit, and every treatment price is on this website."),
     ("Do you see patients from other parts of West Delhi?",
-     "Yes, most of our patients come from nearby West Delhi areas like Tagore Garden, Subhash Nagar, Tilak Nagar, Janakpuri and Punjabi Bagh. If you are looking for a dentist in West Delhi who is open 7 days, we are about 1.5 km from Rajouri Garden metro."),
+     "Yes, most of our patients come from nearby West Delhi areas like Tagore Garden, Subhash Nagar, Tilak Nagar, Janakpuri and Punjabi Bagh. We are open 7 days and about 1.5 km from Rajouri Garden metro."),
 ]
