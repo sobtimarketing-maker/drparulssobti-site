@@ -629,8 +629,8 @@ def page_rajouri():
     links = "".join(f'<li><a href="{p["slug"]}.html">{p["name"]}</a>: {p["prices"][0][1].lower()}</li>' for p in PRICE_PAGES)
     return f"""<section class="page-hero"><div class="wrap">
   <span class="label">Rajouri Garden, West Delhi</span>
-  <h1>Dentist in Rajouri Garden</h1>
-  <p>{CLINIC} is a family dental clinic in Rajouri Garden Extension, above Rajmandir. Dr Pushkar Sobti and Dr Parul Sharma Sobti have been in practice since 2009, and the Rajouri Garden clinic opened in 2024.</p>
+  <h1>Treatment prices, timings and directions</h1>
+  <p>Dr Parul sees patients at <a href="{CLINIC_URL}/">{CLINIC}, our clinic in Rajouri Garden</a>, above Rajmandir in Rajouri Garden Extension. Dr Pushkar Sobti and Dr Parul Sharma Sobti have been in practice since 2009, and the Rajouri Garden clinic opened in 2024. Below are starting prices and how to reach us.</p>
 </div></section>
 
 <section><div class="wrap split">
@@ -678,7 +678,7 @@ def rajouri_schema():
             {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in RAJOURI_FAQ]},
         {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"},
-            {"@type": "ListItem", "position": 2, "name": "Dentist in Rajouri Garden", "item": url}]},
+            {"@type": "ListItem", "position": 2, "name": "Prices, timings and directions", "item": url}]},
     ]
 
 
@@ -837,8 +837,8 @@ def build(out, preview=False):
         write(out / f'{pg["slug"]}.html', layout(pg["title"], pg["desc"], page_price(pg), "treatments.html",
                                                  path=f'{pg["slug"]}.html', ld=page_schema(pg["slug"], pg["name"], pg["faq"])))
     write(out / "dentist-rajouri-garden.html", layout(
-        "Dentist in Rajouri Garden, Delhi: Prices, Timings and Directions | Dr Sobti's Dental Care",
-        "Dentist in Rajouri Garden Extension, above Rajmandir: Dr Pushkar Sobti and Dr Parul Sharma Sobti, in practice since 2009. Open 7 days, 10 am to 7 pm. Prices, parking and directions.",
+        "Treatment Prices, Timings and Directions, Rajouri Garden Clinic | Dr Parul Sobti",
+        "Starting prices for veneers, whitening, crowns, braces, aligners and root canal at Dr Sobti's Dental Care, above Rajmandir. Open 7 days, 10 am to 7 pm. Parking and directions.",
         page_rajouri(), "visit.html", path="dentist-rajouri-garden.html", ld=rajouri_schema()))
     for p in posts:
         if p["body"]:
