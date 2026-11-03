@@ -34,7 +34,10 @@ PHONES = ["+91 80767 77307", "+91 87449 85976", "+91 83682 22098", "+91 80762 50
 WHATSAPP_NO = "+91 83682 22098"
 WHATSAPP = "https://wa.me/918368222098"
 INSTAGRAM = "https://www.instagram.com/sobtidentalcare/"
-YOUTUBE = "https://youtube.com/@drsobtidental"
+YOUTUBE = "https://www.youtube.com/@DrSobtiDental"
+FACEBOOK = "https://www.facebook.com/sobtidentalcare"
+GOOGLE_PROFILE = "https://maps.google.com/maps?cid=6577991291147149801"
+GOOGLE_REVIEW = "https://search.google.com/local/writereview?placeid=ChIJf7C_p8MDDTkR6WFwRDq4SVs"
 EMAIL = "sobticlinic@gmail.com"
 HOURS = "Open 7 days, 10:00 am to 7:00 pm"
 ADDRESS = "First Floor, J-12/26, Block J, Rajouri Garden Extension (above Rajmandir), New Delhi 110027"
@@ -136,7 +139,7 @@ def schema(extra=None):
                 "openingHoursSpecification": [{"@type": "OpeningHoursSpecification",
                     "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
                     "opens": "10:00", "closes": "19:00"}],
-                "hasMap": maps, "sameAs": [INSTAGRAM, YOUTUBE]}
+                "hasMap": maps, "sameAs": [GOOGLE_PROFILE, CLINIC_URL, INSTAGRAM, FACEBOOK, YOUTUBE]}
     graph = [
         branch(f"{SITE_URL}/#clinic", CLINIC, "First Floor, J-12/26, Block J, Rajouri Garden Extension",
                "Rajouri Garden, New Delhi", "110027", PHONE, MAP_1),
@@ -149,7 +152,7 @@ def schema(extra=None):
          "knowsAbout": ["Smile design", "Digital Smile Design", "Cosmetic dentistry", "Veneers", "Teeth whitening",
                         "Composite bonding", "Gum contouring", "Facial aesthetics"],
          "worksFor": {"@id": f"{SITE_URL}/#clinic"},
-         "sameAs": [CLINIC_URL, INSTAGRAM, YOUTUBE]},
+         "sameAs": [CLINIC_URL, INSTAGRAM, FACEBOOK, YOUTUBE]},
         {"@type": "WebSite", "@id": f"{SITE_URL}/#website", "url": SITE_URL + "/", "name": "Dr Parul Sharma Sobti",
          "inLanguage": "en-IN", "publisher": {"@id": f"{SITE_URL}/#drparul"}},
     ]
@@ -210,7 +213,7 @@ def layout(title, desc, body, active, root="", preview_main=False, path="", og_t
 <footer class="site-footer"><div class="wrap">
   <div><b>Dr Parul Sharma Sobti</b> · BDS, Digital Smile Designer<br>{CLINIC} · {ADDRESS}</div>
   <div>Call {PHONE} · WhatsApp <a href="{WHATSAPP}">{WHATSAPP_NO}</a><br>{EMAIL}<br>{HOURS}</div>
-  <div><a href="{INSTAGRAM}">Instagram</a> · <a href="{YOUTUBE}">YouTube</a></div>
+  <div><a href="{GOOGLE_PROFILE}">Google reviews</a> · <a href="{GOOGLE_REVIEW}">Leave a review</a><br><a href="{INSTAGRAM}">Instagram</a> · <a href="{FACEBOOK}">Facebook</a> · <a href="{YOUTUBE}">YouTube</a></div>
   <div>© 2026 {CLINIC}</div>
 </div></footer>"""
     if preview_main:
