@@ -33,6 +33,26 @@ PHONE = "+91 87449 85976"  # front desk, call (matches the Google profile)
 PHONES = [PHONE]  # lead-calling numbers are never published
 WHATSAPP_NO = "+91 80767 77307"
 WHATSAPP = "https://wa.me/918076777307"
+
+# Google Ads tag: counts taps on call and WhatsApp links as conversions (account 202-776-6680).
+ADS_TAG = r"""<!-- Google Ads: counts taps on call and WhatsApp links as conversions -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18553206533"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-18553206533');
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href]');
+  if (!a) return;
+  var h = a.getAttribute('href') || '';
+  if (h.indexOf('tel:') === 0) {
+    gtag('event', 'conversion', {send_to: 'AW-18553206533/5EgMCLfk97EdEIXu7Y5F'});
+  } else if (/wa\.me|whatsapp\.com/i.test(h)) {
+    gtag('event', 'conversion', {send_to: 'AW-18553206533/ioPLCKWI-LEdEIXu7Y5F'});
+  }
+}, true);
+</script>"""
 INSTAGRAM = "https://www.instagram.com/sobtidentalcare/"
 YOUTUBE = "https://www.youtube.com/@DrSobtiDental"
 FACEBOOK = "https://www.facebook.com/sobtidentalcare"
@@ -224,6 +244,7 @@ def layout(title, desc, body, active, root="", preview_main=False, path="", og_t
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 {head}
+{ADS_TAG}
 </head>
 <body>
 {page}
