@@ -31,8 +31,29 @@ PUSHKAR_URL = "https://dentalimplantsdelhi.com"
 CLINIC = "Dr Sobti's Dental Care"
 PHONE = "+91 87449 85976"  # front desk, call (matches the Google profile)
 PHONES = [PHONE]  # lead-calling numbers are never published
+PHONE_LINK = f'<a href="tel:{PHONE.replace(" ", "")}">{PHONE}</a>'  # tappable on phones
 WHATSAPP_NO = "+91 80767 77307"
 WHATSAPP = "https://wa.me/918076777307"
+
+# Google Ads tag: counts taps on call and WhatsApp links as conversions (account 202-776-6680).
+ADS_TAG = r"""<!-- Google Ads: counts taps on call and WhatsApp links as conversions -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18553206533"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-18553206533');
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href]');
+  if (!a) return;
+  var h = a.getAttribute('href') || '';
+  if (h.indexOf('tel:') === 0) {
+    gtag('event', 'conversion', {send_to: 'AW-18553206533/5EgMCLfk97EdEIXu7Y5F'});
+  } else if (/wa\.me|whatsapp\.com/i.test(h)) {
+    gtag('event', 'conversion', {send_to: 'AW-18553206533/ioPLCKWI-LEdEIXu7Y5F'});
+  }
+}, true);
+</script>"""
 INSTAGRAM = "https://www.instagram.com/sobtidentalcare/"
 YOUTUBE = "https://www.youtube.com/@DrSobtiDental"
 FACEBOOK = "https://www.facebook.com/sobtidentalcare"
@@ -212,7 +233,7 @@ def layout(title, desc, body, active, root="", preview_main=False, path="", og_t
 {family(root)}
 <footer class="site-footer"><div class="wrap">
   <div><b>Dr Parul Sharma Sobti</b> · BDS, Digital Smile Designer<br>{CLINIC} · {ADDRESS}</div>
-  <div>Call {PHONE} · WhatsApp <a href="{WHATSAPP}">{WHATSAPP_NO}</a><br>{EMAIL}<br>{HOURS}</div>
+  <div>Call {PHONE_LINK} · WhatsApp <a href="{WHATSAPP}">{WHATSAPP_NO}</a><br>{EMAIL}<br>{HOURS}</div>
   <div><a href="{GOOGLE_PROFILE}">Google reviews</a> · <a href="{GOOGLE_REVIEW}">Leave a review</a><br><a href="{INSTAGRAM}">Instagram</a> · <a href="{FACEBOOK}">Facebook</a> · <a href="{YOUTUBE}">YouTube</a></div>
   <div>© 2026 {CLINIC}</div>
 </div></footer>"""
@@ -224,6 +245,7 @@ def layout(title, desc, body, active, root="", preview_main=False, path="", og_t
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 {head}
+{ADS_TAG}
 </head>
 <body>
 {page}
@@ -405,7 +427,7 @@ def page_clinic():
     <div><dt>Hours</dt><dd>{HOURS}</dd></div>
     <div><dt>Established</dt><dd>2009</dd></div>
     <div><dt>Team</dt><dd>12 people and growing · 1 implant surgery suite and 2 general dentistry chairs</dd></div>
-    <div><dt>Appointments</dt><dd>Call {PHONE} · WhatsApp <a href="{WHATSAPP}">{WHATSAPP_NO}</a></dd></div>
+    <div><dt>Appointments</dt><dd>Call {PHONE_LINK} · WhatsApp <a href="{WHATSAPP}">{WHATSAPP_NO}</a></dd></div>
     <div><dt>Email</dt><dd>{EMAIL}</dd></div>
     <div><dt>Main website</dt><dd><a href="{CLINIC_URL}">sobtidentalcare.com</a></dd></div>
   </dl>
@@ -549,7 +571,7 @@ def page_veneers():
     <div><dt>Porcelain</dt><dd>2–3 visits</dd></div>
     <div><dt>Composite</dt><dd>1–2 visits</dd></div>
     <div><dt>Where</dt><dd>{CLINIC}, {ADDRESS} · <a href="{MAP_1}">Map</a></dd></div>
-    <div><dt>Call</dt><dd>{PHONE} · WhatsApp <a href="{WHATSAPP}">{WHATSAPP_NO}</a></dd></div>
+    <div><dt>Call</dt><dd>{PHONE_LINK} · WhatsApp <a href="{WHATSAPP}">{WHATSAPP_NO}</a></dd></div>
     <div><dt>Hours</dt><dd>{HOURS}</dd></div>
   </dl>
 </div></section>
@@ -617,7 +639,7 @@ def page_price(pg):
   <dl class="facts">
     {facts}
     <div><dt>Where</dt><dd>{CLINIC}, {ADDRESS} · <a href="{MAP_1}">Map</a></dd></div>
-    <div><dt>Call</dt><dd>{PHONE} · WhatsApp <a href="{WHATSAPP}">{WHATSAPP_NO}</a></dd></div>
+    <div><dt>Call</dt><dd>{PHONE_LINK} · WhatsApp <a href="{WHATSAPP}">{WHATSAPP_NO}</a></dd></div>
     <div><dt>Hours</dt><dd>{HOURS}</dd></div>
     <div><dt>Pay by</dt><dd>UPI, card or cash</dd></div>
   </dl>
@@ -662,7 +684,7 @@ def page_rajouri():
     <div><dt>Landmark</dt><dd>Above Rajmandir, near Geetanjali Salon</dd></div>
     <div><dt>Metro</dt><dd>About 1.5 km from Rajouri Garden</dd></div>
     <div><dt>Hours</dt><dd>{HOURS}</dd></div>
-    <div><dt>Call</dt><dd>{PHONE} · WhatsApp <a href="{WHATSAPP}">{WHATSAPP_NO}</a></dd></div>
+    <div><dt>Call</dt><dd>{PHONE_LINK} · WhatsApp <a href="{WHATSAPP}">{WHATSAPP_NO}</a></dd></div>
     <div><dt>Languages</dt><dd>Hindi and English</dd></div>
     <div><dt>Pay by</dt><dd>UPI, card or cash</dd></div>
     <div><dt>Access</dt><dd>Parking and lift</dd></div>
@@ -790,7 +812,7 @@ def page_visit():
 <section><div class="wrap split">
   <dl class="facts">
     <div><dt>WhatsApp</dt><dd><a href="{WHATSAPP}">{WHATSAPP_NO}</a></dd></div>
-    <div><dt>Call</dt><dd class="mono">{"<br>".join(PHONES)}</dd></div>
+    <div><dt>Call</dt><dd class="mono">{"<br>".join(f'<a href="tel:{p.replace(" ", "")}">{p}</a>' for p in PHONES)}</dd></div>
     <div><dt>Email</dt><dd>{EMAIL}</dd></div>
     <div><dt>Head clinic</dt><dd>{CLINIC}, {ADDRESS} · <a href="{MAP_1}">Map</a> · <a href="dentist-rajouri-garden.html">Directions, timings and prices</a></dd></div>
     <div><dt>Also at</dt><dd>{ADDRESS_2} · <a href="{MAP_2}">Map</a></dd></div>
