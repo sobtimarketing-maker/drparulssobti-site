@@ -31,8 +31,8 @@ PUSHKAR_URL = "https://dentalimplantsdelhi.com"
 CLINIC = "Dr Sobti's Dental Care"
 PHONE = "+91 80767 77307"
 PHONES = ["+91 80767 77307", "+91 87449 85976", "+91 83682 22098", "+91 80762 50767"]
-WHATSAPP_NO = "+91 83682 22098"
-WHATSAPP = "https://wa.me/918368222098"
+WHATSAPP_NO = "+91 80767 77307"
+WHATSAPP = "https://wa.me/918076777307"
 INSTAGRAM = "https://www.instagram.com/sobtidentalcare/"
 YOUTUBE = "https://www.youtube.com/@DrSobtiDental"
 FACEBOOK = "https://www.facebook.com/sobtidentalcare"
@@ -828,7 +828,7 @@ def build(out, preview=False):
         ("treatments.html", "Veneers, Teeth Whitening & Smile Makeover in Delhi | Dr Parul", "Smile design, veneers, teeth whitening, composite bonding, gum contouring, aligners and facial aesthetics with Dr Parul Sharma Sobti in Rajouri Garden, Delhi.", page_treatments()),
         ("technology.html", "Digital Smile Design & Dental Technology in Delhi | Dr Parul", "Digital Smile Design, dental microscopes, CBCT and digital X-rays at Dr Sobti's Dental Care, Rajouri Garden, Delhi, and how they make cosmetic work precise.", page_technology()),
         ("blog.html", "Smile Journal: Cosmetic Dentistry Blog | Dr Parul Sharma Sobti", "A 60-part blog on smile design by Delhi cosmetic dentist Dr Parul Sharma Sobti, from the basics of a smile to veneers, aligners and facial harmony.", page_blog(posts)),
-        ("visit.html", "Book a Smile Consultation in Rajouri Garden | Dr Parul Sobti", "Book a smile consultation with Dr Parul Sharma Sobti at Dr Sobti's Dental Care, Rajouri Garden, New Delhi. Open 7 days, 10 am to 7 pm. WhatsApp +91 83682 22098.", page_visit()),
+        ("visit.html", "Book a Smile Consultation in Rajouri Garden | Dr Parul Sobti", "Book a smile consultation with Dr Parul Sharma Sobti at Dr Sobti's Dental Care, Rajouri Garden, New Delhi. Open 7 days, 10 am to 7 pm. WhatsApp +91 80767 77307.", page_visit()),
     ]
     for name, title, desc, body in pages:
         write(out / name, layout(title, desc, body, name, preview_main=(preview and name == "index.html"), path="" if name == "index.html" else name))
