@@ -29,8 +29,8 @@ CLINIC_URL = "https://www.sobtidentalcare.com"
 PUSHKAR_URL = "https://dentalimplantsdelhi.com"
 
 CLINIC = "Dr Sobti's Dental Care"
-PHONE = "+91 80767 77307"
-PHONES = ["+91 80767 77307", "+91 87449 85976", "+91 83682 22098", "+91 80762 50767"]
+PHONE = "+91 87449 85976"  # front desk, call (matches the Google profile)
+PHONES = [PHONE]  # lead-calling numbers are never published
 WHATSAPP_NO = "+91 80767 77307"
 WHATSAPP = "https://wa.me/918076777307"
 INSTAGRAM = "https://www.instagram.com/sobtidentalcare/"
