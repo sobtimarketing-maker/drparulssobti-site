@@ -172,6 +172,7 @@ section + section { border-top: 1px solid var(--line); }
 .gallery figcaption, figure.solo figcaption { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); letter-spacing: 0.04em; }
 figure.solo { margin-top: 24px; max-width: 280px; }
 figure.solo img { width: 100%; height: auto; border-radius: var(--radius); display: block; }
+figure.solo.wide { max-width: none; margin-top: 0; }
 
 /* Facts list */
 .facts { display: grid; gap: 0; border-top: 1px solid var(--line); }
