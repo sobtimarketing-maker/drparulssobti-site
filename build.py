@@ -69,8 +69,8 @@ MAP_2 = "https://maps.app.goo.gl/X2zJMwDika3YLGhK9"
 PORTRAIT_URL = "https://www.sobtidentalcare.com/images/team/Team1.jpg"
 PREVIEW = False
 
-FONTS = ("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;"
-         "1,6..96,400..700&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap")
+FONTS = ("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;"
+         "1,9..144,500&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap")
 
 NAV = [
     ("index.html", "Home"),
