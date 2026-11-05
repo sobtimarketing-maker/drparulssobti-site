@@ -20,6 +20,7 @@ ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT / "content"))
 from blog_plan import CHAPTERS, POSTS, START_DATE  # noqa: E402  (content/blog_plan.py)
 from price_pages import PRICE_PAGES, RAJOURI_FAQ  # noqa: E402  (content/price_pages.py)
+from videos import V as VIDEOS, obj as video_obj, card as video_card, CSS as VIDEO_CSS, JS as VIDEO_JS  # noqa: E402
 
 SITE = ROOT / "site"
 
@@ -275,7 +276,7 @@ def layout(title, desc, body, active, root="", preview_main=False, path="", og_t
 <footer class="site-footer"><div class="wrap">
   <div><b>Dr Parul Sharma Sobti</b> · BDS, Digital Smile Designer<br>{CLINIC} · {ADDRESS}</div>
   <div>Call {PHONE_LINK} · WhatsApp <a href="{WHATSAPP}">{WHATSAPP_NO}</a><br>{EMAIL}<br>{HOURS}</div>
-  <div><a href="{GOOGLE_PROFILE}">Google reviews</a> · <a href="{GOOGLE_REVIEW}">Leave a review</a><br><a href="{INSTAGRAM}">Instagram</a> · <a href="{FACEBOOK}">Facebook</a> · <a href="{YOUTUBE}">YouTube</a></div>
+  <div><a href="{GOOGLE_PROFILE}">Google reviews</a> · <a href="{GOOGLE_REVIEW}">Leave a review</a><br><a href="{INSTAGRAM}">Instagram</a> · <a href="{FACEBOOK}">Facebook</a> · <a href="{YOUTUBE}">YouTube</a> · <a href="{root}videos.html">Videos</a></div>
   <div>© 2026 {CLINIC}</div>
 </div></footer>"""
     if preview_main:
@@ -641,6 +642,7 @@ def page_veneers():
   </dl>
 </div></section>
 
+{video_block(PAGE_VIDEOS["veneers"])}
 <section><div class="wrap treatments"><div class="tgroup"><div><h2>Questions</h2>
 <p class="muted">Ask anything else on WhatsApp.</p></div><div class="tlist">{faq}</div></div></div></section>
 <section><div class="wrap"><p><a class="btn" href="visit.html">Book a smile consultation</a> <a href="treatments.html">See all treatments</a></p></div></section>"""
@@ -655,7 +657,7 @@ def veneers_schema():
             {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"},
             {"@type": "ListItem", "position": 2, "name": "Treatments", "item": f"{SITE_URL}/treatments.html"},
             {"@type": "ListItem", "position": 3, "name": "Veneers", "item": url}]},
-    ]
+    ] + video_ld(PAGE_VIDEOS["veneers"], "veneers.html")
 
 
 def _paras(blocks):
@@ -678,7 +680,7 @@ def page_schema(slug, name, faq):
             {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"},
             {"@type": "ListItem", "position": 2, "name": "Treatments", "item": f"{SITE_URL}/treatments.html"},
             {"@type": "ListItem", "position": 3, "name": name, "item": url}]},
-    ]
+    ] + video_ld(PAGE_VIDEOS.get(slug, []), f"{slug}.html")
 
 
 def re_tags(s):
@@ -710,6 +712,7 @@ def page_price(pg):
   </dl>
 </div></section>
 
+{video_block(PAGE_VIDEOS.get(pg["slug"], []))}
 <section><div class="wrap treatments"><div class="tgroup"><div><h2>Questions</h2>
 <p class="muted">Ask anything else on WhatsApp.</p></div><div class="tlist">{faq_html(pg["faq"])}</div></div></div></section>
 <section><div class="wrap"><p><a class="btn" href="visit.html">{pg["cta"]}</a> <a href="treatments.html">See all treatments</a></p></div></section>"""
@@ -893,6 +896,83 @@ def page_visit():
 </div></section>"""
 
 
+# ---------------------------------------------------------------- videos (YouTube @DrSobtiDental)
+VIDEO_SECTIONS = [
+    ("Smile makeovers and veneers", "Smile designing, composite veneers and same-day teeth, from the first design to the final smile.",
+     ["oAl3H6l39Es", "s3GXnZ2gkUk", "2_e0jS8wVsg", "6PXXzwvCBco", "etx9YUTW_kg", "t2iKVdDL8D0", "1SivMyXkBa0", "VBxecBKQiYo", "6zl3kROUoso"]),
+    ("Crowns made in our own lab", "Crowns and bridges designed on screen and milled in the clinic.",
+     ["fvKcdFYR3R8", "nkUCoO-IgKk"]),
+    ("Comfortable treatment", "Root canals, wisdom teeth and laughing gas for nervous patients.",
+     ["kPXjCugNphI", "a3YGzvm1YsU", "kQDuNdLutes"]),
+    ("Children", "Gentle treatment for children, in the words of the children and their parents.",
+     ["K6o1xrWnsJ4", "HMKI76NpUCw", "4pk7Kov41sQ"]),
+    ("Gums and cleaning", "Air polishing and gentler gum treatment.",
+     ["Q4XgYfekrpw", "Vu4W2Kl_Mvs"]),
+]
+VIDEO_FAQ = [
+    ("Can composite veneers fix a smile after a root canal?",
+     "Often, yes. If a treated tooth looks darker or the shape no longer matches, composite veneers can reshape and recolour it with very little drilling. A very dark tooth may need a crown or porcelain veneer instead."),
+    ("Can a crown be made the same day?",
+     "In many cases, yes. The tooth is scanned, the crown is designed on screen with you, then milled and finished in the clinic's own lab, so a single crown can often be fitted in about 2 hours."),
+    ("Is laughing gas safe for nervous patients and children?",
+     "Nitrous oxide (laughing gas) is a mild sedative breathed through a small nose mask. It helps you relax while you stay awake, and its effect wears off within minutes after the mask is removed."),
+    ("Are root canals painful?",
+     "With local anaesthesia, a root canal should feel much like a filling. Most of the pain people remember comes from the infection before treatment, not from the treatment itself."),
+    ("What is dental air polishing?",
+     "Air polishing removes stains and plaque with a fine jet of air, water and a gentle powder. It is quicker and more comfortable than scraping alone and is often added to a scaling and cleaning visit."),
+]
+PAGE_VIDEOS = {
+    "veneers": ["s3GXnZ2gkUk", "oAl3H6l39Es", "6PXXzwvCBco"],
+    "dental-crown-cost-delhi": ["2_e0jS8wVsg", "fvKcdFYR3R8"],
+    "root-canal-cost-delhi": ["kPXjCugNphI", "K6o1xrWnsJ4"],
+    "teeth-cleaning-cost-delhi": ["Q4XgYfekrpw", "Vu4W2Kl_Mvs"],
+}
+
+
+def video_grid(ids):
+    return '<div class="yt-grid">' + "".join(video_card(VIDEOS[i], esc) for i in ids) + "</div>"
+
+
+def video_block(ids):
+    if not ids:
+        return ""
+    return f"""<section><div class="wrap"><div class="section-head"><span class="label">On video</span><h2>See it from our clinic</h2></div>
+{video_grid(ids)}
+<p style="margin-top:20px"><a href="videos.html">All videos</a> · <a href="{YOUTUBE}">YouTube channel</a></p></div></section>
+{VIDEO_JS}"""
+
+
+def video_ld(ids, page):
+    return [dict(video_obj(VIDEOS[i], f"{SITE_URL}/{page}"), publisher={"@id": f"{SITE_URL}/#clinic"}) for i in ids]
+
+
+def page_videos():
+    secs = "".join(f"""<section><div class="wrap"><div class="section-head"><span class="label">Videos</span><h2>{esc(h)}</h2><p>{esc(intro)}</p></div>
+{video_grid(ids)}</div></section>""" for h, intro, ids in VIDEO_SECTIONS)
+    return f"""<section class="page-hero"><div class="wrap">
+  <span class="label">Videos</span>
+  <h1>Smile makeover and cosmetic dentistry videos</h1>
+  <p>Real cases and patient stories from {CLINIC}, Rajouri Garden, New Delhi: smile designing, composite veneers, same-day crowns, gentle treatment for children and nervous patients. Tap a video to play it here, or watch more on our <a href="{YOUTUBE}">YouTube channel</a>.</p>
+</div></section>
+{secs}
+<section><div class="wrap treatments"><div class="tgroup"><div><h2>Quick answers</h2>
+<p class="muted">Ask anything else on WhatsApp.</p></div><div class="tlist">{faq_html(VIDEO_FAQ)}</div></div></div></section>
+<section><div class="wrap"><p><a class="btn" href="visit.html">Book a smile consultation</a> <a href="treatments.html">See all treatments</a> · Implant videos: <a href="{PUSHKAR_URL}/videos/">Dr Pushkar Sobti</a></p></div></section>
+{VIDEO_JS}"""
+
+
+def videos_schema():
+    url = f"{SITE_URL}/videos.html"
+    ids = [i for _, _, l in VIDEO_SECTIONS for i in l]
+    return [{"@type": "CollectionPage", "@id": url, "url": url, "name": "Smile makeover and cosmetic dentistry videos",
+             "about": {"@id": f"{SITE_URL}/#clinic"}, "inLanguage": "en-IN"},
+            {"@type": "FAQPage", "@id": url + "#faq", "mainEntity": [
+                {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in VIDEO_FAQ]},
+            {"@type": "BreadcrumbList", "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE_URL + "/"},
+                {"@type": "ListItem", "position": 2, "name": "Videos", "item": url}]}] + video_ld(ids, "videos.html")
+
+
 # ---------------------------------------------------------------- build
 def write(path, text):
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -926,6 +1006,10 @@ def build(out, preview=False):
     for pg in PRICE_PAGES:
         write(out / f'{pg["slug"]}.html', layout(pg["title"], pg["desc"], page_price(pg), "treatments.html",
                                                  path=f'{pg["slug"]}.html', ld=page_schema(pg["slug"], pg["name"], pg["faq"])))
+    write(out / "videos.html", layout(
+        "Smile Makeover & Cosmetic Dentistry Videos, Delhi | Dr Parul Sobti",
+        "Videos from Dr Sobti's Dental Care, Rajouri Garden: smile designing, composite veneers, same-day crowns, root canals, laughing gas and children's dentistry.",
+        page_videos(), "treatments.html", path="videos.html", ld=videos_schema()))
     write(out / "dentist-rajouri-garden.html", layout(
         "Treatment Prices, Timings and Directions, Rajouri Garden Clinic | Dr Parul Sobti",
         "Starting prices for veneers, whitening, crowns, braces, aligners and root canal at Dr Sobti's Dental Care, above Rajmandir. Open 7 days, 10 am to 7 pm. Parking and directions.",
@@ -953,7 +1037,7 @@ def write_sitemap(out, posts):
     today = today_ist().isoformat()
     urls = [(SITE_URL + "/", today)] + [(f"{SITE_URL}/{n}", today) for n in
             ("about.html", "clinic.html", "treatments.html", "veneers.html", "technology.html", "blog.html", "visit.html",
-             "dentist-rajouri-garden.html") + tuple(f'{p["slug"]}.html' for p in PRICE_PAGES)]
+             "dentist-rajouri-garden.html", "videos.html") + tuple(f'{p["slug"]}.html' for p in PRICE_PAGES)]
     urls += [(f'{SITE_URL}/blog/{p["slug"]}.html', p["date"].isoformat()) for p in posts if p["body"]]
     write(out / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n'
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
@@ -972,7 +1056,8 @@ def write_llms(out, posts):
         ("Home", ""), ("About Dr Parul Sharma Sobti", "about.html"), ("The clinic", "clinic.html"),
         ("All treatments", "treatments.html"), ("Veneers in Delhi", "veneers.html"), ("Technology", "technology.html"),
         ("Dentist in Rajouri Garden: prices, timings and directions", "dentist-rajouri-garden.html"),
-        ("Visit and book", "visit.html"), ("Smile Journal blog", "blog.html")]
+        ("Visit and book", "visit.html"), ("Smile Journal blog", "blog.html"),
+        ("Videos: smile makeovers, veneers, same-day crowns, children and nervous patients", "videos.html")]
         + [(pg["h1"], f'{pg["slug"]}.html') for pg in PRICE_PAGES])
     live = "\n".join(f'- [{p["title"]}]({SITE_URL}/blog/{p["slug"]}.html)' for p in posts if p["body"])
     write(out / "llms.txt", f"""# Dr Parul Sharma Sobti, cosmetic dentist in Rajouri Garden, Delhi
