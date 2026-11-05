@@ -246,6 +246,14 @@ tr:last-child td { border-bottom: 0; }
 .progress { height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
 .progress i { display: block; height: 100%; background: var(--gold); }
 
+/* Patient reviews */
+.reviews { columns: 3 280px; column-gap: 20px; }
+.review { break-inside: avoid; margin: 0 0 20px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: grid; gap: 12px; }
+.review .stars { color: var(--gold); letter-spacing: 2px; }
+.review blockquote { margin: 0; }
+.review figcaption { display: grid; gap: 2px; }
+.review figcaption .label { font-size: 0.72rem; }
+
 /* Family of sites + footer */
 .family { background: var(--tint); }
 .family .grid a { text-decoration: none; color: var(--ink); }
