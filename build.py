@@ -94,7 +94,7 @@ def portrait(alt="Dr Parul Sharma Sobti"):
         return f'<div class="photo">{ph("Portrait from sobtidentalcare.com shows on the live site")}</div>'
     if HAS_PORTRAIT:
         return f'<img class="portrait" src="{PORTRAIT_FILE}" alt="{alt}" width="800" height="1000" loading="lazy">'
-    return ('<img class="portrait" src="assets/images/clinic/clinic-reception.jpg" '
+    return ('<img class="portrait" src="assets/images/clinic/clinic-reception-waiting.jpg" '
             'alt="Reception at Dr Sobti\'s Dental Care, Rajouri Garden" loading="lazy">')
 
 
@@ -491,8 +491,9 @@ def page_clinic():
     ("clinic-treatment-room.jpg", "Treatment room"),
     ("clinic-treatment-room-blue.jpg", "Microscope operatory"),
     ("clinic-treatment-room-2.jpg", "Second treatment room"),
+    ("clinic-treatment-room-3.jpg", "Treatment room, wide view"),
     ("clinic-lounge-certificates.jpg", "Patient lounge"),
-    ("clinic-entrance.jpg", "Entrance, above Rajmandir"),
+    ("clinic-lounge-sofa.jpg", "Waiting lounge"),
   ])}
 </div></section>
 
@@ -580,8 +581,8 @@ def page_treatments():
     ("lab-smile-design-mock-up.jpg", "Smile design mock-up on a printed model"),
     ("lab-zirconia-bridge.jpg", "Zirconia bridge, milled in-house"),
     ("lab-clear-aligner.jpg", "Clear aligner"),
-    ("clinic-dental-lab.jpg", "3D printers and milling machines"),
-    ("clinic-treatment-room-2.jpg", "Treatment room"),
+    ("lab-front-teeth-bridge.jpg", "Front teeth bridge, hand-finished"),
+    ("lab-crowns-on-printed-model.jpg", "Crowns on a 3D-printed model"),
   ])}
 </div></section>
 {reviews_section(REVIEWS[3:])}"""
