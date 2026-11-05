@@ -65,8 +65,11 @@ ADDRESS = "First Floor, J-12/26, Block J, Rajouri Garden Extension (above Rajman
 ADDRESS_2 = "WZ-168, Mangal Bazar Road, Chand Nagar, Vishnu Garden, New Delhi 110018"
 MAP_1 = "https://maps.app.goo.gl/ZSnn4wssESSA2ZAB7"
 MAP_2 = "https://maps.app.goo.gl/X2zJMwDika3YLGhK9"
-# Dr Parul's portrait from the clinic website. The preview cannot load other sites' images.
-PORTRAIT_URL = "https://www.sobtidentalcare.com/images/team/Team1.jpg"
+# Dr Parul's portrait, hosted in this repo. It used to be loaded from the old sobtidentalcare.com,
+# which broke when that site was rebuilt. Until the file is added, pages show a clinic photo instead.
+PORTRAIT_FILE = "assets/images/dr-parul-sharma-sobti.jpg"
+HAS_PORTRAIT = (Path(__file__).parent / PORTRAIT_FILE).exists()
+PORTRAIT_URL = f"https://drparulssobti.com/{PORTRAIT_FILE}" if HAS_PORTRAIT else "https://drparulssobti.com/assets/images/share.jpg"
 PREVIEW = False
 
 FONTS = ("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;"
@@ -89,7 +92,10 @@ CURRENT = ' aria-current="page"'
 def portrait(alt="Dr Parul Sharma Sobti"):
     if PREVIEW:
         return f'<div class="photo">{ph("Portrait from sobtidentalcare.com shows on the live site")}</div>'
-    return f'<img class="portrait" src="{PORTRAIT_URL}" alt="{alt}" loading="lazy">'
+    if HAS_PORTRAIT:
+        return f'<img class="portrait" src="{PORTRAIT_FILE}" alt="{alt}" width="800" height="1000" loading="lazy">'
+    return ('<img class="portrait" src="assets/images/clinic/clinic-reception.jpg" '
+            'alt="Reception at Dr Sobti\'s Dental Care, Rajouri Garden" loading="lazy">')
 
 
 # Patient reviews, word for word from Google and Practo (shortened only where marked "…").
