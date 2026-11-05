@@ -1,22 +1,28 @@
-/* Layout concept: a calm porcelain page, an editorial serif for headings, and
-   measurement details (proportions, shade codes, post numbers) set in mono. */
+/* Layout concept: the clinic family look (logo blue + gold, Fraunces headings,
+   Manrope text) shared with sobtidentalcare.com and dentalimplantsdelhi.com.
+   Measurement details (proportions, shade codes, post numbers) stay in mono. */
 :root {
-  --bg: #f3f5f4;
+  --bg: #f7f9fd;
   --surface: #ffffff;
-  --ink: #132b2d;
-  --muted: #566a6b;
-  --line: #d4dddb;
-  --accent: #a3405a;
+  --tint: #f2f6fc;
+  --ink: #16213a;
+  --heading: #0f1f3d;
+  --muted: #55607a;
+  --line: #dde4f0;
+  --accent: #1e4ea2;
+  --accent-deep: #143a7d;
   --accent-ink: #ffffff;
-  --accent-soft: #f3dfe4;
+  --accent-soft: #e4ecf8;
+  --gold: #f0b04f;
+  --gold-soft: #fdf1dc;
   --ph-bg: #fff3c9;
   --ph-ink: #6b5200;
   --enamel-1: #f4f0e6;
   --enamel-2: #ece4d2;
   --enamel-3: #e3d7bd;
   --enamel-4: #d8c8a7;
-  --font-display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
-  --font-body: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
   --step--1: 0.84rem;
   --step-0: 1.0625rem;
@@ -24,20 +30,22 @@
   --step-2: 1.7rem;
   --step-3: 2.3rem;
   --step-4: clamp(2.4rem, 5.4vw, 3.9rem);
-  --radius: 6px;
+  --radius: 14px;
   --wrap: 1120px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0d1819; --surface: #142324; --ink: #e6eeec; --muted: #9db0ae; --line: #26393a;
-    --accent: #e48ba0; --accent-ink: #1a0d11; --accent-soft: #3b232a;
+    --bg: #0e1320; --surface: #151b2b; --tint: #121828; --ink: #e9edf5; --heading: #f3f6fb; --muted: #9ba6bc; --line: #26304a;
+    --accent: #8fb0ea; --accent-deep: #b4cbf2; --accent-ink: #0f1f3d; --accent-soft: #1d2a47;
+    --gold-soft: #3a2f12;
     --ph-bg: #3d3310; --ph-ink: #f6dd8a;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0d1819; --surface: #142324; --ink: #e6eeec; --muted: #9db0ae; --line: #26393a;
-  --accent: #e48ba0; --accent-ink: #1a0d11; --accent-soft: #3b232a;
+  --bg: #0e1320; --surface: #151b2b; --tint: #121828; --ink: #e9edf5; --heading: #f3f6fb; --muted: #9ba6bc; --line: #26304a;
+  --accent: #8fb0ea; --accent-deep: #b4cbf2; --accent-ink: #0f1f3d; --accent-soft: #1d2a47;
+  --gold-soft: #3a2f12;
   --ph-bg: #3d3310; --ph-ink: #f6dd8a;
   color-scheme: dark;
 }
@@ -52,7 +60,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 img { max-width: 100%; }
 a { color: var(--accent); text-underline-offset: 3px; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-h1, h2, h3 { font-family: var(--font-display); font-weight: 500; line-height: 1.12; text-wrap: balance; margin: 0; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.12; text-wrap: balance; margin: 0; color: var(--heading); letter-spacing: -0.01em; }
 h1 { font-size: var(--step-4); letter-spacing: -0.01em; }
 h2 { font-size: var(--step-3); }
 h3 { font-size: var(--step-1); font-family: var(--font-body); font-weight: 650; }
@@ -66,6 +74,8 @@ p { margin: 0; }
   font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--muted);
 }
+.hero-copy > .label, .page-hero .label { color: var(--accent); display: inline-flex; gap: 10px; align-items: center; }
+.hero-copy > .label::before, .page-hero .label::before { content: ""; width: 22px; height: 2px; background: var(--gold); }
 .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 .muted { color: var(--muted); }
 
@@ -81,19 +91,23 @@ p { margin: 0; }
   position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
   background: color-mix(in srgb, var(--bg) 92%, transparent);
   backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+  box-shadow: inset 0 3px 0 var(--accent);
 }
 .site-header .wrap { display: flex; align-items: center; gap: 24px; padding-block: 14px; flex-wrap: wrap; }
 .brand { text-decoration: none; color: var(--ink); display: grid; line-height: 1.1; }
-.brand b { font-family: var(--font-display); font-weight: 600; font-size: 1.35rem; }
+.brand b { font-family: var(--font-display); font-weight: 600; font-size: 1.35rem; color: var(--heading); }
 .brand span { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 .nav { margin-left: auto; display: flex; gap: 4px 18px; flex-wrap: wrap; }
 .nav a { color: var(--ink); text-decoration: none; font-size: 0.95rem; padding: 4px 0; border-bottom: 1.5px solid transparent; }
-.nav a:hover, .nav a[aria-current="page"] { border-bottom-color: var(--accent); }
+.nav a:hover, .nav a[aria-current="page"] { border-bottom-color: var(--gold); color: var(--accent); }
 .btn {
   display: inline-block; background: var(--accent); color: var(--accent-ink); text-decoration: none;
-  padding: 11px 20px; border-radius: 999px; font-weight: 600; font-size: 0.95rem;
+  padding: 11px 20px; border-radius: 999px; font-weight: 700; font-size: 0.95rem;
+  border: 2px solid var(--accent); transition: background .15s;
 }
-.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.btn:hover { background: var(--accent-deep); border-color: var(--accent-deep); color: var(--accent-ink); }
+.btn.ghost { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+.btn.ghost:hover { background: var(--tint); color: var(--accent-deep); }
 @media (max-width: 760px) {
   .nav { margin-left: 0; width: 100%; gap: 4px 16px; }
   .site-header .btn { display: none; }
@@ -147,7 +161,7 @@ section + section { border-top: 1px solid var(--line); }
 }
 .photo.wide { aspect-ratio: 16 / 9; }
 .portrait { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: top; border-radius: var(--radius); display: block; background: var(--surface); }
-.pull { margin: 0; padding-left: 20px; border-left: 2px solid var(--accent); font-family: var(--font-display); font-style: italic; font-size: var(--step-1); line-height: 1.4; }
+.pull { margin: 0; padding-left: 20px; border-left: 3px solid var(--gold); font-family: var(--font-display); font-style: italic; font-size: var(--step-1); line-height: 1.4; }
 
 /* Clinic photo gallery */
 .gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
@@ -223,17 +237,25 @@ tr:last-child td { border-bottom: 0; }
 .article-body ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; }
 .article-body .lede { font-size: var(--step-1); line-height: 1.55; }
 .article-body blockquote {
-  margin: 8px 0; padding: 4px 0 4px 22px; border-left: 2px solid var(--accent);
+  margin: 8px 0; padding: 4px 0 4px 22px; border-left: 3px solid var(--gold);
   font-family: var(--font-display); font-style: italic; font-size: var(--step-1); line-height: 1.45;
 }
 .article-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); }
 .article-nav a, .article-nav div { display: grid; gap: 4px; text-decoration: none; color: var(--ink); min-width: 0; }
 .article-nav .next { text-align: right; }
 .progress { height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
-.progress i { display: block; height: 100%; background: var(--accent); }
+.progress i { display: block; height: 100%; background: var(--gold); }
+
+/* Patient reviews */
+.reviews { columns: 3 280px; column-gap: 20px; }
+.review { break-inside: avoid; margin: 0 0 20px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: grid; gap: 12px; }
+.review .stars { color: var(--gold); letter-spacing: 2px; }
+.review blockquote { margin: 0; }
+.review figcaption { display: grid; gap: 2px; }
+.review figcaption .label { font-size: 0.72rem; }
 
 /* Family of sites + footer */
-.family { background: var(--surface); }
+.family { background: var(--tint); }
 .family .grid a { text-decoration: none; color: var(--ink); }
 .family .card.here { border-color: var(--accent); }
 .site-footer { padding-block: 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; }
@@ -247,3 +269,14 @@ tr:last-child td { border-bottom: 0; }
   .proportion .tooth:nth-child(4) { animation-delay: 120ms; } .proportion .tooth:nth-child(5) { animation-delay: 60ms; }
   @keyframes rise { from { transform: translateY(6px); } to { transform: none; } }
 }
+
+/* Clinic family: tinted bands and a dark call-to-action band, as on sobtidentalcare.com */
+.card { transition: border-color .15s; }
+.cta-band { background: var(--heading); color: #dfe7f6; }
+.cta-band h2 { color: #fff; }
+.cta-band p, .cta-band .muted { color: #c9d4ea; }
+.cta-band .btn { background: var(--gold); border-color: var(--gold); color: #0f1f3d; }
+.cta-band .btn:hover { background: #e59f35; border-color: #e59f35; }
+.cta-band .btn.ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.6); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cta-band { background: #0a0f1a; } }
+:root[data-theme="dark"] .cta-band { background: #0a0f1a; }

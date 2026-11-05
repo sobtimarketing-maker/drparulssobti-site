@@ -69,8 +69,8 @@ MAP_2 = "https://maps.app.goo.gl/X2zJMwDika3YLGhK9"
 PORTRAIT_URL = "https://www.sobtidentalcare.com/images/team/Team1.jpg"
 PREVIEW = False
 
-FONTS = ("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;"
-         "1,6..96,400..700&family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700&display=swap")
+FONTS = ("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;"
+         "1,9..144,500&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap")
 
 NAV = [
     ("index.html", "Home"),
@@ -90,6 +90,40 @@ def portrait(alt="Dr Parul Sharma Sobti"):
     if PREVIEW:
         return f'<div class="photo">{ph("Portrait from sobtidentalcare.com shows on the live site")}</div>'
     return f'<img class="portrait" src="{PORTRAIT_URL}" alt="{alt}" loading="lazy">'
+
+
+# Patient reviews, word for word from Google and Practo (shortened only where marked "…").
+# (name, treatment, words, source)
+REVIEWS = [
+    ("Divjot K.", "Consultation with Dr Parul", "Dr. Parul is incredibly patient and explains the condition in depth. She answers all questions thoroughly and spends ample time with patients to ensure they feel satisfied and well-informed, never rushing into procedures.", "rg"),
+    ("Afran N.", "Front teeth veneers", "Best dental treatment is offered by them in the area with all the latest equipment one can imagine. State of the art clinic.I got my front teeth veneers done and very happy with my smile.", "vg"),
+    ("Kamna S.", "Teeth polishing", "Had my teeth polishing done by Dr. Parul Sharma and had such a lovely experience! She was incredibly sweet, helpful, and made the whole process so comfortable. Really happy with the results.", "rg"),
+    ("Avneet", "Consultation", "The doctor was extremely professional, patient, and took the time to listen to all my concerns carefully. The consultation was very detailed, and the treatment suggested was clearly explained.", "practo"),
+    ("Debesh P.", "Root canal and zirconia caps", "Had a painless experience while getting my RCT treatment and zirconia caps from Dr Parul Sobti.Really appreciate her way of handling her patients.", "vg"),
+    ("Navneet S.", "Re-root canal", "I came here with severe infection and tooth ache and received a really good and painless re- root canal treatment in the hands of Dr Parul Sobti. The clinic is very clean and has a peaceful ambiance and they have all the facilities available in house.", "rg"),
+    ("Ivneet K.", "Scaling", "I recently had a scaling treatment done by Dr. Parul Sharma Sobti, and it was a wonderful experience. She is an excellent doctor, very professional and gentle.", "practo"),
+    ("Sayan D.", "Front teeth cosmetic work", "Had my front teeth cosmetic work done by Dr. Parul and it was a great experience, satisfied.", "vg"),
+    ("Nipun M.", "Treatment plan", "Dr. Parul explained me about my teeth anatomy and guided me transparently about my procedure. It was a nice and calming experience altogether and I feel much better now", "rg"),
+]
+REVIEW_SOURCES = {"rg": "Google, Rajouri Garden", "vg": "Google, Vishnu Garden clinic", "practo": "Practo"}
+PRACTO = "https://www.practo.com/delhi/clinic/sobti-dental-clinic-vishnu-garden/reviews"
+
+
+def review_cards(items):
+    return '<div class="reviews">' + "".join(
+        f'<figure class="review"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div>'
+        f'<blockquote>“{esc(t)}”</blockquote><figcaption><b>{esc(n)}</b>'
+        f'<span class="label">{esc(w)} · {REVIEW_SOURCES[src]}</span></figcaption></figure>'
+        for n, w, t, src in items) + "</div>"
+
+
+def reviews_section(items):
+    return f"""<section><div class="wrap">
+  <div class="section-head"><span class="label">Patient reviews</span><h2>In our patients' words</h2>
+  <p>From Google reviews of our Rajouri Garden and Vishnu Garden clinics, and patient stories on Practo.</p></div>
+  {review_cards(items)}
+  <p style="margin-top:28px"><a href="{GOOGLE_PROFILE}">Read all reviews on Google</a> · <a href="{PRACTO}">Patient stories on Practo</a></p>
+</div></section>"""
 
 
 def gallery(items, root=""):
@@ -154,7 +188,7 @@ def schema(extra=None):
     """JSON-LD on every page: Dr Parul, the Rajouri Garden clinic and this website, plus page-specific items."""
     def branch(id_, name, street, locality, pin, phone, maps):
         return {"@type": "Dentist", "@id": id_, "name": name, "url": CLINIC_URL, "telephone": phone,
-                "image": f"{SITE_URL}/assets/images/clinic/clinic-reception.jpg", "priceRange": "₹₹",
+                "image": f"{SITE_URL}/assets/images/clinic/clinic-reception-waiting.jpg", "priceRange": "₹₹",
                 "address": {"@type": "PostalAddress", "streetAddress": street, "addressLocality": locality,
                             "addressRegion": "Delhi", "postalCode": pin, "addressCountry": "IN"},
                 "openingHoursSpecification": [{"@type": "OpeningHoursSpecification",
@@ -351,10 +385,12 @@ def page_home(posts):
   </dl>
 </div>
 <div class="wrap" style="margin-top:40px">{gallery([
-    ("clinic-microscope-room.jpg", "Microscope operatory"),
-    ("clinic-cbct-scanner.jpg", "MyRay CBCT 3D scanner"),
-    ("clinic-dental-lab.jpg", "In-house digital lab"),
+    ("clinic-treatment-room-blue.jpg", "Microscope operatory"),
+    ("lab-veneers-on-model.jpg", "Veneers made in our lab"),
+    ("lab-smile-design-mock-up.jpg", "Smile design mock-up"),
 ])}</div></section>
+
+{reviews_section(REVIEWS[:6])}
 
 <section class="cta-band"><div class="wrap">
   <h2>Thinking about changing your smile? Start with a conversation.</h2>
@@ -436,12 +472,12 @@ def page_clinic():
 <section><div class="wrap">
   <div class="section-head"><span class="label">Inside the clinic</span><h2>Rajouri Garden, New Delhi</h2></div>
   {gallery([
-    ("clinic-entrance.jpg", "Entrance"),
-    ("clinic-reception.jpg", "Reception"),
-    ("clinic-lounge.jpg", "Patient lounge"),
-    ("clinic-microscope-room.jpg", "Microscope operatory"),
-    ("clinic-implant-surgery-room.jpg", "Implant surgery suite"),
-    ("clinic-dental-lab.jpg", "In-house digital lab"),
+    ("clinic-reception-waiting.jpg", "Reception and waiting area"),
+    ("clinic-treatment-room.jpg", "Treatment room"),
+    ("clinic-treatment-room-blue.jpg", "Microscope operatory"),
+    ("clinic-treatment-room-2.jpg", "Second treatment room"),
+    ("clinic-lounge-certificates.jpg", "Patient lounge"),
+    ("clinic-entrance.jpg", "Entrance, above Rajmandir"),
   ])}
 </div></section>
 
@@ -520,7 +556,20 @@ def page_treatments():
   <h1>What we do</h1>
   <p>From a single whitening session to a full smile and facial makeover. Visit counts are typical and depend on your case. Prices: <a href="veneers.html">veneers</a>, <a href="dental-crown-cost-delhi.html">crowns and caps</a>, <a href="braces-cost-delhi.html">braces</a>, <a href="clear-aligners-cost-delhi.html">clear aligners</a>, <a href="root-canal-cost-delhi.html">root canal</a>, <a href="teeth-whitening-cost-delhi.html">whitening</a> and <a href="teeth-cleaning-cost-delhi.html">cleaning</a>.</p>
 </div></section>
-<section><div class="wrap treatments">{''.join(groups)}</div></section>"""
+<section><div class="wrap treatments">{''.join(groups)}</div></section>
+<section><div class="wrap">
+  <div class="section-head"><span class="label">From our lab</span><h2>Made on the same floor as the clinic</h2>
+  <p>Veneers, crowns, mock-ups and aligners are designed and made at Titanium Arts Dental Studio, the clinic's own lab.</p></div>
+  {gallery([
+    ("lab-veneers-on-model.jpg", "Veneers on the patient's model"),
+    ("lab-smile-design-mock-up.jpg", "Smile design mock-up on a printed model"),
+    ("lab-zirconia-bridge.jpg", "Zirconia bridge, milled in-house"),
+    ("lab-clear-aligner.jpg", "Clear aligner"),
+    ("clinic-dental-lab.jpg", "3D printers and milling machines"),
+    ("clinic-treatment-room-2.jpg", "Treatment room"),
+  ])}
+</div></section>
+{reviews_section(REVIEWS[3:])}"""
 
 
 VENEER_FAQ = [
@@ -738,7 +787,7 @@ def page_technology():
 <section><div class="wrap">
   {gallery([
     ("clinic-cbct-scanner.jpg", "MyRay CBCT 3D scanner"),
-    ("clinic-microscope-room.jpg", "Operating microscope"),
+    ("clinic-treatment-room-blue.jpg", "Operating microscope"),
     ("clinic-dental-lab.jpg", "3D printers and Kelkar mill in our lab"),
   ])}
   <div class="table-wrap" style="margin-top:40px"><table>
