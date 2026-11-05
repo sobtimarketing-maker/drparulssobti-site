@@ -200,10 +200,11 @@ def schema(extra=None):
                 "openingHoursSpecification": [{"@type": "OpeningHoursSpecification",
                     "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
                     "opens": "10:00", "closes": "19:00"}],
-                "hasMap": maps, "sameAs": [GOOGLE_PROFILE, CLINIC_URL, INSTAGRAM, FACEBOOK, YOUTUBE]}
+                "geo": {"@type": "GeoCoordinates", "latitude": 28.6407497, "longitude": 77.120662},
+                "hasMap": maps, "sameAs": [GOOGLE_PROFILE, CLINIC_URL + "/", INSTAGRAM, FACEBOOK, YOUTUBE]}
     graph = [
-        branch(f"{SITE_URL}/#clinic", CLINIC, "First Floor, J-12/26, Block J, Rajouri Garden Extension",
-               "Rajouri Garden, New Delhi", "110027", PHONE, MAP_1),
+        branch(f"{SITE_URL}/#clinic", CLINIC, "J 12/26, First Floor, Rajouri Garden",
+               "New Delhi", "110027", PHONE, GOOGLE_PROFILE),
         {"@type": "Person", "@id": f"{SITE_URL}/#drparul", "name": "Dr Parul Sharma Sobti",
          "jobTitle": "Cosmetic Dentist and Digital Smile Designer", "honorificSuffix": "BDS",
          "image": PORTRAIT_URL, "url": SITE_URL + "/",
@@ -934,6 +935,7 @@ def build(out, preview=False):
                   layout(f'{p["title"]} | Dr Parul Sharma Sobti', post_description(p), page_post(p, posts),
                          "blog.html", root="../", path=f'blog/{p["slug"]}.html', og_type="article", ld=post_schema(p)))
     write_sitemap(out, posts)
+    write_llms(out, posts)
     # Google Search Console ownership file. Keep it, or the site loses verification.
     write(out / "google92cb67c4e945410f.html", "google-site-verification: google92cb67c4e945410f.html")
     return posts
@@ -955,7 +957,46 @@ def write_sitemap(out, posts):
     write(out / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n'
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
           + "".join(f"  <url><loc>{u}</loc><lastmod>{d}</lastmod></url>\n" for u, d in urls) + "</urlset>\n")
-    write(out / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}/sitemap.xml\n")
+    ai_bots = ["OAI-SearchBot", "ChatGPT-User", "GPTBot", "PerplexityBot", "Perplexity-User", "ClaudeBot",
+               "Claude-SearchBot", "Claude-User", "Google-Extended", "Applebot-Extended", "Bingbot"]
+    write(out / "robots.txt", "User-agent: *\nAllow: /\n\n# AI search and answer engines: welcome to read and cite this site\n"
+          + "".join(f"User-agent: {b}\n" for b in ai_bots) + f"Allow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n")
+
+
+def write_llms(out, posts):
+    """llms.txt: a plain fact sheet that AI search tools (ChatGPT, Perplexity, Gemini) can read and quote."""
+    prices = "\n".join(f'- {pg["h1"]}: ' + "; ".join(f"{re_tags(i)}: {re_tags(v)}" for i, v in pg["prices"])
+                       + f' ({SITE_URL}/{pg["slug"]}.html)' for pg in PRICE_PAGES)
+    pages = "\n".join(f"- [{t}]({SITE_URL}/{u})" for t, u in [
+        ("Home", ""), ("About Dr Parul Sharma Sobti", "about.html"), ("The clinic", "clinic.html"),
+        ("All treatments", "treatments.html"), ("Veneers in Delhi", "veneers.html"), ("Technology", "technology.html"),
+        ("Dentist in Rajouri Garden: prices, timings and directions", "dentist-rajouri-garden.html"),
+        ("Visit and book", "visit.html"), ("Smile Journal blog", "blog.html")]
+        + [(pg["h1"], f'{pg["slug"]}.html') for pg in PRICE_PAGES])
+    live = "\n".join(f'- [{p["title"]}]({SITE_URL}/blog/{p["slug"]}.html)' for p in posts if p["body"])
+    write(out / "llms.txt", f"""# Dr Parul Sharma Sobti, cosmetic dentist in Rajouri Garden, Delhi
+
+> Dr Parul Sharma Sobti (BDS, SR Dental College, Rohtak; member of the Indian Dental Association) is a cosmetic dentist and digital smile designer at {CLINIC}, J 12/26, First Floor, Rajouri Garden, New Delhi 110027. She leads veneers, teeth whitening, smile makeovers, aligners and braces, root canals, crowns and cleanings at the clinic. Implants at the same clinic are done by Dr Pushkar Sobti ({PUSHKAR_URL}/).
+
+## Key facts
+- Clinic: {CLINIC}, J 12/26, First Floor, Rajouri Garden, New Delhi 110027, India (above Rajmandir; nearest metro Rajouri Garden, Blue and Pink lines)
+- Clinic website: {CLINIC_URL}/ · Google profile: {GOOGLE_PROFILE}
+- Timings: {HOURS}, including Sundays
+- Call {PHONE}; WhatsApp {WHATSAPP_NO}; {EMAIL}
+- Consultation: free first opinion on WhatsApp; in-clinic consultation INR 700
+- Veneers from INR 10,000 per tooth; smile makeover priced case by case after a digital smile design
+- Languages: English, Hindi. Not on the CGHS panel.
+- Profiles: {INSTAGRAM} · {FACEBOOK} · {YOUTUBE}
+
+## Starting prices (November 2026)
+{prices}
+
+## Pages
+{pages}
+
+## Smile Journal posts
+{live}
+""")
 
 
 def export_calendar(posts):
