@@ -93,7 +93,7 @@ def portrait(alt="Dr Parul Sharma Sobti"):
     if PREVIEW:
         return f'<div class="photo">{ph("Portrait from sobtidentalcare.com shows on the live site")}</div>'
     if HAS_PORTRAIT:
-        return f'<img class="portrait" src="{PORTRAIT_FILE}" alt="{alt}" loading="lazy">'
+        return f'<img class="portrait" src="{PORTRAIT_FILE}" alt="{alt}" width="800" height="1000" loading="lazy">'
     return ('<img class="portrait" src="assets/images/clinic/clinic-reception.jpg" '
             'alt="Reception at Dr Sobti\'s Dental Care, Rajouri Garden" loading="lazy">')
 
