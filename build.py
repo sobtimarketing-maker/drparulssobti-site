@@ -438,6 +438,14 @@ def page_about():
     <div><dt>Registration</dt><dd class="mono">A-8604</dd></div>
     <div><dt>Practice</dt><dd>{CLINIC}, Rajouri Garden and Vishnu Garden, New Delhi</dd></div>
   </dl>
+</div></section>
+
+<section><div class="wrap split">
+  <figure class="solo wide"><img src="assets/images/dr-pushkar-and-dr-parul-sobti.jpg" alt="Dr Parul Sharma Sobti with Dr Pushkar Sobti at Dr Sobti's Dental Care" loading="lazy" width="1440" height="1200">
+    <figcaption>Dr Parul with Dr Pushkar Sobti</figcaption></figure>
+  <div class="prose"><span class="label">Working together</span><h2>Two dentists, one plan</h2>
+  <p>Dr Parul works alongside implant surgeon Dr Pushkar Sobti. When a smile needs both cosmetic work and implants, they plan it together, so the new teeth look right in your face as well as fitting the implants.</p>
+  <p><a href="{PUSHKAR_URL}/">Dr Pushkar's implant website →</a></p></div>
 </div></section>"""
 
 
