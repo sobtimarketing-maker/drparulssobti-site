@@ -238,9 +238,15 @@ def post_schema(p):
 
 
 # ---------------------------------------------------------------- layout
+def home_link(root=""):
+    # Link to the folder, not index.html: Google treats /index.html as a duplicate of /
+    # ("Alternative page with proper canonical tag" in Search Console).
+    return root or "./"
+
+
 def layout(title, desc, body, active, root="", preview_main=False, path="", og_type="website", ld=None):
     nav = "".join(
-        f'<a href="{root}{href}"{CURRENT if href == active else ""}>{label}</a>'
+        f'<a href="{home_link(root) if href == "index.html" else root + href}"{CURRENT if href == active else ""}>{label}</a>'
         for href, label in NAV)
     head = f"""<title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
@@ -265,7 +271,7 @@ def layout(title, desc, body, active, root="", preview_main=False, path="", og_t
 <link rel="stylesheet" href="{root}assets/style.css">
 <script type="application/ld+json">{json.dumps(schema(ld), ensure_ascii=False)}</script>"""
     page = f"""<header class="site-header"><div class="wrap">
-  <a class="brand" href="{root}index.html"><b>Dr Parul Sharma Sobti</b><span>Smile Design · Aesthetic Dentistry</span></a>
+  <a class="brand" href="{home_link(root)}"><b>Dr Parul Sharma Sobti</b><span>Smile Design · Aesthetic Dentistry</span></a>
   <nav class="nav" aria-label="Main">{nav}</nav>
   <a class="btn" href="{root}visit.html">Book a consultation</a>
 </div></header>
