@@ -2,6 +2,17 @@
 
 Read this before drafting a post listed here. Same rules as every post: Dr Parul's own voice, no AI tells, original wording (exact-phrase spot check), facts only from the clinic. No phone numbers other than the site's own contact block.
 
+## Internal link rule for every post (9 Nov 2026)
+
+Search Console has the cost pages at #64 to #95. Every post about root canals, crowns or caps, zirconia, whitening or veneers links ONCE to its matching cost page, using the exact keyword as the anchor text, in a natural sentence:
+
+- "root canal cost in Delhi" -> root-canal-cost-delhi.html
+- "zirconia cap price" or "dental crown cost in Delhi" -> dental-crown-cost-delhi.html
+- "teeth whitening cost in Delhi" -> teeth-whitening-cost-delhi.html
+- "veneers cost" -> veneers.html
+
+One such link per post. Pick the page that matches the post's topic.
+
 Added 9 Nov 2026 (Dr wants more smile and veneer searches). These posts answer questions people search before they book. Do NOT quote exact prices in these five posts; explain what changes the cost and link to the price pages instead. Each links once, in a natural sentence, to veneers.html, and the cap posts also to dental-crown-cost-delhi.html. When a smile makeover page exists, link it too.
 
 | Post | Search it answers | Notes |

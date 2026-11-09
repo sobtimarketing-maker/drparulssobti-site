@@ -1,6 +1,7 @@
 # The Smile Journal: a 60-post story, published every alternate day.
 # Order matters: each post builds on the one before it, basic to advanced.
 # Edit titles or summaries here, then run `python3 build.py`.
+# BEFORE DRAFTING ANY POST: read content/post-briefs.md (per-post briefs + internal link rule for cost pages).
 
 START_DATE = "2026-10-21"  # first post; every later post is 2 days after the previous one
 
