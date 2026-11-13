@@ -62,10 +62,10 @@ GOOGLE_PROFILE = "https://maps.google.com/maps?cid=6577991291147149801"
 GOOGLE_REVIEW = "https://search.google.com/local/writereview?placeid=ChIJf7C_p8MDDTkR6WFwRDq4SVs"
 EMAIL = "sobticlinic@gmail.com"
 HOURS = "Open 7 days, 10:00 am to 7:00 pm"
-ADDRESS = "First Floor, J-12/26, Block J, Rajouri Garden Extension (above Rajmandir), New Delhi 110027"
-ADDRESS_2 = "WZ-168, Mangal Bazar Road, Chand Nagar, Vishnu Garden, New Delhi 110018"
-MAP_1 = "https://maps.app.goo.gl/ZSnn4wssESSA2ZAB7"
-MAP_2 = "https://maps.app.goo.gl/X2zJMwDika3YLGhK9"
+ADDRESS = "J 12/26, First Floor, Rajouri Garden (above Rajmandir), New Delhi 110027"
+ADDRESS_2 = "WZ 168, Mangal Bazaar Road, Vishnu Garden, New Delhi 110018"
+MAP_1 = "https://maps.google.com/maps?cid=6577991291147149801"
+MAP_2 = "https://maps.google.com/maps?cid=4235763968755079234"
 # Dr Parul's portrait, hosted in this repo. It used to be loaded from the old sobtidentalcare.com,
 # which broke when that site was rebuilt. Until the file is added, pages show a clinic photo instead.
 PORTRAIT_FILE = "assets/images/dr-parul-sharma-sobti.jpg"
@@ -202,12 +202,14 @@ def schema(extra=None):
                     "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
                     "opens": "10:00", "closes": "19:00"}],
                 "geo": {"@type": "GeoCoordinates", "latitude": 28.6407497, "longitude": 77.120662},
-                "hasMap": maps, "sameAs": [GOOGLE_PROFILE, CLINIC_URL + "/", INSTAGRAM, FACEBOOK, YOUTUBE]}
+                "hasMap": maps, "sameAs": [GOOGLE_PROFILE, CLINIC_URL + "/", INSTAGRAM, FACEBOOK, YOUTUBE,
+                                            "https://www.linkedin.com/company/sobti-dental-clinic/"]}
     graph = [
         branch(f"{SITE_URL}/#clinic", CLINIC, "J 12/26, First Floor, Rajouri Garden",
                "New Delhi", "110027", PHONE, GOOGLE_PROFILE),
         {"@type": "Person", "@id": f"{SITE_URL}/#drparul", "name": "Dr Parul Sharma Sobti",
          "jobTitle": "Cosmetic Dentist and Digital Smile Designer", "honorificSuffix": "BDS",
+         "identifier": {"@type": "PropertyValue", "propertyID": "Dental Council registration", "value": "A-8604"},
          "image": PORTRAIT_URL, "url": SITE_URL + "/",
          "alumniOf": "SR Dental College, Maharshi Dayanand University, Rohtak",
          "memberOf": {"@type": "Organization", "name": "Indian Dental Association"},
@@ -282,8 +284,8 @@ def layout(title, desc, body, active, root="", preview_main=False, path="", og_t
 <footer class="site-footer"><div class="wrap">
   <div><b>Dr Parul Sharma Sobti</b> · BDS, Digital Smile Designer<br>{CLINIC} · {ADDRESS}</div>
   <div>Call {PHONE_LINK} · WhatsApp <a href="{WHATSAPP}">{WHATSAPP_NO}</a><br>{EMAIL}<br>{HOURS}</div>
-  <div><a href="{GOOGLE_PROFILE}">Google reviews</a> · <a href="{GOOGLE_REVIEW}">Leave a review</a><br><a href="{INSTAGRAM}">Instagram</a> · <a href="{FACEBOOK}">Facebook</a> · <a href="{YOUTUBE}">YouTube</a> · <a href="{root}videos.html">Videos</a></div>
-  <div>© 2026 {CLINIC}</div>
+  <div><a href="{GOOGLE_PROFILE}">Google reviews</a> · <a href="{GOOGLE_REVIEW}">Leave a review</a><br><a href="{INSTAGRAM}">Instagram</a> · <a href="{FACEBOOK}">Facebook</a> · <a href="{YOUTUBE}">YouTube</a> · <a href="https://www.linkedin.com/company/sobti-dental-clinic/">LinkedIn</a> · <a href="{root}videos.html">Videos</a></div>
+  <div>© 2026 {CLINIC}<br>Our websites: <a href="https://www.sobtidentalcare.com/">sobtidentalcare.com</a> · <a href="https://dentalimplantsdelhi.com/">dentalimplantsdelhi.com</a></div>
 </div></footer>"""
     if preview_main:
         return head + "\n" + page
@@ -470,15 +472,15 @@ def page_clinic():
     return f"""<section class="page-hero"><div class="wrap">
   <span class="label">The clinic</span>
   <h1>Dr Sobti&#39;s Dental Care</h1>
-  <p>A family practice in West Delhi since 2009, run by Dr Parul Sharma Sobti and Dr Pushkar Sobti. Known for dental implants and cosmetic dentistry, rated 5 stars from more than 200 Google reviews, and trusted by patients from more than 20 countries.</p>
+  <p>A family practice in West Delhi since 1982, when Dr Rajesh Sobti opened the Vishnu Garden clinic. Today it is run by Dr Parul Sharma Sobti and Dr Pushkar Sobti. Known for dental implants and cosmetic dentistry, rated 5 stars from more than 200 Google reviews across our two clinics, and trusted by patients from more than 20 countries.</p>
 </div></section>
 
 <section><div class="wrap split">
   <div class="grid">
     <div class="card"><span class="label">Dr Parul Sharma Sobti</span><h3>BDS · Digital Smile Designer</h3>
       <p class="muted">Smile design, cosmetic dentistry and dental aesthetics. In practice since 2009, 500+ smile designs.</p></div>
-    <div class="card"><span class="label"><a href="{PUSHKAR_URL}">Dr Pushkar Sobti</a></span><h3>BDS, MDS, PgO (UCAM) · Implantologist</h3>
-      <p class="muted">18 years, more than 5,000 implants and 500 full arches. Guided surgery, zygomatic and pterygoid implants, full-mouth rehabilitation.</p></div>
+    <div class="card"><span class="label"><a href="{PUSHKAR_URL}">Dr Pushkar Sobti</a></span><h3>BDS, MDS, PG in Oral Implantology (UCAM) · Implantologist</h3>
+      <p class="muted">In practice since 2009, more than 5,000 implants and 500 full arches. Guided surgery, zygomatic and pterygoid implants, full-mouth rehabilitation.</p></div>
   </div>
   <dl class="facts">
     <div><dt>Head clinic</dt><dd>{ADDRESS} · <a href="{MAP_1}">Map</a></dd></div>
@@ -502,6 +504,8 @@ def page_clinic():
     ("clinic-treatment-room-3.jpg", "Treatment room, wide view"),
     ("clinic-lounge-certificates.jpg", "Patient lounge"),
     ("clinic-lounge-sofa.jpg", "Waiting lounge"),
+    ("clinic-cbct-scanner.jpg", "CBCT 3D scanner"),
+    ("clinic-dental-lab.jpg", "In-house lab"),
   ])}
 </div></section>
 
@@ -915,6 +919,8 @@ VIDEO_SECTIONS = [
      ["K6o1xrWnsJ4", "HMKI76NpUCw", "4pk7Kov41sQ"]),
     ("Gums and cleaning", "Air polishing and gentler gum treatment.",
      ["Q4XgYfekrpw", "Vu4W2Kl_Mvs"]),
+    ("Inside the clinic", "A look around Dr Sobti's Dental Care in Rajouri Garden, where Dr Parul sees her patients.",
+     ["lDd7hbX0E9k", "thmGh27-57I", "VL64ySkZs60"]),
 ]
 VIDEO_FAQ = [
     ("Can composite veneers fix a smile after a root canal?",
@@ -964,7 +970,7 @@ def page_videos():
 {secs}
 <section><div class="wrap treatments"><div class="tgroup"><div><h2>Quick answers</h2>
 <p class="muted">Ask anything else on WhatsApp.</p></div><div class="tlist">{faq_html(VIDEO_FAQ)}</div></div></div></section>
-<section><div class="wrap"><p><a class="btn" href="visit.html">Book a smile consultation</a> <a href="treatments.html">See all treatments</a> · Implant videos: <a href="{PUSHKAR_URL}/videos/">Dr Pushkar Sobti</a></p></div></section>
+<section><div class="wrap"><p><a class="btn" href="visit.html">Book a smile consultation</a> <a href="treatments.html">See all treatments</a> · Implant videos: <a href="{PUSHKAR_URL}/videos/">Dr Pushkar Sobti</a> · Clinic videos: <a href="https://www.sobtidentalcare.com/videos.html">sobtidentalcare.com</a></p></div></section>
 {VIDEO_JS}"""
 
 
