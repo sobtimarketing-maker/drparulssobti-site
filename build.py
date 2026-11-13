@@ -795,6 +795,8 @@ TECH = [
     ("Roland dry mill", "Zirconia crowns and bridges milled in-house.", "Fabrication"),
     ("Upcera wet mill", "Glass-ceramic veneers and crowns, and PMMA temporaries.", "Fabrication"),
     ("Kelkar wet mill", "Titanium components for implant restorations.", "Fabrication"),
+    ("Sintering furnace", "Hardens milled zirconia crowns and bridges.", "Fabrication"),
+    ("Upcera ceramic furnace", "Fires stains and glaze so crowns and veneers match your own teeth.", "Fabrication"),
     ("Dental microscope and loupes", "One operating microscope and three sets of loupes for magnified precision.", "Precision"),
     ("Piezosurgery unit", "Ultrasonic bone surgery that spares soft tissue for gentler implant and graft work.", "Surgery"),
     ("Implant motors with torque control", "Three units that place implants at exactly the planned force.", "Surgery"),
@@ -803,6 +805,21 @@ TECH = [
     ("Conscious sedation", "Calm, relaxed treatment for anxious patients.", "Comfort"),
     ("Class B autoclave", "Hospital-grade sterilisation for every instrument.", "Safety"),
 ]
+
+
+LAB_MACHINES = [
+    ("lab-roland-dwx-52d-plus-mill.jpg", "Roland DWX-52D Plus dry mill", "zirconia crowns and bridges"),
+    ("lab-upcera-a52w-mill.jpg", "Upcera A52W wet mill", "E-max crowns and glass-ceramic veneers"),
+    ("lab-zirconia-sintering-furnace.jpg", "Sintering furnace", "hardens milled zirconia"),
+    ("lab-upcera-ceramic-furnace.jpg", "Upcera ceramic furnace", "firing and glazing for a natural finish"),
+]
+
+
+def machine_gallery(root=""):
+    figs = "".join(
+        f'<figure><img src="{root}assets/images/clinic/{f}" alt="{esc(n)}: {esc(d)}, in the in-house lab at {esc(CLINIC)}, Rajouri Garden" loading="lazy" width="960" height="1200">'
+        f'<figcaption>{esc(n)}: {esc(d)}</figcaption></figure>' for f, n, d in LAB_MACHINES)
+    return f'<div class="gallery tall">{figs}</div>'
 
 
 def page_technology():
@@ -824,6 +841,11 @@ def page_technology():
     <thead><tr><th>Equipment</th><th>What it does for you</th><th>Area</th></tr></thead>
     <tbody>{rows}</tbody>
   </table></div>
+</div></section>
+<section><div class="wrap">
+  <div class="section-head"><span class="label">Our lab</span><h2>The machines that make your crowns and veneers</h2>
+  <p>Crowns and veneers are designed with Dr Parul and made on the same floor as the clinic, at our lab, Titanium Arts Dental Studio. <a href="https://www.sobtidentalcare.com/lab.html">See the whole lab</a>.</p></div>
+  {machine_gallery()}
 </div></section>
 <section><div class="wrap split">
   <div class="prose"><span class="label">Spotlight</span><h2>From scan to smile, digitally</h2>
