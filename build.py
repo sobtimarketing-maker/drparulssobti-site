@@ -793,7 +793,7 @@ TECH = [
     ("exoplan and Blue Sky Bio", "Implant planning software to position every implant in 3D before surgery.", "Planning"),
     ("3D printer", "Surgical guides, study models, mock-ups and temporary teeth printed in-house.", "Fabrication"),
     ("Roland dry mill", "Zirconia crowns and bridges milled in-house.", "Fabrication"),
-    ("Upcera wet mill", "Glass-ceramic veneers and crowns, and PMMA temporaries.", "Fabrication"),
+    ("Upcera wet mill", "Glass-ceramic veneers and crowns, PMMA temporaries and titanium pre-mill abutments.", "Fabrication"),
     ("Kelkar wet mill", "Titanium components for implant restorations.", "Fabrication"),
     ("Sintering furnace", "Hardens milled zirconia crowns and bridges.", "Fabrication"),
     ("Upcera ceramic furnace", "Fires stains and glaze so crowns and veneers match your own teeth.", "Fabrication"),
@@ -809,7 +809,8 @@ TECH = [
 
 LAB_MACHINES = [
     ("lab-roland-dwx-52d-plus-mill.jpg", "Roland DWX-52D Plus dry mill", "zirconia crowns and bridges"),
-    ("lab-upcera-a52w-mill.jpg", "Upcera A52W wet mill", "E-max crowns and glass-ceramic veneers"),
+    ("lab-upcera-a52w-mill.jpg", "Upcera A52W wet mill", "E-max crowns, glass-ceramic veneers and titanium pre-mill abutments"),
+    ("lab-kelkar-ivorymill-5xw.jpg", "Kelkar ivoryMill 5XW wet mill", "titanium parts for implant teeth"),
     ("lab-zirconia-sintering-furnace.jpg", "Sintering furnace", "hardens milled zirconia"),
     ("lab-upcera-ceramic-furnace.jpg", "Upcera ceramic furnace", "firing and glazing for a natural finish"),
 ]
@@ -843,8 +844,8 @@ def page_technology():
   </table></div>
 </div></section>
 <section><div class="wrap">
-  <div class="section-head"><span class="label">Our lab</span><h2>The machines that make your crowns and veneers</h2>
-  <p>Crowns and veneers are designed with Dr Parul and made on the same floor as the clinic, at our lab, Titanium Arts Dental Studio. <a href="https://www.sobtidentalcare.com/lab.html">See the whole lab</a>.</p></div>
+  <div class="section-head"><span class="label">Our lab</span><h2>The machines in our lab</h2>
+  <p>Crowns, veneers and implant teeth are designed and made on the same floor as the clinic, at our lab, Titanium Arts Dental Studio. <a href="https://www.sobtidentalcare.com/lab.html">See the whole lab</a>.</p></div>
   {machine_gallery()}
 </div></section>
 <section><div class="wrap split">
