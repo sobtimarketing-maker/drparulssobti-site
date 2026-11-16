@@ -246,6 +246,20 @@ def home_link(root=""):
     return root or "./"
 
 
+# Named links to the main treatment pages, always visible under the header (Dr, 16 Nov 2026).
+QUICK_NAV = [
+    ("same-day-dentistry-delhi.html", "Same-day dentistry"),
+    (f"{PUSHKAR_URL}/same-day-dental-implants-delhi/", "Same-day implants"),
+    (f"{PUSHKAR_URL}/full-mouth-dental-implants-delhi/", "All-on-X full mouth"),
+    (f"{PUSHKAR_URL}/implant-prosthesis-delhi/", "Implant crowns &amp; bridges"),
+]
+
+
+def quick_nav(root, path):
+    return "".join(
+        f'<a href="{h if h.startswith("http") else root + h}"{CURRENT if h == path else ""}>{l}</a>' for h, l in QUICK_NAV)
+
+
 def layout(title, desc, body, active, root="", preview_main=False, path="", og_type="website", ld=None):
     nav = "".join(
         f'<a href="{home_link(root) if href == "index.html" else root + href}"{CURRENT if href == active else ""}>{label}</a>'
@@ -276,7 +290,9 @@ def layout(title, desc, body, active, root="", preview_main=False, path="", og_t
   <a class="brand" href="{home_link(root)}"><b>Dr Parul Sharma Sobti</b><span>Smile Design · Aesthetic Dentistry</span></a>
   <nav class="nav" aria-label="Main">{nav}</nav>
   <a class="btn" href="{root}visit.html">Book a consultation</a>
-</div></header>
+</div>
+<nav class="quick" aria-label="Popular treatments"><div class="wrap">{quick_nav(root, path)}</div></nav>
+</header>
 <main>
 {body}
 </main>

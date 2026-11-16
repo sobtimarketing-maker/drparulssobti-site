@@ -280,3 +280,10 @@ tr:last-child td { border-bottom: 0; }
 .yt-time{position:absolute;right:.5rem;bottom:.5rem;background:rgba(0,0,0,.72);color:#fff;font-size:.75rem;padding:.1rem .4rem;border-radius:4px}
 .yt-card figcaption{display:flex;flex-direction:column;gap:.25rem;font-size:.92rem;line-height:1.4}
 .yt-card figcaption span{color:var(--muted,#5b6475);font-size:.86rem}
+
+/* Named treatment links under the header (16 Nov 2026) */
+.site-header .quick { border-top: 1px solid var(--line); }
+.site-header .quick .wrap { display: flex; flex-wrap: wrap; gap: 6px 8px; padding-top: 8px; padding-bottom: 8px; }
+.site-header .quick a { text-decoration: none; color: var(--accent-deep); font-weight: 600; font-size: .86rem; padding: 5px 12px; border-radius: 999px; background: var(--accent-soft); border: 1px solid var(--line); white-space: nowrap; }
+.site-header .quick a:hover, .site-header .quick a[aria-current="page"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+@media (max-width: 600px) { .site-header .quick a { font-size: .78rem; padding: 4px 10px; } }
