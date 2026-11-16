@@ -32,7 +32,7 @@ PRICE_PAGES = [
                 "If you would rather not cut down the neighbouring teeth, a <a href=\"https://dentalimplantsdelhi.com/dental-implant-cost-delhi/\">dental implant</a> may be the better choice.",
             ]),
             ("Same-day crowns from our own lab", [
-                "Your tooth is scanned with an intraoral scanner instead of messy impressions. Glass-ceramic crowns can be milled in our in-house lab and fitted the same day. Every crown comes with a warranty.",
+                "Your tooth is scanned with an intraoral scanner instead of messy impressions. Glass-ceramic crowns can be milled in our in-house lab and fitted the same day. Every crown comes with a warranty. See <a href=\"same-day-dentistry-delhi.html\">same-day dentistry</a>.",
             ]),
         ],
         "facts": [("Zirconia", "From ₹8,000 per tooth"), ("E-max", "From ₹10,000 per tooth"),
@@ -248,6 +248,59 @@ PRICE_PAGES = [
              "Between 20 minutes and an hour, depending on the case."),
         ],
         "cta": "Book a cleaning",
+    },
+    {
+        "slug": "same-day-dentistry-delhi",
+        "name": "Same-day dentistry",
+        "title": "Same-Day Dentistry in Delhi: Crowns in One Visit | Dr Sobti's Dental Care",
+        "desc": "Same-day dentistry in Rajouri Garden, Delhi: E-max crowns scanned, milled in our own lab and fitted in one visit, plus single-sitting root canal, in-clinic whitening and same-day implants.",
+        "label": "Treatments · Same-day dentistry",
+        "h1": "Same-day dentistry in Delhi",
+        "intro": "Some treatments no longer need a second visit. At Dr Sobti's Dental Care in Rajouri Garden, your tooth is scanned, the crown is designed on screen and milled in our own lab on the same floor, and you leave with it fitted the same day.",
+        "prices": [
+            ("Same-day E-max (glass-ceramic) crown", "From ₹10,000 per tooth"),
+            ("Single-sitting root canal", "From ₹6,000 (front tooth), where suitable"),
+            ("In-clinic teeth whitening", "From ₹8,000, one visit"),
+            ("Same-day dental implant", "Single implant with crown from ₹35,000"),
+        ],
+        "sections": [
+            ("How a crown is made in one visit", [
+                ["The tooth is prepared and scanned with an intraoral scanner (Medit i900, Medit i500 or Upcera). No impression trays.",
+                 "The crown is designed on screen in exocad to match the shape and shade of your own teeth.",
+                 "It is milled from a block of E-max glass ceramic on the Upcera A52W mill in our lab.",
+                 "It is stained and glazed in the Upcera ceramic furnace, checked in your mouth and bonded in place."],
+                "The whole visit usually takes a few hours. You can wait in the lounge or step out for a while.",
+            ]),
+            ("Why we can do it", [
+                "Most clinics send crowns to an outside lab, which is why a crown usually takes a week. Our lab, Titanium Arts Dental Studio, is on the same floor as the clinic, with its own mills and furnaces, so the technician works on your crown while you wait. See <a href=\"technology.html\">our technology</a>.",
+            ]),
+            ("What else can be done the same day", [
+                ["Root canal in a single sitting, when the tooth and the infection allow. See <a href=\"root-canal-cost-delhi.html\">root canal cost</a>.",
+                 "In-clinic teeth whitening in one visit. See <a href=\"teeth-whitening-cost-delhi.html\">whitening cost</a>.",
+                 "Composite bonding to repair chips and small gaps, and tooth-coloured fillings, in one visit.",
+                 "An implant with a fixed temporary tooth on the same day, when the bone allows. Dr Pushkar Sobti explains <a href=\"https://dentalimplantsdelhi.com/same-day-dental-implants-delhi/\">same-day dental implants</a> and the technology behind them."],
+            ]),
+            ("When one visit is not enough", [
+                "Zirconia crowns and bridges need time in the sintering furnace, and porcelain veneers or a full smile makeover are planned with a trial smile first, so these take two or more visits. A badly infected tooth may need a root canal over two sittings. Dr Parul will tell you at the check-up what can be done the same day.",
+            ]),
+        ],
+        "facts": [("Same-day crowns", "E-max, from ₹10,000"), ("Made in", "Our own lab, same floor"),
+                  ("Scanners", "Medit i900, i500, Upcera"), ("Visit time", "A few hours")],
+        "faq": [
+            ("Can I get a dental crown in one day in Delhi?",
+             "Yes. At Dr Sobti's Dental Care in Rajouri Garden, E-max glass-ceramic crowns are scanned, designed, milled in our own lab and fitted in a single visit. They start from ₹10,000 per tooth."),
+            ("Is a same-day crown as good as a regular crown?",
+             "Yes. It is the same E-max material that a regular lab would use, milled to fit from a digital scan. Only the waiting time is shorter, because the lab is on the same floor."),
+            ("How long does a same-day crown appointment take?",
+             "Usually a few hours from the start of the visit to the crown being fitted."),
+            ("Which treatments can be done in a single visit?",
+             "E-max crowns, single-sitting root canal where suitable, in-clinic whitening, composite bonding, tooth-coloured fillings, and in suitable cases a dental implant with a fixed temporary tooth."),
+            ("Can zirconia crowns be made the same day?",
+             "Zirconia needs several hours in the sintering furnace, so zirconia crowns and bridges usually take a second visit. If you want your crown in one day, ask for E-max."),
+            ("Can I get a same-day dental implant?",
+             "In suitable cases, yes: the implant is placed and a fixed temporary tooth attached in one visit. Dr Pushkar Sobti decides on the day from your CBCT scan and how firmly the implant holds. Read more on <a href=\"https://dentalimplantsdelhi.com/same-day-dental-implants-delhi/\">same-day dental implants</a>."),
+        ],
+        "cta": "Book a same-day crown visit",
     },
 ]
 
