@@ -34,7 +34,7 @@ PHONE = "+91 87449 85976"  # front desk, call (matches the Google profile)
 PHONES = [PHONE]  # lead-calling numbers are never published
 PHONE_LINK = f'<a href="tel:{PHONE.replace(" ", "")}">{PHONE}</a>'  # tappable on phones
 WHATSAPP_NO = "+91 80767 77307"
-WHATSAPP = "https://wa.me/918076777307"
+WHATSAPP = "https://wa.me/918076777307?text=Hi%2C%20I%20found%20you%20on%20Google."  # front desk logs website chats as Google (Dr, 19 Nov 2026)
 
 # Google Ads tag: counts taps on call and WhatsApp links as conversions (account 202-776-6680).
 ADS_TAG = r"""<!-- Google Ads: counts taps on call and WhatsApp links as conversions -->
