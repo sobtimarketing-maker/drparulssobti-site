@@ -559,39 +559,18 @@ TREATMENTS = [
     ("Cosmetic dentistry", "Brightening and reshaping teeth.", [
         ("Teeth whitening", "In-clinic and take-home whitening for natural teeth.", "1 visit / 2 weeks at home"),
         ("Composite bonding", "Tooth-coloured resin to repair chips, worn edges and small gaps.", "1 visit"),
-        ("Porcelain veneers", "Thin ceramic shells that change colour, shape and length.", "2–3 visits"),
-        ("Composite veneers", "Veneers sculpted directly in resin, quicker and easily repaired.", "1–2 visits"),
+        ("Porcelain veneers (indirect)", "Thin ceramic shells made in our lab that change colour, shape and length. See <a href=\"veneers.html\">veneers</a>.", "2–3 visits"),
+        ("Composite veneers (direct)", "Veneers sculpted directly on the tooth in resin, quicker and easily repaired.", "1–2 visits"),
         ("Enamel contouring", "Light reshaping of edges to even out the smile.", "1 visit"),
         ("Tooth-coloured fillings", "Replacing dark or silver fillings with natural-looking materials.", "1 visit"),
     ]),
-    ("Crowns, bridges & implants", "Restoring and replacing teeth so they look natural.", [
-        ("Ceramic crowns", "Metal-free zirconia and lithium disilicate crowns.", "2 visits"),
-        ("Crowns and bridges", "Fixed replacements for damaged or missing teeth.", "2–3 visits"),
-        ("Single tooth implant", "Guided placement with an Osstem implant, custom abutment and zirconia crown, with a 3-year warranty.", "Over 3–6 months"),
-        ("Immediate implants and same-day teeth", "An implant placed when the tooth is removed, with fixed teeth the same day where suitable.", "1 visit to start"),
-        ("Zygomatic and pterygoid implants", "Fixed teeth for people told they lack the bone for regular implants, without bone grafting.", "Planned case by case"),
-        ("Bone grafting, sinus lift and PRF", "Rebuilding bone and speeding healing using your own growth factors.", "With implant treatment"),
-        ("Full-mouth rehabilitation", "Rebuilding a worn, broken or missing set of teeth to restore bite, function and the lower face.", "Planned case by case"),
-        ("All-on-4 / All-on-X", "A full fixed set of teeth on four to six implants for people missing most or all teeth.", "Planned case by case"),
-        ("Dentures", "Complete and partial dentures, made to look natural.", "3–5 visits"),
-    ]),
-    ("Gums & alignment", "The frame of the smile.", [
+    ("Gums", "The frame of the smile.", [
         ("Gum contouring", "Reshaping uneven or excess gum for a balanced gum line.", "1 visit"),
         ("Gummy smile treatment", "Gum, lip or bone procedures depending on the cause.", "Varies"),
-        ("Clear aligners", "Removable, nearly invisible trays that straighten teeth.", "6–18 months"),
-        ("Braces", "Fixed orthodontic braces for children and adults.", "12–24 months"),
     ]),
     ("Facial aesthetics", "Balancing the face around the smile.", [
         ("Anti-wrinkle injections", "Softening frown lines, crow's feet and an over-active upper lip.", "1 visit"),
         ("Dermal fillers", "Lip enhancement and smile-line softening with hyaluronic acid fillers.", "1 visit"),
-    ]),
-    ("General dentistry", "The healthy foundation for every smile.", [
-        ("Scaling and polishing", "Professional cleaning to remove stains, plaque and tartar.", "1 visit"),
-        ("Root canal treatment", "Single-sitting root canal treatment where suitable, under magnification.", "1–2 visits"),
-        ("Extractions", "Routine and surgical removal, including impacted <a href=\"https://www.sobtidentalcare.com/wisdom-tooth-removal-cost-delhi.html\">wisdom teeth</a>.", "1 visit"),
-        ("Fillings", "Treatment of decay with tooth-coloured materials.", "1 visit"),
-        ("Children's dentistry", "Gentle check-ups, fillings, root canals and crowns for milk teeth, and early orthodontic checks. See <a href=\"https://www.sobtidentalcare.com/kids-dentist-delhi.html\">children's dentistry</a>.", "1 visit"),
-        ("Conscious sedation", "Sedation for anxious patients during treatment.", "With treatment"),
     ]),
 ]
 
@@ -604,17 +583,23 @@ def page_treatments():
     return f"""<section class="page-hero"><div class="wrap">
   <span class="label">Treatments</span>
   <h1>What we do</h1>
-  <p>From a single whitening session to a full smile and facial makeover. Visit counts are typical and depend on your case. Prices: <a href="veneers.html">veneers</a>, <a href="https://www.sobtidentalcare.com/dental-crown-cost-delhi.html">crowns and caps</a>, <a href="https://www.sobtidentalcare.com/braces-cost-delhi.html">braces</a>, <a href="https://www.sobtidentalcare.com/clear-aligners-cost-delhi.html">clear aligners</a>, <a href="https://www.sobtidentalcare.com/root-canal-cost-delhi.html">root canal</a>, <a href="teeth-whitening-cost-delhi.html">whitening</a>, <a href="https://www.sobtidentalcare.com/teeth-cleaning-cost-delhi.html">cleaning and air polishing</a>, <a href="https://www.sobtidentalcare.com/wisdom-tooth-removal-cost-delhi.html">wisdom tooth removal</a> and <a href="https://www.sobtidentalcare.com/kids-dentist-delhi.html">children's dentistry</a>.</p>
+  <p>Smile design and cosmetic dentistry with Dr Parul Sharma Sobti, from a single whitening session to a full smile makeover. Visit counts are typical and depend on your case. More on <a href="veneers.html">veneers</a> and <a href="teeth-whitening-cost-delhi.html">teeth whitening</a>.</p>
 </div></section>
 <section><div class="wrap treatments">{''.join(groups)}</div></section>
 <section><div class="wrap">
+  <div class="section-head"><span class="label">Other treatments at the clinic</span><h2>Implants and general dentistry</h2>
+  <p>This website is about smile design. Everything else is done at the same Rajouri Garden clinic and has its own page:</p></div>
+  <ul>
+    <li>Dental implants, All-on-X and full mouth implants with Dr Pushkar Sobti: <a href="{PUSHKAR_URL}/">dentalimplantsdelhi.com</a></li>
+    <li><a href="https://www.sobtidentalcare.com/dental-crown-cost-delhi.html">Crowns and caps</a>, <a href="https://www.sobtidentalcare.com/root-canal-cost-delhi.html">root canal</a>, <a href="https://www.sobtidentalcare.com/teeth-cleaning-cost-delhi.html">cleaning and air polishing</a>, <a href="https://www.sobtidentalcare.com/braces-cost-delhi.html">braces</a>, <a href="https://www.sobtidentalcare.com/clear-aligners-cost-delhi.html">clear aligners</a>, <a href="https://www.sobtidentalcare.com/kids-dentist-delhi.html">children's dentistry</a>, <a href="https://www.sobtidentalcare.com/wisdom-tooth-removal-cost-delhi.html">wisdom tooth removal</a> and <a href="https://www.sobtidentalcare.com/treatments.html">all other treatments</a> on the clinic website</li>
+  </ul>
+</div></section>
+<section><div class="wrap">
   <div class="section-head"><span class="label">From our lab</span><h2>Made on the same floor as the clinic</h2>
-  <p>Veneers, crowns, mock-ups and aligners are designed and made at Titanium Arts Dental Studio, the clinic's own lab.</p></div>
+  <p>Veneers, mock-ups and crowns for front teeth are designed and made at Titanium Arts Dental Studio, the clinic's own lab.</p></div>
   {gallery([
     ("lab-veneers-on-model.jpg", "Veneers on the patient's model"),
     ("lab-smile-design-mock-up.jpg", "Smile design mock-up on a printed model"),
-    ("lab-zirconia-bridge.jpg", "Zirconia bridge, milled in-house"),
-    ("lab-clear-aligner.jpg", "Clear aligner"),
     ("lab-front-teeth-bridge.jpg", "Front teeth bridge, hand-finished"),
     ("lab-crowns-on-printed-model.jpg", "Crowns on a 3D-printed model"),
   ])}
@@ -773,8 +758,8 @@ def page_rajouri():
     links = "".join(f'<li><a href="{p["slug"]}.html">{p["name"]}</a></li>' for p in PRICE_PAGES)
     return f"""<section class="page-hero"><div class="wrap">
   <span class="label">Rajouri Garden, West Delhi</span>
-  <h1>Treatments, timings and directions</h1>
-  <p>Dr Parul sees patients at <a href="{CLINIC_URL}/">{CLINIC}, our clinic in Rajouri Garden</a>, above Rajmandir in Rajouri Garden Extension. Dr Pushkar Sobti and Dr Parul Sharma Sobti have been in practice since 2009, and the Rajouri Garden clinic opened in 2024. Below are our treatments and how to reach us. For the cost of a treatment, WhatsApp or call us: the front desk checks with the doctor and tells you.</p>
+  <h1>Smile design in Rajouri Garden: timings and directions</h1>
+  <p>Dr Parul sees patients at <a href="{CLINIC_URL}/">{CLINIC}, our clinic in Rajouri Garden</a>, above Rajmandir in Rajouri Garden Extension. Dr Pushkar Sobti and Dr Parul Sharma Sobti have been in practice since 2009, and the Rajouri Garden clinic opened in 2024. Below are Dr Parul's treatments and how to reach us. For the cost of a treatment, WhatsApp or call us: the front desk checks with the doctor and tells you.</p>
 </div></section>
 
 <section><div class="wrap split">
@@ -784,15 +769,15 @@ def page_rajouri():
       <li><strong>Dr Pushkar Sobti</strong> (BDS, MDS, PG in Oral Implantology) is an implantologist who has placed more than 5,000 implants, from single teeth to <a href="{PUSHKAR_URL}/">All-on-4 and full mouth implants</a>.</li>
       <li><strong><a href="about.html">Dr Parul Sharma Sobti</a></strong> (BDS) focuses on smile design and cosmetic dentistry: veneers, whitening, bonding and smile makeovers.</li>
     </ul>
-    <h2>Treatments</h2>
+    <h2>Dr Parul's treatments</h2>
     <ul>
+      <li><a href="treatments.html">Smile design and smile makeovers</a></li>
+      <li><a href="veneers.html">Veneers</a>: porcelain (indirect) and composite (direct)</li>
       {links}
-      <li><a href="veneers.html">Veneers</a></li>
-      <li>Tooth-coloured fillings</li>
-      <li><a href="{PUSHKAR_URL}/">Dental implants</a> with Dr Pushkar Sobti</li>
-      <li>Dentures and all general treatments</li>
+      <li>Composite bonding, enamel contouring and gum contouring</li>
     </ul>
-    <p>Everything is planned with digital tools: a CBCT scanner, intraoral 3D scanners, a dental microscope and an in-house lab. See <a href="technology.html">our technology</a>.</p>
+    <p>Every smile is planned with digital tools: photographs, intraoral 3D scans, Digital Smile Design and a trial smile, with the veneers made in the in-house lab. See <a href="technology.html">our technology</a>.</p>
+    <p>Implants are on <a href="{PUSHKAR_URL}/">Dr Pushkar Sobti's website</a>. Crowns, root canal, cleaning, braces, children's dentistry and other treatments are on <a href="{CLINIC_URL}/treatments.html">the clinic website</a>.</p>
     <h2>Getting here</h2>
     <p>The clinic is on the first floor of J-12/26, Block J, Rajouri Garden Extension, above Rajmandir and near Geetanjali Salon. It is about 1.5 km from Rajouri Garden metro station. Parking is available, and there is a lift.</p>
     <p>Patients come from across Delhi and NCR, including Tagore Garden, Subhash Nagar, Tilak Nagar, Janakpuri, Punjabi Bagh and Ramesh Nagar, as well as from other states. We also regularly treat international patients from the UK, Europe, the US, Canada, Australia, New Zealand, Hong Kong, Japan, Singapore, the UAE, Saudi Arabia and Africa.</p>
@@ -1090,7 +1075,7 @@ def build(out, preview=False):
         ("index.html", "Cosmetic Dentist in Rajouri Garden, Delhi | Dr Parul Sharma Sobti", "Dr Parul Sharma Sobti is a cosmetic dentist in Rajouri Garden, New Delhi. Veneers, whitening, bonding and smile makeovers planned around your face. 500+ smile designs.", page_home(posts)),
         ("about.html", "About Dr Parul Sharma Sobti, Cosmetic Dentist in Delhi", "Dr Parul Sharma Sobti (BDS), Digital Smile Designer at Dr Sobti's Dental Care, Rajouri Garden: her training, approach and 500+ smile designs since 2009.", page_about()),
         ("clinic.html", "Dr Sobti's Dental Care, Rajouri Garden, Delhi", "Inside Dr Sobti's Dental Care in Rajouri Garden, New Delhi: the team, your first visit, hygiene and sterilisation standards.", page_clinic()),
-        ("treatments.html", "Veneers, Teeth Whitening & Smile Makeover in Delhi | Dr Parul", "Smile design, veneers, teeth whitening, composite bonding, gum contouring, aligners and facial aesthetics with Dr Parul Sharma Sobti in Rajouri Garden, Delhi.", page_treatments()),
+        ("treatments.html", "Veneers, Teeth Whitening & Smile Makeover in Delhi | Dr Parul", "Smile design, direct and indirect veneers, teeth whitening, composite bonding, gum contouring and facial aesthetics with Dr Parul Sharma Sobti in Rajouri Garden, Delhi.", page_treatments()),
         ("technology.html", "Digital Smile Design & Dental Technology in Delhi | Dr Parul", "Digital Smile Design, dental microscopes, CBCT and digital X-rays at Dr Sobti's Dental Care, Rajouri Garden, Delhi, and how they make cosmetic work precise.", page_technology()),
         ("blog.html", "Smile Journal: Cosmetic Dentistry Blog | Dr Parul Sharma Sobti", "A 60-part blog on smile design by Delhi cosmetic dentist Dr Parul Sharma Sobti, from the basics of a smile to veneers, aligners and facial harmony.", page_blog(posts)),
         ("visit.html", "Book a Smile Consultation in Rajouri Garden | Dr Parul Sobti", "Book a smile consultation with Dr Parul Sharma Sobti at Dr Sobti's Dental Care, Rajouri Garden, New Delhi. Open 7 days, 10 am to 7 pm. WhatsApp +91 80767 77307.", page_visit()),
@@ -1109,8 +1094,8 @@ def build(out, preview=False):
         "Videos from Dr Sobti's Dental Care, Rajouri Garden: smile designing, composite veneers, same-day crowns, root canals, laughing gas and children's dentistry.",
         page_videos(), "treatments.html", path="videos.html", ld=videos_schema()))
     write(out / "dentist-rajouri-garden.html", layout(
-        "Treatment Prices, Timings and Directions, Rajouri Garden Clinic | Dr Parul Sobti",
-        "Veneers, whitening, crowns, braces, aligners, root canal, wisdom teeth and children's dentistry at Dr Sobti's Dental Care, above Rajmandir. Open 7 days, 10 am to 7 pm. Parking and directions.",
+        "Smile Design in Rajouri Garden: Timings and Directions | Dr Parul Sobti",
+        "Smile design, veneers and teeth whitening with Dr Parul Sharma Sobti at Dr Sobti's Dental Care, above Rajmandir. Open 7 days, 10 am to 7 pm. Parking and directions.",
         page_rajouri(), "visit.html", path="dentist-rajouri-garden.html", ld=rajouri_schema()))
     for p in posts:
         if p["body"]:
@@ -1152,14 +1137,14 @@ def write_llms(out, posts):
     pages = "\n".join(f"- [{t}]({SITE_URL}/{u})" for t, u in [
         ("Home", ""), ("About Dr Parul Sharma Sobti", "about.html"), ("The clinic", "clinic.html"),
         ("All treatments", "treatments.html"), ("Veneers in Delhi", "veneers.html"), ("Technology", "technology.html"),
-        ("Dentist in Rajouri Garden: treatments, timings and directions", "dentist-rajouri-garden.html"),
+        ("Smile design in Rajouri Garden: timings and directions", "dentist-rajouri-garden.html"),
         ("Visit and book", "visit.html"), ("Smile Journal blog", "blog.html"),
         ("Videos: smile makeovers, veneers, same-day crowns, children and nervous patients", "videos.html")]
         + [(pg["h1"], f'{pg["slug"]}.html') for pg in PRICE_PAGES])
     live = "\n".join(f'- [{p["title"]}]({SITE_URL}/blog/{p["slug"]}.html)' for p in posts if p["body"])
     write(out / "llms.txt", f"""# Dr Parul Sharma Sobti, cosmetic dentist in Rajouri Garden, Delhi
 
-> Dr Parul Sharma Sobti (BDS, SR Dental College, Rohtak; member of the Indian Dental Association) is a cosmetic dentist and digital smile designer at {CLINIC}, J 12/26, First Floor, Rajouri Garden, New Delhi 110027. She leads veneers, teeth whitening, smile makeovers, aligners and braces, root canals, crowns and cleanings at the clinic. Implants at the same clinic are done by Dr Pushkar Sobti ({PUSHKAR_URL}/).
+> Dr Parul Sharma Sobti (BDS, SR Dental College, Rohtak; member of the Indian Dental Association) is a cosmetic dentist and digital smile designer at {CLINIC}, J 12/26, First Floor, Rajouri Garden, New Delhi 110027. This website covers her smile design and cosmetic work: smile makeovers, direct (composite) and indirect (porcelain) veneers, whitening and bonding. Implants at the same clinic are done by Dr Pushkar Sobti ({PUSHKAR_URL}/); all other treatments are on the clinic website ({CLINIC_URL}/treatments.html).
 
 ## Key facts
 - Clinic: {CLINIC}, J 12/26, First Floor, Rajouri Garden, New Delhi 110027, India (above Rajmandir; nearest metro Rajouri Garden, Blue and Pink lines)
