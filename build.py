@@ -254,7 +254,7 @@ def home_link(root=""):
 
 # Named links to the main treatment pages, always visible under the header (Dr, 16 Nov 2026).
 QUICK_NAV = [
-    ("same-day-dentistry-delhi.html", "Same-day dentistry"),
+    ("https://www.sobtidentalcare.com/same-day-dentistry-rajouri-garden.html", "Same-day dentistry"),
     (f"{PUSHKAR_URL}/same-day-dental-implants-delhi/", "Same-day implants"),
     (f"{PUSHKAR_URL}/full-mouth-dental-implants-delhi/", "All-on-X full mouth"),
     (f"{PUSHKAR_URL}/implant-prosthesis-delhi/", "Implant crowns &amp; bridges"),
@@ -588,9 +588,9 @@ TREATMENTS = [
     ("General dentistry", "The healthy foundation for every smile.", [
         ("Scaling and polishing", "Professional cleaning to remove stains, plaque and tartar.", "1 visit"),
         ("Root canal treatment", "Single-sitting root canal treatment where suitable, under magnification.", "1–2 visits"),
-        ("Extractions", "Routine and surgical removal, including impacted <a href=\"wisdom-tooth-removal-cost-delhi.html\">wisdom teeth</a>.", "1 visit"),
+        ("Extractions", "Routine and surgical removal, including impacted <a href=\"https://www.sobtidentalcare.com/wisdom-tooth-removal-cost-delhi.html\">wisdom teeth</a>.", "1 visit"),
         ("Fillings", "Treatment of decay with tooth-coloured materials.", "1 visit"),
-        ("Children's dentistry", "Gentle check-ups, fillings, root canals and crowns for milk teeth, and early orthodontic checks. See <a href=\"kids-dentist-delhi.html\">children's dentistry</a>.", "1 visit"),
+        ("Children's dentistry", "Gentle check-ups, fillings, root canals and crowns for milk teeth, and early orthodontic checks. See <a href=\"https://www.sobtidentalcare.com/kids-dentist-delhi.html\">children's dentistry</a>.", "1 visit"),
         ("Conscious sedation", "Sedation for anxious patients during treatment.", "With treatment"),
     ]),
 ]
@@ -604,7 +604,7 @@ def page_treatments():
     return f"""<section class="page-hero"><div class="wrap">
   <span class="label">Treatments</span>
   <h1>What we do</h1>
-  <p>From a single whitening session to a full smile and facial makeover. Visit counts are typical and depend on your case. Prices: <a href="veneers.html">veneers</a>, <a href="dental-crown-cost-delhi.html">crowns and caps</a>, <a href="braces-cost-delhi.html">braces</a>, <a href="clear-aligners-cost-delhi.html">clear aligners</a>, <a href="root-canal-cost-delhi.html">root canal</a>, <a href="teeth-whitening-cost-delhi.html">whitening</a>, <a href="teeth-cleaning-cost-delhi.html">cleaning and air polishing</a>, <a href="wisdom-tooth-removal-cost-delhi.html">wisdom tooth removal</a> and <a href="kids-dentist-delhi.html">children's dentistry</a>.</p>
+  <p>From a single whitening session to a full smile and facial makeover. Visit counts are typical and depend on your case. Prices: <a href="veneers.html">veneers</a>, <a href="https://www.sobtidentalcare.com/dental-crown-cost-delhi.html">crowns and caps</a>, <a href="https://www.sobtidentalcare.com/braces-cost-delhi.html">braces</a>, <a href="https://www.sobtidentalcare.com/clear-aligners-cost-delhi.html">clear aligners</a>, <a href="https://www.sobtidentalcare.com/root-canal-cost-delhi.html">root canal</a>, <a href="teeth-whitening-cost-delhi.html">whitening</a>, <a href="https://www.sobtidentalcare.com/teeth-cleaning-cost-delhi.html">cleaning and air polishing</a>, <a href="https://www.sobtidentalcare.com/wisdom-tooth-removal-cost-delhi.html">wisdom tooth removal</a> and <a href="https://www.sobtidentalcare.com/kids-dentist-delhi.html">children's dentistry</a>.</p>
 </div></section>
 <section><div class="wrap treatments">{''.join(groups)}</div></section>
 <section><div class="wrap">
@@ -1051,6 +1051,27 @@ def videos_schema():
 
 
 # ---------------------------------------------------------------- build
+# Dr, 22 Nov 2026: this site is only smile design, cosmetics and veneers. Other treatment pages moved to the
+# clinic site with the same names. GitHub Pages cannot send a 301, so each old address is an instant
+# meta refresh plus a canonical to the new page, which Google treats as a permanent redirect.
+MOVED = {
+    "dental-crown-cost-delhi.html": "https://www.sobtidentalcare.com/dental-crown-cost-delhi.html",
+    "braces-cost-delhi.html": "https://www.sobtidentalcare.com/braces-cost-delhi.html",
+    "clear-aligners-cost-delhi.html": "https://www.sobtidentalcare.com/clear-aligners-cost-delhi.html",
+    "root-canal-cost-delhi.html": "https://www.sobtidentalcare.com/root-canal-cost-delhi.html",
+    "teeth-cleaning-cost-delhi.html": "https://www.sobtidentalcare.com/teeth-cleaning-cost-delhi.html",
+    "kids-dentist-delhi.html": "https://www.sobtidentalcare.com/kids-dentist-delhi.html",
+    "wisdom-tooth-removal-cost-delhi.html": "https://www.sobtidentalcare.com/wisdom-tooth-removal-cost-delhi.html",
+    "same-day-dentistry-delhi.html": "https://www.sobtidentalcare.com/same-day-dentistry-rajouri-garden.html",
+}
+
+
+def write_redirects(out):
+    for old, new in MOVED.items():
+        write(out / old, f'<!doctype html><meta charset="utf-8"><title>Moved</title><link rel="canonical" href="{new}">'
+                         f'<meta http-equiv="refresh" content="0; url={new}"><a href="{new}">This page has moved</a>\n')
+
+
 def write(path, text):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text)
@@ -1097,6 +1118,7 @@ def build(out, preview=False):
                   layout(f'{p["title"]} | Dr Parul Sharma Sobti', post_description(p), page_post(p, posts),
                          "blog.html", root="../", path=f'blog/{p["slug"]}.html', og_type="article", ld=post_schema(p)))
     write_sitemap(out, posts)
+    write_redirects(out)
     write_llms(out, posts)
     # Google Search Console ownership file. Keep it, or the site loses verification.
     write(out / "google92cb67c4e945410f.html", "google-site-verification: google92cb67c4e945410f.html")
