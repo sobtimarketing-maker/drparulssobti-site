@@ -2,11 +2,14 @@
 
 Read this before drafting a post listed here. Same rules as every post: Dr Parul's own voice, no AI tells, original wording (exact-phrase spot check), facts only from the clinic. No phone numbers other than the site's own contact block.
 
+## Scope and prices (Dr, 22 Nov 2026)
+
+This site is ONLY smile designing, cosmetics and veneers (direct and indirect). Implant topics belong on dentalimplantsdelhi.com and every other treatment (root canal, crowns on back teeth, cleaning, braces, aligners, kids, wisdom teeth) on sobtidentalcare.com, so don't write about them here beyond a passing mention. No prices in any new post: say the front desk shares the cost after the doctor has seen you, and invite readers to WhatsApp or call. Posts 22, 27, 28, 29, 35, 36, 45, 46, 48 and 49 were retitled on 22 Nov to keep to this scope.
+
 ## Internal link rule for every post (9 Nov 2026)
 
 Search Console has the cost pages at #64 to #95. Every post about root canals, crowns or caps, zirconia, whitening or veneers links ONCE to its matching cost page, using the exact keyword as the anchor text, in a natural sentence:
 
-- "root canal cost in Delhi" -> root-canal-cost-delhi.html
 - "zirconia cap price" or "dental crown cost in Delhi" -> dental-crown-cost-delhi.html
 - "teeth whitening cost in Delhi" -> teeth-whitening-cost-delhi.html
 - "veneers cost" -> veneers.html

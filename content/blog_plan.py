@@ -1,6 +1,8 @@
 # The Smile Journal: a 60-post story, published every alternate day.
 # Order matters: each post builds on the one before it, basic to advanced.
 # Edit titles or summaries here, then run `python3 build.py`.
+# SCOPE (Dr, 22 Nov 2026): this site and its blog are ONLY smile designing, cosmetics and veneers (direct and indirect).
+# Implants go to dentalimplantsdelhi.com; every other treatment goes to sobtidentalcare.com. No prices in new posts.
 # BEFORE DRAFTING ANY POST: read content/post-briefs.md (per-post briefs + internal link rule for cost pages).
 
 START_DATE = "2026-10-21"  # first post; every later post is 2 days after the previous one
@@ -40,22 +42,22 @@ POSTS = [
     ("II", "Conservative first: Dr Parul's philosophy", "Why she always tries the least invasive option before the bigger ones.", "doctor"),
     # Chapter III
     ("III", "What is the purpose of veneers?", "What veneers are for, what they fix and who they suit.", "topic"),
-    ("III", "Porcelain or composite veneers?", "An honest comparison of cost, look, durability and repair.", "topic"),
+    ("III", "Direct or indirect veneers? Composite and porcelain compared", "Direct composite veneers built on the tooth in one visit versus indirect porcelain veneers made in the lab: look, durability, repair and cost.", "topic"),
     ("III", "No-prep and minimal-prep veneers", "When veneers can be placed with little or no tooth reduction.", "topic"),
     ("III", "Full mouth veneers: the visits, and what goes into the cost", "From wax-up and trial smile to final bonding, and why the number of teeth and the material decide the cost.", "topic"),
     ("III", "Choosing your veneer shade", "Natural, bright or Hollywood white, and how to decide.", "topic"),
     ("III", "Crown or veneer? How the cost and your tooth decide", "Ceramic cap versus veneer for a front tooth: how much tooth each needs, how long it lasts, and why the price differs.", "topic"),
-    ("III", "E-max caps: why they look natural, and what affects the price", "Why glass-ceramic caps look like real enamel near the gums, and what changes their price.", "topic"),
-    ("III", "Replacing a missing front tooth", "Implant, bridge or bonded bridge: how to choose.", "topic"),
-    ("III", "Caring for veneers and crowns", "Daily habits, night guards and check-ups that protect your investment.", "topic"),
+    ("III", "E-max for front teeth: why it looks natural, and what affects the price", "Why glass-ceramic veneers and caps look like real enamel near the gums, and what changes their price.", "topic"),
+    ("III", "Direct composite veneers: a new smile in one visit", "How composite is layered and shaped on your own teeth, who it suits, and how long it lasts.", "topic"),
+    ("III", "Caring for your veneers", "Daily habits, night guards and check-ups that keep veneers looking right for years.", "topic"),
     ("III", "Case story: a veneer transformation", "One patient's journey from first visit to final smile, with their consent.", "doctor"),
     # Chapter IV
     ("IV", "Pink aesthetics", "Why the gums matter as much as the teeth in a beautiful smile.", "topic"),
     ("IV", "The gummy smile", "What causes it and the range of treatments available.", "topic"),
     ("IV", "Laser gum contouring", "Reshaping the gum line gently, with quick healing.", "topic"),
     ("IV", "Uneven gum lines and crown lengthening", "Making short teeth look their true length.", "topic"),
-    ("IV", "Clear aligners and Invisalign: how invisible braces work", "How invisible orthodontics moves teeth, and what wearing them is like.", "topic"),
-    ("IV", "Aligners or braces for adults?", "Comfort, speed, cost and which cases suit each.", "topic"),
+    ("IV", "Veneers for crooked teeth: when they work, and when to straighten first", "When veneers can disguise slightly uneven teeth, and when moving the teeth first gives a better result.", "topic"),
+    ("IV", "Veneers for gaps between the front teeth", "Closing a gap with direct or indirect veneers, and how the gap size and the bite decide the plan.", "topic"),
     ("IV", "Your bite and your smile", "How jaw alignment and tooth wear change the way a smile looks.", "topic"),
     ("IV", "Black triangles between teeth", "Why they appear after gum recession and how to fill them.", "topic"),
     ("IV", "Combining treatments", "When alignment, gum work and veneers are planned as one sequence.", "topic"),
@@ -65,11 +67,11 @@ POSTS = [
     ("V", "Smile photography and video", "Why we photograph and film your smile, and what we measure.", "topic"),
     ("V", "Intraoral scanning", "A 3D scan in minutes in place of messy impression trays.", "topic"),
     ("V", "Mock-ups and 3D printing", "Test-driving your new smile in your own mouth.", "topic"),
-    ("V", "3D imaging with CBCT", "How 3D X-rays make implant and bone planning precise.", "topic"),
-    ("V", "Dental microscopes", "Magnification that makes fine margins and root canals more accurate.", "topic"),
+    ("V", "Wax-up and trial smile", "Seeing your veneers in your own mouth before anything is made.", "topic"),
+    ("V", "Magnification in veneer work", "Why loupes and the microscope matter for fine veneer edges that sit cleanly at the gum.", "topic"),
     ("V", "Lasers in cosmetic dentistry", "Where lasers help, from gums to whitening, and where they do not.", "topic"),
-    ("V", "CAD/CAM restorations", "Designing and milling crowns and veneers by computer.", "topic"),
-    ("V", "Guided implant surgery", "Planning implants digitally and placing them through a surgical guide.", "topic"),
+    ("V", "CAD/CAM veneers", "Designing veneers on screen and milling them in the clinic's own lab.", "topic"),
+    ("V", "Indirect veneers, visit by visit", "From preparation and scan to try-in and bonding: what each visit involves.", "topic"),
     ("V", "Inside our technology suite", "A tour of the equipment at the clinic and why Dr Parul chose each piece.", "doctor"),
     # Chapter VI
     ("VI", "Dento-facial aesthetics", "Why the face and the smile are designed together.", "topic"),
