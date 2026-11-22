@@ -36,6 +36,12 @@ PHONE_LINK = f'<a href="tel:{PHONE.replace(" ", "")}">{PHONE}</a>'  # tappable o
 WHATSAPP_NO = "+91 80767 77307"
 WHATSAPP = "https://wa.me/918076777307?text=Hi%2C%20I%20found%20you%20on%20Google."  # front desk logs website chats as Google (Dr, 19 Nov 2026)
 
+
+def wa_link(topic):
+    """WhatsApp link whose first line names the treatment page, so the desk can see which ad page the chat came from."""
+    from urllib.parse import quote
+    return "https://wa.me/918076777307?text=" + quote(f"Hi, I found you on Google – {topic}")
+
 # Google Ads tag: counts taps on call and WhatsApp links as conversions (account 202-776-6680).
 ADS_TAG = r"""<!-- Google Ads: counts taps on call and WhatsApp links as conversions -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18553206533"></script>
@@ -561,7 +567,7 @@ TREATMENTS = [
     ("Crowns, bridges & implants", "Restoring and replacing teeth so they look natural.", [
         ("Ceramic crowns", "Metal-free zirconia and lithium disilicate crowns.", "2 visits"),
         ("Crowns and bridges", "Fixed replacements for damaged or missing teeth.", "2–3 visits"),
-        ("Single tooth implant", "Guided placement with an Osstem implant, custom abutment and zirconia crown, with a 3-year warranty. From ₹35,000.", "Over 3–6 months"),
+        ("Single tooth implant", "Guided placement with an Osstem implant, custom abutment and zirconia crown, with a 3-year warranty.", "Over 3–6 months"),
         ("Immediate implants and same-day teeth", "An implant placed when the tooth is removed, with fixed teeth the same day where suitable.", "1 visit to start"),
         ("Zygomatic and pterygoid implants", "Fixed teeth for people told they lack the bone for regular implants, without bone grafting.", "Planned case by case"),
         ("Bone grafting, sinus lift and PRF", "Rebuilding bone and speeding healing using your own growth factors.", "With implant treatment"),
@@ -582,9 +588,9 @@ TREATMENTS = [
     ("General dentistry", "The healthy foundation for every smile.", [
         ("Scaling and polishing", "Professional cleaning to remove stains, plaque and tartar.", "1 visit"),
         ("Root canal treatment", "Single-sitting root canal treatment where suitable, under magnification.", "1–2 visits"),
-        ("Extractions", "Routine and surgical removal, including impacted wisdom teeth.", "1 visit"),
+        ("Extractions", "Routine and surgical removal, including impacted <a href=\"wisdom-tooth-removal-cost-delhi.html\">wisdom teeth</a>.", "1 visit"),
         ("Fillings", "Treatment of decay with tooth-coloured materials.", "1 visit"),
-        ("Children's dentistry", "Gentle check-ups, fillings and prevention for children.", "1 visit"),
+        ("Children's dentistry", "Gentle check-ups, fillings, root canals and crowns for milk teeth, and early orthodontic checks. See <a href=\"kids-dentist-delhi.html\">children's dentistry</a>.", "1 visit"),
         ("Conscious sedation", "Sedation for anxious patients during treatment.", "With treatment"),
     ]),
 ]
@@ -598,7 +604,7 @@ def page_treatments():
     return f"""<section class="page-hero"><div class="wrap">
   <span class="label">Treatments</span>
   <h1>What we do</h1>
-  <p>From a single whitening session to a full smile and facial makeover. Visit counts are typical and depend on your case. Prices: <a href="veneers.html">veneers</a>, <a href="dental-crown-cost-delhi.html">crowns and caps</a>, <a href="braces-cost-delhi.html">braces</a>, <a href="clear-aligners-cost-delhi.html">clear aligners</a>, <a href="root-canal-cost-delhi.html">root canal</a>, <a href="teeth-whitening-cost-delhi.html">whitening</a> and <a href="teeth-cleaning-cost-delhi.html">cleaning</a>.</p>
+  <p>From a single whitening session to a full smile and facial makeover. Visit counts are typical and depend on your case. Prices: <a href="veneers.html">veneers</a>, <a href="dental-crown-cost-delhi.html">crowns and caps</a>, <a href="braces-cost-delhi.html">braces</a>, <a href="clear-aligners-cost-delhi.html">clear aligners</a>, <a href="root-canal-cost-delhi.html">root canal</a>, <a href="teeth-whitening-cost-delhi.html">whitening</a>, <a href="teeth-cleaning-cost-delhi.html">cleaning and air polishing</a>, <a href="wisdom-tooth-removal-cost-delhi.html">wisdom tooth removal</a> and <a href="kids-dentist-delhi.html">children's dentistry</a>.</p>
 </div></section>
 <section><div class="wrap treatments">{''.join(groups)}</div></section>
 <section><div class="wrap">
@@ -618,9 +624,9 @@ def page_treatments():
 
 VENEER_FAQ = [
     ("How much do veneers cost in Delhi?",
-     "At Dr Sobti's Dental Care in Rajouri Garden, veneers start from ₹10,000 per tooth. The final cost depends on the material and how many teeth are included, and you get a written estimate after your consultation."),
+     "It depends on the material and how many teeth are included. WhatsApp 80767 77307 or call 87449 85976: the front desk checks with Dr Parul and tells you the cost. You get a written estimate after your consultation."),
     ("How does veneers cost in India compare with Delhi?",
-     "Prices across India range widely, mainly because of the material and the lab. Porcelain made in a good lab costs more than composite. We quote per tooth, from ₹10,000, with the material written on your estimate."),
+     "Prices across India range widely, mainly because of the material and the lab. Porcelain made in a good lab costs more than composite. We quote per tooth, with the material written on your estimate."),
     ("What does a smile makeover cost?",
      "Smile makeover cost in India varies more than almost any other treatment, because it depends on what the plan includes. Some makeovers are whitening and a few bonded edges; others need veneers on 8 to 10 teeth. Dr Parul gives you a written estimate after the smile design, before any treatment."),
     ("How many teeth need veneers?",
@@ -637,7 +643,7 @@ def page_veneers():
     return f"""<section class="page-hero"><div class="wrap">
   <span class="label">Treatments · Veneers</span>
   <h1>Veneers in Delhi</h1>
-  <p>Porcelain and composite veneers with Dr Parul Sharma Sobti at {CLINIC}, Rajouri Garden. Veneers start from ₹10,000 per tooth.</p>
+  <p>Porcelain and composite veneers with Dr Parul Sharma Sobti at {CLINIC}, Rajouri Garden. Glass-ceramic veneers are made in the clinic's own lab.</p>
 </div></section>
 
 <section><div class="wrap split">
@@ -660,7 +666,6 @@ def page_veneers():
     </ul>
   </div>
   <dl class="facts">
-    <div><dt>Price</dt><dd>From ₹10,000 per tooth</dd></div>
     <div><dt>Porcelain</dt><dd>2–3 visits</dd></div>
     <div><dt>Composite</dt><dd>1–2 visits</dd></div>
     <div><dt>Where</dt><dd>{CLINIC}, {ADDRESS} · <a href="{MAP_1}">Map</a></dd></div>
@@ -715,42 +720,61 @@ def re_tags(s):
     return re.sub(r"<[^>]+>", "", s)
 
 
+# Shown on every treatment price page (Dr's selling points, 22 Nov 2026).
+WHY_US = [
+    ("Our own lab", "Crowns, bridges and appliances are made at Titanium Arts Dental Studio, our lab on the same floor."),
+    ("CBCT on site", "3D scans are taken in the clinic, so you don't have to go to a scan centre."),
+    ("Dental microscope", "Root canals and fine surgical work are done under magnification."),
+    ("Laughing gas", "Nitrous oxide sedation for nervous adults and children."),
+    ("Sterilisation", "Instruments go through a Class B autoclave, following ADA infection-control guidelines."),
+    ("Same-day work", "Many crowns, root canals and whitening visits finish in one sitting."),
+]
+
+
 def page_price(pg):
-    prices = "".join(f'<div class="titem"><h3>{i}</h3><span class="mono">{v}</span></div>' for i, v in pg["prices"])
+    wa = wa_link(pg["wa"])
+    why = "".join(f'<div class="titem"><h3>{t}</h3><p>{d}</p></div>' for t, d in WHY_US)
     body = "".join(f"<h2>{h}</h2>{_paras(b)}" for h, b in pg["sections"])
     facts = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in pg["facts"])
     return f"""<section class="page-hero"><div class="wrap">
   <span class="label">{pg["label"]}</span>
   <h1>{pg["h1"]}</h1>
   <p>{pg["intro"]}</p>
+  <div class="hero-actions"><a class="btn" href="{wa}">WhatsApp us</a> <a class="btn ghost" href="tel:{PHONE.replace(" ", "")}">Call {PHONE[4:]}</a></div>
 </div></section>
 
-<section><div class="wrap treatments"><div class="tgroup"><div><h2>Prices</h2>
-<p class="muted">Starting prices, updated November 2026. You get the full cost in writing before treatment starts.</p></div><div class="tlist">{prices}</div></div></div></section>
+<section><div class="wrap treatments"><div class="tgroup"><div><h2>Cost</h2>
+<p class="muted">Every mouth is different, so we don't list prices here.</p></div><div class="tlist">
+<div class="titem"><h3>Ask us on WhatsApp or call</h3><p>Send a message on <a href="{wa}">WhatsApp {WHATSAPP_NO}</a> or call {PHONE_LINK}. Tell us what you need, and a photo or X-ray helps if you have one. The front desk checks with the doctor and gets back to you with the cost.</p></div>
+<div class="titem"><h3>In writing before you start</h3><p>After your check-up you get the full cost of your treatment in writing, before anything is done.</p></div>
+</div></div></div></section>
 
 <section><div class="wrap split">
   <div class="prose">{body}</div>
   <dl class="facts">
     {facts}
     <div><dt>Where</dt><dd>{CLINIC}, {ADDRESS} · <a href="{MAP_1}">Map</a></dd></div>
-    <div><dt>Call</dt><dd>{PHONE_LINK} · WhatsApp <a href="{WHATSAPP}">{WHATSAPP_NO}</a></dd></div>
+    <div><dt>Call</dt><dd>{PHONE_LINK} · WhatsApp <a href="{wa}">{WHATSAPP_NO}</a></dd></div>
     <div><dt>Hours</dt><dd>{HOURS}</dd></div>
     <div><dt>Pay by</dt><dd>UPI, card or cash</dd></div>
   </dl>
 </div></section>
 
+<section><div class="wrap treatments"><div class="tgroup"><div><h2>At our clinic</h2>
+<p class="muted">What you get at Dr Sobti's Dental Care, Rajouri Garden.</p></div><div class="tlist">{why}</div></div></div></section>
+
 {video_block(PAGE_VIDEOS.get(pg["slug"], []))}
 <section><div class="wrap treatments"><div class="tgroup"><div><h2>Questions</h2>
-<p class="muted">Ask anything else on WhatsApp.</p></div><div class="tlist">{faq_html(pg["faq"])}</div></div></div></section>
-<section><div class="wrap"><p><a class="btn" href="visit.html">{pg["cta"]}</a> <a href="treatments.html">See all treatments</a></p></div></section>"""
+<p class="muted">Ask anything else on <a href="{wa}">WhatsApp</a>.</p></div><div class="tlist">{faq_html(pg["faq"])}</div></div></div></section>
+<section><div class="wrap"><p><a class="btn" href="{wa}">{pg["cta"]} on WhatsApp</a> <a href="visit.html">Other ways to book</a> · <a href="treatments.html">See all treatments</a></p></div></section>"""
 
 
 def page_rajouri():
-    links = "".join(f'<li><a href="{p["slug"]}.html">{p["name"]}</a>: {p["prices"][0][1].lower()}</li>' for p in PRICE_PAGES)
+    links = "".join(f'<li><a href="{p["slug"]}.html">{p["name"]}</a></li>' for p in PRICE_PAGES)
     return f"""<section class="page-hero"><div class="wrap">
   <span class="label">Rajouri Garden, West Delhi</span>
-  <h1>Treatment prices, timings and directions</h1>
-  <p>Dr Parul sees patients at <a href="{CLINIC_URL}/">{CLINIC}, our clinic in Rajouri Garden</a>, above Rajmandir in Rajouri Garden Extension. Dr Pushkar Sobti and Dr Parul Sharma Sobti have been in practice since 2009, and the Rajouri Garden clinic opened in 2024. Below are starting prices and how to reach us.</p>
+  <h1>Treatments, timings and directions</h1>
+  <p>Dr Parul sees patients at <a href="{CLINIC_URL}/">{CLINIC}, our clinic in Rajouri Garden</a>, above Rajmandir in Rajouri Garden Extension. Dr Pushkar Sobti and Dr Parul Sharma Sobti have been in practice since 2009, and the Rajouri Garden clinic opened in 2024. Below are our treatments and how to reach us. For the cost of a treatment, WhatsApp or call us: the front desk checks with the doctor and tells you.</p>
 </div></section>
 
 <section><div class="wrap split">
@@ -760,14 +784,13 @@ def page_rajouri():
       <li><strong>Dr Pushkar Sobti</strong> (BDS, MDS, PG in Oral Implantology) is an implantologist who has placed more than 5,000 implants, from single teeth to <a href="{PUSHKAR_URL}/">All-on-4 and full mouth implants</a>.</li>
       <li><strong><a href="about.html">Dr Parul Sharma Sobti</a></strong> (BDS) focuses on smile design and cosmetic dentistry: veneers, whitening, bonding and smile makeovers.</li>
     </ul>
-    <h2>Treatments and starting prices</h2>
+    <h2>Treatments</h2>
     <ul>
       {links}
-      <li><a href="veneers.html">Veneers</a>: from ₹10,000 per tooth</li>
-      <li>Tooth-coloured fillings: from ₹2,500</li>
-      <li>Wisdom tooth removal: from ₹10,000</li>
-      <li><a href="{PUSHKAR_URL}/dental-implant-cost-delhi/">Dental implants</a>: from ₹35,000</li>
-      <li>Children's dentistry, dentures and all general treatments, priced after a check-up</li>
+      <li><a href="veneers.html">Veneers</a></li>
+      <li>Tooth-coloured fillings</li>
+      <li><a href="{PUSHKAR_URL}/">Dental implants</a> with Dr Pushkar Sobti</li>
+      <li>Dentures and all general treatments</li>
     </ul>
     <p>Everything is planned with digital tools: a CBCT scanner, intraoral 3D scanners, a dental microscope and an in-house lab. See <a href="technology.html">our technology</a>.</p>
     <h2>Getting here</h2>
@@ -932,7 +955,7 @@ def page_visit():
     <div><dt>WhatsApp</dt><dd><a href="{WHATSAPP}">{WHATSAPP_NO}</a></dd></div>
     <div><dt>Call</dt><dd class="mono">{"<br>".join(f'<a href="tel:{p.replace(" ", "")}">{p}</a>' for p in PHONES)}</dd></div>
     <div><dt>Email</dt><dd>{EMAIL}</dd></div>
-    <div><dt>Head clinic</dt><dd>{CLINIC}, {ADDRESS} · <a href="{MAP_1}">Map</a> · <a href="dentist-rajouri-garden.html">Directions, timings and prices</a></dd></div>
+    <div><dt>Head clinic</dt><dd>{CLINIC}, {ADDRESS} · <a href="{MAP_1}">Map</a> · <a href="dentist-rajouri-garden.html">Directions and timings</a></dd></div>
     <div><dt>Also at</dt><dd>{ADDRESS_2} · <a href="{MAP_2}">Map</a></dd></div>
     <div><dt>Hours</dt><dd>{HOURS}</dd></div>
     <div><dt>Book online</dt><dd><a href="https://www.sobtidentalcare.com/booking.html">sobtidentalcare.com/booking</a></dd></div>
@@ -978,6 +1001,8 @@ PAGE_VIDEOS = {
     "dental-crown-cost-delhi": ["2_e0jS8wVsg", "fvKcdFYR3R8"],
     "root-canal-cost-delhi": ["kPXjCugNphI", "K6o1xrWnsJ4"],
     "teeth-cleaning-cost-delhi": ["Q4XgYfekrpw", "Vu4W2Kl_Mvs"],
+    "kids-dentist-delhi": ["HMKI76NpUCw", "K6o1xrWnsJ4", "4pk7Kov41sQ", "kQDuNdLutes"],
+    "wisdom-tooth-removal-cost-delhi": ["a3YGzvm1YsU", "kQDuNdLutes"],
 }
 
 
@@ -1052,8 +1077,8 @@ def build(out, preview=False):
     for name, title, desc, body in pages:
         write(out / name, layout(title, desc, body, name, preview_main=(preview and name == "index.html"), path="" if name == "index.html" else name))
     write(out / "veneers.html", layout(
-        "Veneers in Delhi: Cost from ₹10,000 per Tooth | Dr Parul Sobti",
-        "Porcelain and composite veneers in Rajouri Garden, Delhi, from ₹10,000 per tooth. Smile design and a trial smile before anything is permanent, with Dr Parul Sharma Sobti.",
+        "Veneers in Delhi: Porcelain and Composite Veneers Cost | Dr Parul Sobti",
+        "Porcelain and composite veneers in Rajouri Garden, Delhi. Smile design and a trial smile before anything is permanent, with Dr Parul Sharma Sobti.",
         page_veneers(), "treatments.html", path="veneers.html", ld=veneers_schema()))
     for pg in PRICE_PAGES:
         write(out / f'{pg["slug"]}.html', layout(pg["title"], pg["desc"], page_price(pg), "treatments.html",
@@ -1064,7 +1089,7 @@ def build(out, preview=False):
         page_videos(), "treatments.html", path="videos.html", ld=videos_schema()))
     write(out / "dentist-rajouri-garden.html", layout(
         "Treatment Prices, Timings and Directions, Rajouri Garden Clinic | Dr Parul Sobti",
-        "Starting prices for veneers, whitening, crowns, braces, aligners and root canal at Dr Sobti's Dental Care, above Rajmandir. Open 7 days, 10 am to 7 pm. Parking and directions.",
+        "Veneers, whitening, crowns, braces, aligners, root canal, wisdom teeth and children's dentistry at Dr Sobti's Dental Care, above Rajmandir. Open 7 days, 10 am to 7 pm. Parking and directions.",
         page_rajouri(), "visit.html", path="dentist-rajouri-garden.html", ld=rajouri_schema()))
     for p in posts:
         if p["body"]:
@@ -1102,12 +1127,10 @@ def write_sitemap(out, posts):
 
 def write_llms(out, posts):
     """llms.txt: a plain fact sheet that AI search tools (ChatGPT, Perplexity, Gemini) can read and quote."""
-    prices = "\n".join(f'- {pg["h1"]}: ' + "; ".join(f"{re_tags(i)}: {re_tags(v)}" for i, v in pg["prices"])
-                       + f' ({SITE_URL}/{pg["slug"]}.html)' for pg in PRICE_PAGES)
     pages = "\n".join(f"- [{t}]({SITE_URL}/{u})" for t, u in [
         ("Home", ""), ("About Dr Parul Sharma Sobti", "about.html"), ("The clinic", "clinic.html"),
         ("All treatments", "treatments.html"), ("Veneers in Delhi", "veneers.html"), ("Technology", "technology.html"),
-        ("Dentist in Rajouri Garden: prices, timings and directions", "dentist-rajouri-garden.html"),
+        ("Dentist in Rajouri Garden: treatments, timings and directions", "dentist-rajouri-garden.html"),
         ("Visit and book", "visit.html"), ("Smile Journal blog", "blog.html"),
         ("Videos: smile makeovers, veneers, same-day crowns, children and nervous patients", "videos.html")]
         + [(pg["h1"], f'{pg["slug"]}.html') for pg in PRICE_PAGES])
@@ -1121,13 +1144,9 @@ def write_llms(out, posts):
 - Clinic website: {CLINIC_URL}/ · Google profile: {GOOGLE_PROFILE}
 - Timings: {HOURS}, including Sundays
 - Call {PHONE}; WhatsApp {WHATSAPP_NO}; {EMAIL}
-- Consultation: free first opinion on WhatsApp; in-clinic consultation INR 700
-- Veneers from INR 10,000 per tooth; smile makeover priced case by case after a digital smile design
+- Costs: not published. WhatsApp or call; the front desk checks with the doctor and gives the cost for each case. Full cost in writing before treatment.
 - Languages: English, Hindi. Not on the CGHS panel.
 - Profiles: {INSTAGRAM} · {FACEBOOK} · {YOUTUBE}
-
-## Starting prices (November 2026)
-{prices}
 
 ## Pages
 {pages}
