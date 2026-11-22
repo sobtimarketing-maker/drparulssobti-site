@@ -609,9 +609,9 @@ def page_treatments():
 
 VENEER_FAQ = [
     ("How much do veneers cost in Delhi?",
-     "It depends on the material and how many teeth are included. WhatsApp 80767 77307 or call 87449 85976: the front desk checks with Dr Parul and tells you the cost. You get a written estimate after your consultation."),
+     "At Dr Sobti's Dental Care in Rajouri Garden, veneers start from ₹10,000 per tooth. The final cost depends on the material and how many teeth are included, and you get a written estimate after your consultation."),
     ("How does veneers cost in India compare with Delhi?",
-     "Prices across India range widely, mainly because of the material and the lab. Porcelain made in a good lab costs more than composite. We quote per tooth, with the material written on your estimate."),
+     "Prices across India range widely, mainly because of the material and the lab. Porcelain made in a good lab costs more than composite. We quote per tooth, from ₹10,000, with the material written on your estimate."),
     ("What does a smile makeover cost?",
      "Smile makeover cost in India varies more than almost any other treatment, because it depends on what the plan includes. Some makeovers are whitening and a few bonded edges; others need veneers on 8 to 10 teeth. Dr Parul gives you a written estimate after the smile design, before any treatment."),
     ("How many teeth need veneers?",
@@ -628,7 +628,7 @@ def page_veneers():
     return f"""<section class="page-hero"><div class="wrap">
   <span class="label">Treatments · Veneers</span>
   <h1>Veneers in Delhi</h1>
-  <p>Porcelain and composite veneers with Dr Parul Sharma Sobti at {CLINIC}, Rajouri Garden. Glass-ceramic veneers are made in the clinic's own lab.</p>
+  <p>Porcelain and composite veneers with Dr Parul Sharma Sobti at {CLINIC}, Rajouri Garden. Veneers start from ₹10,000 per tooth.</p>
 </div></section>
 
 <section><div class="wrap split">
@@ -651,6 +651,7 @@ def page_veneers():
     </ul>
   </div>
   <dl class="facts">
+    <div><dt>Price</dt><dd>From ₹10,000 per tooth</dd></div>
     <div><dt>Porcelain</dt><dd>2–3 visits</dd></div>
     <div><dt>Composite</dt><dd>1–2 visits</dd></div>
     <div><dt>Where</dt><dd>{CLINIC}, {ADDRESS} · <a href="{MAP_1}">Map</a></dd></div>
@@ -721,6 +722,16 @@ def page_price(pg):
     why = "".join(f'<div class="titem"><h3>{t}</h3><p>{d}</p></div>' for t, d in WHY_US)
     body = "".join(f"<h2>{h}</h2>{_paras(b)}" for h, b in pg["sections"])
     facts = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in pg["facts"])
+    if pg.get("prices"):  # starting prices only, never exact costs (Dr, 22 Nov 2026)
+        prices = "".join(f'<div class="titem"><h3>{i}</h3><span class="mono">{v}</span></div>' for i, v in pg["prices"])
+        price_box = f"""<section><div class="wrap treatments"><div class="tgroup"><div><h2>Starting prices</h2>
+<p class="muted">The exact cost depends on your teeth and is given in writing after Dr Parul examines you.</p></div><div class="tlist">{prices}</div></div></div></section>"""
+    else:
+        price_box = f"""<section><div class="wrap treatments"><div class="tgroup"><div><h2>Cost</h2>
+<p class="muted">Every mouth is different, so we don't list prices here.</p></div><div class="tlist">
+<div class="titem"><h3>Ask us on WhatsApp or call</h3><p>Send a message on <a href="{wa}">WhatsApp {WHATSAPP_NO}</a> or call {PHONE_LINK}. Tell us what you need, and a photo or X-ray helps if you have one. The front desk checks with the doctor and gets back to you with the cost.</p></div>
+<div class="titem"><h3>In writing before you start</h3><p>After your check-up you get the full cost of your treatment in writing, before anything is done.</p></div>
+</div></div></div></section>"""
     return f"""<section class="page-hero"><div class="wrap">
   <span class="label">{pg["label"]}</span>
   <h1>{pg["h1"]}</h1>
@@ -728,11 +739,7 @@ def page_price(pg):
   <div class="hero-actions"><a class="btn" href="{wa}">WhatsApp us</a> <a class="btn ghost" href="tel:{PHONE.replace(" ", "")}">Call {PHONE[4:]}</a></div>
 </div></section>
 
-<section><div class="wrap treatments"><div class="tgroup"><div><h2>Cost</h2>
-<p class="muted">Every mouth is different, so we don't list prices here.</p></div><div class="tlist">
-<div class="titem"><h3>Ask us on WhatsApp or call</h3><p>Send a message on <a href="{wa}">WhatsApp {WHATSAPP_NO}</a> or call {PHONE_LINK}. Tell us what you need, and a photo or X-ray helps if you have one. The front desk checks with the doctor and gets back to you with the cost.</p></div>
-<div class="titem"><h3>In writing before you start</h3><p>After your check-up you get the full cost of your treatment in writing, before anything is done.</p></div>
-</div></div></div></section>
+{price_box}
 
 <section><div class="wrap split">
   <div class="prose">{body}</div>
@@ -755,7 +762,8 @@ def page_price(pg):
 
 
 def page_rajouri():
-    links = "".join(f'<li><a href="{p["slug"]}.html">{p["name"]}</a></li>' for p in PRICE_PAGES)
+    links = "".join(f'<li><a href="{p["slug"]}.html">{p["name"]}</a>' + (f': {p["prices"][0][1].lower()}' if p.get("prices") else "") + "</li>"
+                    for p in PRICE_PAGES)
     return f"""<section class="page-hero"><div class="wrap">
   <span class="label">Rajouri Garden, West Delhi</span>
   <h1>Smile design in Rajouri Garden: timings and directions</h1>
@@ -772,7 +780,7 @@ def page_rajouri():
     <h2>Dr Parul's treatments</h2>
     <ul>
       <li><a href="treatments.html">Smile design and smile makeovers</a></li>
-      <li><a href="veneers.html">Veneers</a>: porcelain (indirect) and composite (direct)</li>
+      <li><a href="veneers.html">Veneers</a>: porcelain (indirect) and composite (direct), from ₹10,000 per tooth</li>
       {links}
       <li>Composite bonding, enamel contouring and gum contouring</li>
     </ul>
@@ -1083,8 +1091,8 @@ def build(out, preview=False):
     for name, title, desc, body in pages:
         write(out / name, layout(title, desc, body, name, preview_main=(preview and name == "index.html"), path="" if name == "index.html" else name))
     write(out / "veneers.html", layout(
-        "Veneers in Delhi: Porcelain and Composite Veneers Cost | Dr Parul Sobti",
-        "Porcelain and composite veneers in Rajouri Garden, Delhi. Smile design and a trial smile before anything is permanent, with Dr Parul Sharma Sobti.",
+        "Veneers in Delhi: Cost from ₹10,000 per Tooth | Dr Parul Sobti",
+        "Porcelain and composite veneers in Rajouri Garden, Delhi, from ₹10,000 per tooth. Smile design and a trial smile before anything is permanent, with Dr Parul Sharma Sobti.",
         page_veneers(), "treatments.html", path="veneers.html", ld=veneers_schema()))
     for pg in PRICE_PAGES:
         write(out / f'{pg["slug"]}.html', layout(pg["title"], pg["desc"], page_price(pg), "treatments.html",
@@ -1151,7 +1159,7 @@ def write_llms(out, posts):
 - Clinic website: {CLINIC_URL}/ · Google profile: {GOOGLE_PROFILE}
 - Timings: {HOURS}, including Sundays
 - Call {PHONE}; WhatsApp {WHATSAPP_NO}; {EMAIL}
-- Costs: not published. WhatsApp or call; the front desk checks with the doctor and gives the cost for each case. Full cost in writing before treatment.
+- Starting prices: veneers from INR 10,000 per tooth; in-clinic whitening from INR 8,000. Smile makeover priced case by case after a digital smile design. Exact cost is given in writing after an examination.
 - Languages: English, Hindi. Not on the CGHS panel.
 - Profiles: {INSTAGRAM} · {FACEBOOK} · {YOUTUBE}
 
