@@ -390,7 +390,7 @@ def page_home(posts):
   <p>Teeth, gums and face are planned together and treated in the right order.</p></div>
   <div class="grid three">
     <div class="card"><span class="label">Smile designing</span><h3>Planned before it's made</h3>
-      <p class="muted">Digital smile design, photographs and a trial smile in your mouth so you approve the result first.</p></div>
+      <p class="muted">Digital smile design, photographs and a trial smile in your mouth so you approve the result first. <a href="smile-makeover-delhi.html">How a smile makeover works</a>.</p></div>
     <div class="card"><span class="label">Dental cosmetics</span><h3>Whitening to veneers</h3>
       <p class="muted">Whitening, bonding, contouring, veneers, ceramic crowns, gum contouring and clear aligners.</p></div>
     <div class="card"><span class="label">Facial aesthetics</span><h3>The frame around the smile</h3>
@@ -554,7 +554,7 @@ TREATMENTS = [
     ("Smile designing", "Planning the whole smile around your face.", [
         ("Digital Smile Design (DSD)", "Photographs and video analysed on screen to plan tooth shape, size and position.", "1–2 visits"),
         ("Trial smile (mock-up)", "A temporary version of your new smile placed over your teeth so you can see and feel it.", "1 visit"),
-        ("Smile makeover", "A combined plan that may include whitening, gum shaping, veneers and alignment.", "Planned case by case"),
+        ("Smile makeover", "A combined plan that may include whitening, gum shaping, veneers and alignment. See <a href=\"smile-makeover-delhi.html\">smile makeover</a>.", "Planned case by case"),
     ]),
     ("Cosmetic dentistry", "Brightening and reshaping teeth.", [
         ("Teeth whitening", "In-clinic and take-home whitening for natural teeth.", "1 visit / 2 weeks at home"),
@@ -991,6 +991,7 @@ VIDEO_FAQ = [
 ]
 PAGE_VIDEOS = {
     "veneers": ["s3GXnZ2gkUk", "oAl3H6l39Es", "6PXXzwvCBco"],
+    "smile-makeover-delhi": ["s3GXnZ2gkUk", "oAl3H6l39Es", "6PXXzwvCBco"],
     "dental-crown-cost-delhi": ["2_e0jS8wVsg", "fvKcdFYR3R8"],
     "root-canal-cost-delhi": ["kPXjCugNphI", "K6o1xrWnsJ4"],
     "teeth-cleaning-cost-delhi": ["Q4XgYfekrpw", "Vu4W2Kl_Mvs"],
