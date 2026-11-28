@@ -11,6 +11,65 @@ facts [(label, value)], faq [(question, answer)], cta.
 
 PRICE_PAGES = [
     {
+        "slug": "smile-makeover-delhi",
+        "wa": "Smile makeover",
+        "name": "Smile makeover",
+        "title": "Smile Makeover in Delhi: Smile Designing | Dr Parul Sobti",
+        "desc": "Smile makeover and smile designing in Rajouri Garden, Delhi with Dr Parul Sharma Sobti. See your new smile on your own photos and try it before treatment starts.",
+        "label": "Treatments · Smile makeover",
+        "h1": "Smile makeover in Delhi",
+        "intro": "Smile designing with Dr Parul Sharma Sobti at Dr Sobti's Dental Care, Rajouri Garden. Your new smile is planned on your own photos and scans, and you try it in your mouth before anything permanent is done.",
+        "prices": [
+            ("Smile makeover", "Planned case by case"),
+            ("Veneers, where needed", "From ₹10,000 per tooth"),
+            ("In-clinic whitening, where needed", "From ₹8,000 (depends on the case)"),
+        ],
+        "sections": [
+            ("What a smile makeover is", [
+                "A smile makeover is not one treatment. It is a plan for the teeth that show when you talk and smile, and it uses only what your teeth need.",
+                ["<a href=\"teeth-whitening-cost-delhi.html\">Whitening</a>, when the shape is fine and only the colour bothers you.",
+                 "Composite bonding or contouring for chips, worn edges and small gaps.",
+                 "Porcelain or composite <a href=\"veneers.html\">veneers</a> when colour, shape and length all need to change.",
+                 "Gum shaping when the gum line is uneven or the teeth look short.",
+                 "Clear aligners first, when the teeth need to move before anything is added to them."],
+                "Dr Parul works on the principle of least invasive first. If whitening and a little bonding will give you the smile you want, she will tell you so before suggesting veneers.",
+            ]),
+            ("How your smile is designed", [
+                ["Photographs, a short video and a 3D scan of your teeth. There are no impression trays.",
+                 "Dr Parul designs the new smile on screen, working out the shape, length and proportion of each tooth against your lips and face.",
+                 "A mock-up of that design is 3D printed and placed over your own teeth, so you can see it in the mirror and feel it when you speak.",
+                 "You ask for changes: longer, shorter, rounder, a shade less white. The design is adjusted until you are happy with it.",
+                 "Only then is the final work done. Veneers and crowns are milled in our own lab, on the same floor as the clinic."],
+                "Nothing permanent is done to your teeth until you have seen and approved the trial smile.",
+            ]),
+            ("How long it takes", [
+                "It depends on the plan. Whitening is one visit, and bonding usually is too. Porcelain veneers take 2 to 3 visits, and because they are made in the clinic's own lab there is no long wait in between. If aligners are part of the plan, the teeth are moved first and the cosmetic work follows.",
+            ]),
+            ("Who asks for one", [
+                "Most people who ask about a smile makeover have one of a few concerns: gaps, chipped or worn front teeth, teeth that have gone dark or stayed stained after whitening, old fillings that show, or teeth that look uneven in photos.",
+                "Teeth and gums need to be healthy first, so any decay or gum problem is treated before the cosmetic work starts.",
+            ]),
+        ],
+        "facts": [("Smile design", "1–2 visits"), ("Trial smile", "1 visit, before any permanent work"),
+                  ("Veneers, where needed", "From ₹10,000 per tooth"), ("Dentist", "Dr Parul Sharma Sobti, BDS, Digital Smile Design")],
+        "faq": [
+            ("What does a smile makeover cost in Delhi?",
+             "There is no single price, because a makeover can be whitening and a few bonded edges, or veneers on 8 to 10 teeth. At Dr Sobti's Dental Care in Rajouri Garden, veneers start from ₹10,000 per tooth and in-clinic whitening from ₹8,000. Dr Parul gives you a written estimate after the smile design, before any treatment."),
+            ("What is the difference between smile designing and a smile makeover?",
+             "Smile designing is the planning: your new smile is worked out on your photos and scans and shown to you as a trial smile. The smile makeover is the treatment that follows, using whitening, bonding, veneers, gum shaping or aligners as the plan needs."),
+            ("Can I see my new smile before treatment?",
+             "Yes. The design is placed over your own teeth as a mock-up, so you can see and feel it and ask for changes before any permanent work."),
+            ("Will my teeth be cut down?",
+             "Often very little, and sometimes not at all. Whitening, bonding and contouring leave the tooth almost untouched. Veneers usually need a thin layer of enamel removed. Dr Parul shows you what each option involves before you choose."),
+            ("How long does a smile makeover last?",
+             "It depends on the materials and on how you look after them. Porcelain keeps its colour and shine for many years. Composite may need polishing or small repairs over time. Whitening fades gradually and can be topped up."),
+            ("Do you see smile makeover patients from other parts of Delhi?",
+             "Yes. The clinic is in Rajouri Garden, about 1.5 km from Rajouri Garden metro station, and open 7 days from 10 am to 7 pm. Dr Parul sees patients by appointment, so message or call before you travel."),
+        ],
+        "cta": "Ask about a smile makeover",
+    },
+
+    {
         "slug": "teeth-whitening-cost-delhi",
         "wa": "Teeth whitening",
         "name": "Teeth whitening",
